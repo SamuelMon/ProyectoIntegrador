@@ -4,7 +4,7 @@ import '../styles/jugador.css';
 
 function Jugador(props){
     return(
-        <div>
+        <div className="contenedorJugador">
             <Campo 
             nombreCampo={props.nombre}
             placeholder = ' '
@@ -14,7 +14,7 @@ function Jugador(props){
             <Campo 
             clase ='formulario__input'
             type ='text'
-            placeholder ={props.placeholder || ' '}
+            placeholder ={props.placeholder || 'Jugador'}
             mostrarLabel = {false} />
         </div>
     )

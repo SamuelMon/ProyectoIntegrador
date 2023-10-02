@@ -1,11 +1,8 @@
-@media (min-width: 768px){
-    .contenedor__equipo{
-        display: grid;
-        grid-template-columns: repeat(2,1fr);
-        gap: 1.5rem;
-    }
-
-    .campo.formulario__input[type="number"]{
-        max-width: 4rem;
-    }
+.contenedorLabel{
+    display: flex;
+    justify-content: space-between;
+    max-width: 24%;
+}
+.contenedorLabel label{
+    flex-wrap: wrap;
 }

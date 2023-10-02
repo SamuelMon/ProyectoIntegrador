@@ -5,9 +5,7 @@ import IntegrantesEquipo from './components/IntegrantesEquipo';
 function App() {
   return (
     <div className="App">
-      {/* {<InfoGeneral/>} */}
-      {<IntegrantesEquipo
-      nombreEquipo ='Mexico' />}
+      {<InfoGeneral/>}
     </div>
   );
 }
