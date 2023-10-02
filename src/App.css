@@ -1,0 +1,66 @@
+html{
+    font-size: 62.5%;/*1*/
+    box-sizing: border-box;
+}
+*, *:before, *:after {/*soluciona con el box-sizing*/
+    box-sizing: inherit;
+  }
+
+body{
+    font-size: 16px; /*2. Con 1 y 2 tenemos que 1rem= 10px*/
+    background-color: #F8F9F9;
+}
+
+/*Globales*/
+.boton{
+    background-color: #0097a7;
+    color: #fff;
+    padding: 1rem 3rem;
+    margin-top: 1rem;
+    font-size: 2rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: .5rem;
+    width: 100%;
+    text-align: center;
+    border: none;
+}
+@media (min-width: 768px){
+    .boton{
+        width: auto;
+    }
+}
+
+.contenedor{
+    max-width: 120rem;
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+.sombra{/*https://www.cssmatic.com/*/
+    box-shadow: 0px 5px 15px 0px rgba(0,0,0,0.54);
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 2rem;
+}
+
+/*Formulario*/
+.formulario{
+    background-color: #AEB6BF;
+    width: min(100rem, 90%);/*utilia el valor mas pequeño*/
+    margin: 0 auto;/*centrar horizontalmente cuando sea display block y el padre no tenga display flex*/
+    padding: 2rem;
+    border-radius: 1rem;
+}
+.formulario fieldset{
+    border: none;
+}
+.formulario__titulo{
+    text-align: center;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    color: #fff;
+}
