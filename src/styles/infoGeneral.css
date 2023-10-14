@@ -1,19 +1,19 @@
 @media (min-width: 768px){
-    .formulario__contenedor{
+    .formulario__contenedor__infogen{
         display: grid;
         grid-template-columns: repeat(4,1fr);
         grid-template-rows: repeat(3,1fr);
         gap: 1.5rem;
     }
-    .campo:nth-child(1){
+    .formulario__contenedor__infogen .campo:nth-child(1){
         grid-column: 1/5;
     }
-    .campo:nth-child(2),
-    .campo:nth-child(8){
+    .formulario__contenedor__infogen .campo:nth-child(2),
+    .formulario__contenedor__infogen .campo:nth-child(8){
         grid-column: 1/3;
     }
-    .campo:nth-child(3),
-    .campo:nth-child(9){
+    .formulario__contenedor__infogen .campo:nth-child(3),
+    .formulario__contenedor__infogen .campo:nth-child(9){
         grid-column: 3/5;
     }
 }
