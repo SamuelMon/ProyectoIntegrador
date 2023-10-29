@@ -1,3 +1,6 @@
+.contenedor__equipo{
+    min-width: 40rem;
+}
 .contenedorLabel{
     display: flex;
     justify-content: space-between;
@@ -5,4 +8,9 @@
 }
 .contenedorLabel label{
     flex-wrap: wrap;
+}
+
+.omIntegrantes{
+    max-width: 30%;
+    text-align: center;
 }

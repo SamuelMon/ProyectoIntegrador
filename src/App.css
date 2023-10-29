@@ -51,7 +51,7 @@ body{
 /*Formulario*/
 .formulario{
     background-color: #AEB6BF;
-    width: min(100rem, 90%);/*utilia el valor mas pequeño*/
+    width: min(120rem, 90%);/*utilia el valor mas pequeño*/
     margin: 0 auto;/*centrar horizontalmente cuando sea display block y el padre no tenga display flex*/
     padding: 2rem;
     border-radius: 1rem;
@@ -67,3 +67,11 @@ body{
     margin-bottom: 2rem;
     color: #fff;
 }
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=number] { -moz-appearance:textfield; }

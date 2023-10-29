@@ -2,8 +2,10 @@ import React, {useState} from "react";
 import Campo from "./Campo";
 import OpcionMultiple from "./OpcionMultiple";
 import '../styles/infoGeneral.css'
+import { useNavigate } from 'react-router-dom';
 
 function InfoGeneral(){
+    const navigate = useNavigate();
     const [datos, setDatos] = useState({
         nombreCompe: '',
         ciudad: '',
@@ -28,8 +30,26 @@ function InfoGeneral(){
         event.preventDefault();
         // Aquí se puede hacer lo que se quiera con los datos del formulario
         let Moncayo = JSON.stringify(datos);
-        alert(Moncayo);
-    }
+        setDatos({
+            nombreCompe: '',
+            ciudad: '',
+            escenario: '',
+            division: '',
+            categoria: '',
+            fecha: '',
+            hora: '',
+            equipo1: '',
+            equipo2: ''
+        });
+        localStorage.setItem("nombreEquipos",JSON.stringify({
+            equipo1: datos.equipo1,
+            equipo2: datos.equipo2
+        }))
+
+        alert('Información guardada de manera exitosa!');
+        navigate('/registroEq');
+    };
+
     
     return(
         <section className='contenedor sombra'>
@@ -44,6 +64,7 @@ function InfoGeneral(){
                         placeholder ='Competencia'
                         mostrarLabel = {true} 
                         id ='nombreCompe'
+                        value={datos.nombreCompe}
                         onChange={handleInputChange} />
                         <Campo 
                         nombreCampo ='Ciudad'
@@ -52,6 +73,7 @@ function InfoGeneral(){
                         placeholder ='Ciudad'
                         mostrarLabel = {true} 
                         id ='ciudad'
+                        value={datos.ciudad}
                         onChange={handleInputChange} />
                         <Campo 
                         nombreCampo ='Escenario Deportivo'
@@ -60,6 +82,7 @@ function InfoGeneral(){
                         placeholder ='Escenario'
                         mostrarLabel = {true} 
                         id ='escenario'
+                        value={datos.escenario}
                         onChange={handleInputChange} />
                         <OpcionMultiple
                         clase ='formulario__input'
@@ -69,6 +92,8 @@ function InfoGeneral(){
                         opcion3 ='Mixta'
                         mostrarLabel = {true} 
                         id ='division'
+                        value={datos.division}
+                        op3Able = {true}
                         onChange={handleInputChange} />
                         <OpcionMultiple
                         clase ='formulario__input'
@@ -78,6 +103,8 @@ function InfoGeneral(){
                         opcion3 ='Menores'
                         mostrarLabel = {true} 
                         id ='categoria'
+                        value={datos.categoria}
+                        op3Able = {true}
                         onChange={handleInputChange} />
                         <Campo 
                         nombreCampo ='Fecha'
@@ -86,6 +113,7 @@ function InfoGeneral(){
                         placeholder ='Fecha'
                         mostrarLabel = {true} 
                         id ='fecha'
+                        value={datos.fecha}
                         onChange={handleInputChange} />
                         <Campo 
                         nombreCampo ='Hora'
@@ -94,6 +122,7 @@ function InfoGeneral(){
                         placeholder ='Hora'
                         mostrarLabel = {true} 
                         id ='hora'
+                        value={datos.hora}
                         onChange={handleInputChange} />
                         <Campo 
                         nombreCampo ='Equipo 1'
@@ -102,6 +131,7 @@ function InfoGeneral(){
                         placeholder ='Equipo'
                         mostrarLabel = {true} 
                         id ='equipo1'
+                        value={datos.equipo1}
                         onChange={handleInputChange} />
                         <Campo 
                         nombreCampo ='Equipo 2'
@@ -110,10 +140,11 @@ function InfoGeneral(){
                         placeholder ='Equipo'
                         mostrarLabel = {true} 
                         id ='equipo2'
+                        value={datos.equipo2}
                         onChange={handleInputChange} />
                     </div>
                     <div>
-                        <input className="boton" type="submit" value="Enviar" />
+                        <input className="boton" type="submit" value="Registrar" />
                     </div>
                 </fieldset>
             </form>

@@ -5,6 +5,10 @@ label{
     display: block;
 }
 
+.contenedorJugador{
+    max-width: 90%;
+}
+
 @media (min-width: 768px){
     .contenedorJugador{
         max-width: 100%;

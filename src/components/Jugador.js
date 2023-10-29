@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Campo from "./Campo";
 import '../styles/jugador.css';
 
 function Jugador(props){
-    const {numJ,eq}= props;
+    const {numJ,eq,onChange,onChangeCamiseta}= props;
     const idNumAux= 'numJ';
     const idJugAux= 'nombJ';
     return(
@@ -14,13 +14,15 @@ function Jugador(props){
             clase ='formulario__input'
             type ='number'         
             mostrarLabel = {props.label}
-            id= {idNumAux + numJ + eq} />
+            id= {idNumAux + numJ + eq}
+            onChange={onChangeCamiseta} />
             <Campo 
             clase ='formulario__input'
             type ='text'
             placeholder ={props.placeholder || 'Jugador'}
             mostrarLabel = {false}
-            id = {idJugAux + numJ + eq} />
+            id = {idJugAux + numJ + eq}
+            onChange={onChange} />
         </div>
     )
 };

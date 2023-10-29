@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import InfoGeneral from './components/InfoGeneral';
 import RegitroEquipos from './components/RegistroEquipos';
+import PosicionesIniciales from './components/PosicionesIniciales';
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <Route path='/' Component={InfoGeneral}></Route>
       <Route path='/infogen' Component={InfoGeneral}></Route>
       <Route path='/registroEq' Component={RegitroEquipos}></Route>
+      <Route path='/pos' Component={PosicionesIniciales}></Route>
     </Routes>
   );
 }
