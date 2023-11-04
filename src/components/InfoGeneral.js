@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import Campo from "./Campo";
+import { backendAxios } from "../utils"
 import OpcionMultiple from "./OpcionMultiple";
 import '../styles/infoGeneral.css'
 import { useNavigate } from 'react-router-dom';
@@ -46,10 +47,26 @@ function InfoGeneral(){
             equipo2: datos.equipo2
         }))
 
+        backendAxios.post('http://<tu_direccion_ip_publica>:5000', datos, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => {
+                if (response.status === 200) {
+                console.log('Equipo creado con éxito');
+                // Realiza cualquier otra acción necesaria en el frontend
+                } else {
+                // Manejar otras respuestas de error aquí
+                }
+            })
+            .catch(error => {
+                console.error('Error al realizar la petición:', error);
+                // Manejar el error de la petición aquí
+            });
         alert('Información guardada de manera exitosa!');
         navigate('/registroEq');
     };
-
     
     return(
         <section className='contenedor sombra'>
