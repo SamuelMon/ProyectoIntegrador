@@ -10,7 +10,7 @@ function RegitroEquipos(){
             <IntegrantesEquipo
             numEq ='eq2' />
         </div>
-    )
-}
+    );
+};
 
 export default RegitroEquipos;

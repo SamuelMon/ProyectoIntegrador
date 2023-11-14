@@ -1,0 +1,17 @@
+.contenedorPosMain{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(2,1fr);
+    gap: 2rem;
+}
+.contenedorPosMain .botonPos{
+    background-color: #AEB6BF;
+    color: #fff;
+    min-width: 11rem;
+    min-height: 11rem;
+    transition: background 0.5s;
+}
+
+.botonPos:hover{
+    background-color: #969EA6;
+}

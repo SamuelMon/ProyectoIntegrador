@@ -1,0 +1,141 @@
+.contenedorPTS{
+    display: grid;
+    grid-template-columns:repeat(3,1fr) ;
+    grid-template-rows:repeat(3,1fr) ;
+    gap: 1rem;
+    max-height: 25rem;
+}
+
+.puntoBtn{
+    grid-row: 1/4;
+    width: 21.5rem;
+    height: 21.5rem;
+    font-size: 12rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.5s;
+}
+
+.contenedorTiempos{
+    display: flex;
+    gap: 0.5rem;
+    position: relative;
+}
+
+.contenedorTiemposizquierda{
+    flex-direction: row-reverse;
+}
+
+.contenedorTiemposVista{
+    display: flex;
+    gap: 0.5rem;
+    position: absolute;
+}
+
+.contenedorTiemposderecha{
+    right: 0;
+}
+.contenedorTiemposizquierda{
+    left: 0;
+}
+
+.tiemposVista{
+    width: 1rem;
+    height: 1rem;
+    background-color: #0097a7;
+    border-radius: 50%;
+}
+
+.contadorTiempo{
+    grid-row: 2/3;
+    display: flex;
+    height: 7rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.contadorTiempo p{
+    text-align: center;
+}
+
+.izquierda{
+    grid-column: 2/4;
+}
+
+.derecha{
+    grid-column: 1/3;
+}
+
+.tiempoBtn{
+    grid-row: 1/2;
+    display: flex;
+    justify-content: center;
+    max-height: 6.5rem;
+    max-width: 4.5rem;
+    border-radius: 50%;
+    margin-left: 2rem;
+    background-color: #0097a7;
+    position: absolute;
+    left: 0;
+    transition: background 0.5s;
+}
+
+.tiempoHover:hover,
+.sancionBtn:hover,
+.puntoBtn:hover{
+    background-color: #00808D;
+}
+
+.contenedorTiempos .disabled-button{
+    background-color: gray;
+    cursor: default;
+}
+
+.sancionBtn{
+    grid-row: 3/4;
+    display: flex;
+    justify-content: center;
+    max-height: 6.5rem;
+    max-width: 4.5rem;
+    border-radius: 50%;
+    margin-left: 2rem;
+    background-color: #0097a7;
+    transition: background 0.5s;
+}
+
+.icon{
+    min-width: 4rem;
+    min-height: 4rem;
+}
+
+.modal .botonSancion{
+    color: #fff;
+    min-width: 11rem;
+    min-height: 11rem;
+}
+
+.jugadorSan{
+    background-color: #AEB6BF;
+    transition: background 0.5s;
+}
+
+.jugadorSan:hover{
+    background-color: red;
+}
+
+.amonestacion{
+    background-color: yellow;
+}
+
+.castigo{
+    background-color: red;
+}
+
+.desExp{
+    background: linear-gradient(45deg, yellow,red);
+}
+
+.fontSancion{
+    font-size: 5rem;
+}

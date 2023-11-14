@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Campo from "./Campo";
 import '../styles/jugador.css';
 

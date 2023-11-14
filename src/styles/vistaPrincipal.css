@@ -1,0 +1,20 @@
+.contenedorVistaP{
+    display: grid;
+    grid-template-columns: 1fr 0.2fr 1fr;
+    max-width: 180rem;
+    margin: 0 auto
+}
+
+.sets{
+    grid-column: 2/3;
+    margin-top: 28rem;
+}
+
+.sets p{
+    font-size: 5rem;
+    text-align: center;
+}
+
+.contenedorAccEq:nth-child(2){
+    grid-column: 3/4;
+}

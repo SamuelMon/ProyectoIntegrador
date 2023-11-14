@@ -48,6 +48,21 @@ body{
     border-radius: 2rem;
 }
 
+.grid{
+    display: grid;
+    gap: 2rem;
+}
+
+.grid2Column{
+    grid-template-columns: repeat(2,1fr);
+}
+.grid3Column{
+    grid-template-columns: repeat(3,1fr);
+}
+.grid4Column{
+    grid-template-columns: repeat(4,1fr);
+}
+
 /*Formulario*/
 .formulario{
     background-color: #AEB6BF;
