@@ -6,10 +6,8 @@ function PosicionesIniciales(){
     return(
         <div className="contenedorPosiciones">
             <PosicionInicial 
-            nombreEquipo=''
             eq='A' />
             <PosicionInicial 
-            nombreEquipo=''
             eq='B' />
         </div>
     )
