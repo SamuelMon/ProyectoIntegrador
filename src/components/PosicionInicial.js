@@ -63,11 +63,12 @@ function PosicionInicial(props) {
   const Envio = async (event) => {
     event.preventDefault();
     //Aquí se puede hacer lo que se quiera con los datos
-    let guardarNumeros = JSON.stringify(guardarNumeros);
-    let guardarAccion = JSON.stringify(guardarAccion);
-    console.log(guardarNumeros);
-    console.log(guardarAccion);
 
+    // guardar información localStorage
+    localStorage.setItem([`RegistroEquipo-${eq}`],JSON.stringify({
+      numeros,
+      accion
+    }))
     if (eq == "A") {
       alert("Posiciones iniciales del equipo A registradas exitosamente!");
     } else {
@@ -136,7 +137,7 @@ function PosicionInicial(props) {
             <input
               className="boton botonPosIn"
               type="submit"
-              value="Registrar"
+              value="Guardar"
             />
           </div>
         </fieldset>
