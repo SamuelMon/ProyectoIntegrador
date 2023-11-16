@@ -1,8 +1,10 @@
 import React from "react";
 import PosicionInicial from "./PosicionInicial";
+import { useNavigate } from "react-router-dom";
 import "../styles/posicionesIniciales.css";
 
 function PosicionesIniciales() {
+  const navigate = useNavigate();
   const redirectToNextPage = () => {
     // traer info del localStorage
     const equipoA = JSON.parse(
@@ -31,9 +33,9 @@ function PosicionesIniciales() {
     console.log(equipoA, equipoB)
     // Ver si está completa la info
     let minimoNumerosA =
-      Object.values(numerosA).filter((numero) => numero != "").length >= 6;
+      Object.values(numerosA).filter((numero) => numero !== "").length >= 6;
     let minimoNumerosB =
-      Object.values(numerosB).filter((numero) => numero != "").length >= 6;
+      Object.values(numerosB).filter((numero) => numero !== "").length >= 6;
 
     if (!minimoNumerosA) {
       alert("Faltan jugadores para el equipo A");
@@ -44,23 +46,23 @@ function PosicionesIniciales() {
     }
     // Verificar que no se repitan los jugadores
     let numerosTotalesA = Object.values(numerosA).filter(
-      (numero) => numero != ""
+      (numero) => numero !== ""
     );
     let numerosTotalesB = Object.values(numerosB).filter(
-      (numero) => numero != ""
+      (numero) => numero !== ""
     );
     
     let numerosSinRepeticionA = new Set(numerosTotalesA);
     let numerosSinRepeticionB = new Set(numerosTotalesB);
     // Object.values(numerosA).includes(nuevoNumero)
-    if (numerosTotalesA.length != numerosSinRepeticionA.size) {
+    if (numerosTotalesA.length !== numerosSinRepeticionA.size) {
       //Mira hay algun repetido revisar porfavor
       //alert
       alert(
         "Hay jugadores repetidos en las posiciones del equipo A, verifica que los jugadores ingresados sean diferentes"
       );
     }
-    if (numerosTotalesB.length != numerosSinRepeticionB.size) {
+    if (numerosTotalesB.length !== numerosSinRepeticionB.size) {
       //Mira hay algun repetido revisar porfavor
       //alert
       alert(
@@ -84,6 +86,7 @@ function PosicionesIniciales() {
     }
 
     // Si está completa navigate("/main")
+    navigate('/main')
   };
 
   return (
