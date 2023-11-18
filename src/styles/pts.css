@@ -4,6 +4,7 @@
     grid-template-rows:repeat(3,1fr) ;
     gap: 1rem;
     max-height: 25rem;
+    max-width: 35rem;
 }
 
 .puntoBtn{
@@ -59,11 +60,11 @@
     text-align: center;
 }
 
-.izquierda{
+.lbtnizquierda{
     grid-column: 2/4;
 }
 
-.derecha{
+.lbtnderecha{
     grid-column: 1/3;
 }
 

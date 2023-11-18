@@ -1,8 +1,10 @@
 import React from "react";
 import PosicionInicial from "./PosicionInicial";
 import "../styles/posicionesIniciales.css";
+import { useNavigate } from "react-router-dom";
 
 function PosicionesIniciales() {
+  const navigate = useNavigate();
   const redirectToNextPage = () => {
     // traer info del localStorage
     const equipoA = JSON.parse(
@@ -12,10 +14,10 @@ function PosicionesIniciales() {
       localStorage.getItem("InfoEquipo-eq1")
     );
     const equipoB = JSON.parse(
-      localStorage.getItem("RegistroEquipo-B", "InfoEquipo-eq2")
+      localStorage.getItem("RegistroEquipo-B")
     );
     const infoEq2 = JSON.parse(
-      localStorage.getItem("InfoEquipo-eq1")
+      localStorage.getItem("InfoEquipo-eq2")
     );
 
     const {
@@ -37,6 +39,7 @@ function PosicionesIniciales() {
 
     if (!minimoNumerosA) {
       alert("Faltan jugadores para el equipo A");
+      return;
     }
     if (!minimoNumerosB) {
       alert("Faltan jugadores para el equipo B");
@@ -59,6 +62,7 @@ function PosicionesIniciales() {
       alert(
         "Hay jugadores repetidos en las posiciones del equipo A, verifica que los jugadores ingresados sean diferentes"
       );
+      return;
     }
     if (numerosTotalesB.length != numerosSinRepeticionB.size) {
       //Mira hay algun repetido revisar porfavor
@@ -66,6 +70,7 @@ function PosicionesIniciales() {
       alert(
         "Hay jugadores repetidos en las posiciones del equipo B , verifica que los jugadores ingresados sean diferentes"
       );
+      return;
     }
 
     // Verificar que existe una acción asignada para cada equipo
@@ -75,6 +80,7 @@ function PosicionesIniciales() {
     if (!accionB.accionB) {
       alert("Falta asignar una acción para el equipo B");
       // Verificar que las acciones no sean iguales
+      return;
     }
     if (accionA.accionA === accionB.accionB) {
       alert(
@@ -84,6 +90,7 @@ function PosicionesIniciales() {
     }
 
     // Si está completa navigate("/main")
+    navigate("/main")
   };
 
   return (

@@ -65,6 +65,7 @@ function PosicionInicial(props) {
     //Aquí se puede hacer lo que se quiera con los datos
 
     // guardar información localStorage
+    
     localStorage.setItem([`RegistroEquipo-${eq}`],JSON.stringify({
       numeros,
       accion

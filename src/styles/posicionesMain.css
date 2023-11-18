@@ -15,3 +15,7 @@
 .botonPos:hover{
     background-color: #969EA6;
 }
+
+.botonPos{
+    font-size: 5rem;
+}
