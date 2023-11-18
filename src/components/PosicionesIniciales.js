@@ -1,5 +1,6 @@
 import React from "react";
 import PosicionInicial from "./PosicionInicial";
+import { useNavigate } from "react-router-dom";
 import "../styles/posicionesIniciales.css";
 import { useNavigate } from "react-router-dom";
 
@@ -33,9 +34,9 @@ function PosicionesIniciales() {
     console.log(equipoA, equipoB)
     // Ver si está completa la info
     let minimoNumerosA =
-      Object.values(numerosA).filter((numero) => numero != "").length >= 6;
+      Object.values(numerosA).filter((numero) => numero !== "").length >= 6;
     let minimoNumerosB =
-      Object.values(numerosB).filter((numero) => numero != "").length >= 6;
+      Object.values(numerosB).filter((numero) => numero !== "").length >= 6;
 
     if (!minimoNumerosA) {
       alert("Faltan jugadores para el equipo A");
@@ -47,16 +48,16 @@ function PosicionesIniciales() {
     }
     // Verificar que no se repitan los jugadores
     let numerosTotalesA = Object.values(numerosA).filter(
-      (numero) => numero != ""
+      (numero) => numero !== ""
     );
     let numerosTotalesB = Object.values(numerosB).filter(
-      (numero) => numero != ""
+      (numero) => numero !== ""
     );
     
     let numerosSinRepeticionA = new Set(numerosTotalesA);
     let numerosSinRepeticionB = new Set(numerosTotalesB);
     // Object.values(numerosA).includes(nuevoNumero)
-    if (numerosTotalesA.length != numerosSinRepeticionA.size) {
+    if (numerosTotalesA.length !== numerosSinRepeticionA.size) {
       //Mira hay algun repetido revisar porfavor
       //alert
       alert(
@@ -64,7 +65,7 @@ function PosicionesIniciales() {
       );
       return;
     }
-    if (numerosTotalesB.length != numerosSinRepeticionB.size) {
+    if (numerosTotalesB.length !== numerosSinRepeticionB.size) {
       //Mira hay algun repetido revisar porfavor
       //alert
       alert(
