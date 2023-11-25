@@ -1,0 +1,17 @@
+.resultados {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.fila {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.columna {
+  flex: 1;
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
