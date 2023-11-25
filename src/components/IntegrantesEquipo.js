@@ -74,78 +74,23 @@ function IntegrantesEquipo(props) {
   const Envio = async (event) => {
     event.preventDefault();
 
-    const {[`ladoInicial${numEq}`]:ladoInicial,...nombreJugadores} = jugadores
+    const { [`ladoInicial${numEq}`]: ladoInicial, ...nombreJugadores } =
+      jugadores;
 
-    localStorage.setItem(`InfoEquipo-${numEq}`,JSON.stringify({
-        jugadores:nombreJugadores,
+    localStorage.setItem(
+      `InfoEquipo-${numEq}`,
+      JSON.stringify({
+        jugadores: nombreJugadores,
         ladoInicial,
-        numCamisetaJugadores
-    }))
+        numCamisetaJugadores,
+      })
+    );
     if (numEq === "eq1") {
-        alert("Jugadores del equipo 1 guardados exitosamente!");
-      } else {
-        alert("Jugadores del equipo 2 guardados exitosamente!");
-      }
-    
-
-
-    //backendAxios.post("savePlayers",jugadores,{
-    //  headers: {
-    //               "Content-Type": "application/json",
-    //    },
-    //})
-    // backendAxios
-    //     .post(jugadores, {
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //         },
-    //     })
-    //     .then((response) => {
-    //         if (response.status === 200) {
-    //             console.log("Equipo creado con éxito");
-    //             if (numEq == "eq1") {
-    //                 alert("Equipo 1 registrado exitosamente!");
-    //             } else {
-    //                 alert("Equipo 2 registrado exitosamente!");
-    //                 navigate("/pos");
-    //             }
-    //             // Realiza cualquier otra acción necesaria en el frontend
-    //         } else {
-    //             // Manejar otras respuestas de error aquí
-    //         }
-    //     })
-    //     .catch((error) => {
-    //         console.error("Error al realizar la petición:", error);
-    //         alert("No se guardó con éxito"); // Manejar el error de la petición aquí
-    //     });
-
-    // navigate('/pos');
-
-    //const ladoA = jugadores[`ladoInicial${eq1}`];
-    // const ladoB = jugadores[`ladoInicial${eq2}`];
-    // const equipoA = {
-    //     if (ladoA == A) {
-    //         equipoA: nombreEquiposJson.equipo1,
-    //     } else if (ladoA = B){
-    //         equipoA: nombreEquiposJson.equipo2;
-    //     }
-    // }
-    // const equipoB = {
-    //     if (ladoB == A) {
-    //         equipoA: nombreEquiposJson.equipo1,
-    //     } else if (ladoB == B){
-    //         equipoA: nombreEquiposJson.equipo2;
-    //     }
-    // }
-    // localStorage.setItem(
-    //   "nombreEquipos",
-    //   JSON.stringify({
-    //     equipoA: nombreEquiposJson.equipo1,
-    //     equipoB: nombreEquiposJson.equipo2,
-    //   })
-    // );
+      alert("Jugadores del equipo 1 guardados exitosamente!");
+    } else {
+      alert("Jugadores del equipo 2 guardados exitosamente!");
+    }
   };
- 
 
   return (
     <section className="contenedor sombra contenedor__equipos">
@@ -255,7 +200,6 @@ function IntegrantesEquipo(props) {
         </div>
         <input className="boton" type="submit" value="Guardar" />
       </form>
-     
     </section>
   );
 }

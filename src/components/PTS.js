@@ -12,8 +12,8 @@ function PTS(props) {
   const clasePuntoBtn = `${clasebase}${clasePuntoBtnAux}`;
   const claseContTiemp = `${claseContTiempAux}${clasePuntoBtnAux}`;
   const claseContNumTiemp = `${claseContNumTiempAux}${clasePuntoBtnAux}`;
-  const nombJ='a';
-  const numJ='15';
+  const nombJ = "a";
+  const numJ = "15";
 
   const [startCountdown, setStartCountdown] = useState(false);
   const handleStartCountdownClick = () => {
@@ -174,48 +174,146 @@ function PTS(props) {
       </Modal>
       <Modal isOpen={isModalJugadoresOpen} closeModal={closeModalJugadores}>
         <div className="grid grid4Column">
-          {nombJ===''?'':<button
-            className="boton botonSancion fontSancion jugadorSan"
-            onClick={closeJugadoresOpenCond}>{numJ}</button>}
-          {nombJ===''?'':<button
-            className="boton botonSancion fontSancion jugadorSan"
-            onClick={closeJugadoresOpenCond}>{numJ}</button>}
-          {nombJ===''?'':<button
-            className="boton botonSancion fontSancion jugadorSan"
-            onClick={closeJugadoresOpenCond}>{numJ}</button>}
-          {nombJ===''?'':<button
-            className="boton botonSancion fontSancion jugadorSan"
-            onClick={closeJugadoresOpenCond}>{numJ}</button>}
-          {nombJ===''?'':<button
-            className="boton botonSancion fontSancion jugadorSan"
-            onClick={closeJugadoresOpenCond}>{numJ}</button>}
-          {nombJ===''?'':<button
-            className="boton botonSancion fontSancion jugadorSan"
-            onClick={closeJugadoresOpenCond}>{numJ}</button>}
-          {nombJ===''?'':<button
-            className="boton botonSancion fontSancion jugadorSan"
-            onClick={closeJugadoresOpenCond}>{numJ}</button>}
-          {nombJ===''?'':<button
-            className="boton botonSancion fontSancion jugadorSan"
-            onClick={closeJugadoresOpenCond}>{numJ}</button>}
-          {nombJ===''?'':<button
-            className="boton botonSancion fontSancion jugadorSan"
-            onClick={closeJugadoresOpenCond}>{numJ}</button>}
-          {nombJ===''?'':<button
-            className="boton botonSancion fontSancion jugadorSan"
-            onClick={closeJugadoresOpenCond}>{numJ}</button>}
-          {nombJ===''?'':<button
-            className="boton botonSancion fontSancion jugadorSan"
-            onClick={closeJugadoresOpenCond}>{numJ}</button>}
-          {nombJ===''?'':<button
-            className="boton botonSancion fontSancion jugadorSan"
-            onClick={closeJugadoresOpenCond}>{numJ}</button>}
-          {nombJ===''?'':<button
-            className="boton botonSancion fontSancion jugadorSan"
-            onClick={closeJugadoresOpenCond}>{numJ}</button>}
-          {nombJ===''?'':<button
-            className="boton botonSancion fontSancion jugadorSan"
-            onClick={closeJugadoresOpenCond}>{numJ}</button>}
+          {nombJ === "" ? (
+            ""
+          ) : (
+            <button
+              className="boton botonSancion fontSancion jugadorSan"
+              onClick={closeJugadoresOpenCond}
+            >
+              {numJ}
+            </button>
+          )}
+          {nombJ === "" ? (
+            ""
+          ) : (
+            <button
+              className="boton botonSancion fontSancion jugadorSan"
+              onClick={closeJugadoresOpenCond}
+            >
+              {numJ}
+            </button>
+          )}
+          {nombJ === "" ? (
+            ""
+          ) : (
+            <button
+              className="boton botonSancion fontSancion jugadorSan"
+              onClick={closeJugadoresOpenCond}
+            >
+              {numJ}
+            </button>
+          )}
+          {nombJ === "" ? (
+            ""
+          ) : (
+            <button
+              className="boton botonSancion fontSancion jugadorSan"
+              onClick={closeJugadoresOpenCond}
+            >
+              {numJ}
+            </button>
+          )}
+          {nombJ === "" ? (
+            ""
+          ) : (
+            <button
+              className="boton botonSancion fontSancion jugadorSan"
+              onClick={closeJugadoresOpenCond}
+            >
+              {numJ}
+            </button>
+          )}
+          {nombJ === "" ? (
+            ""
+          ) : (
+            <button
+              className="boton botonSancion fontSancion jugadorSan"
+              onClick={closeJugadoresOpenCond}
+            >
+              {numJ}
+            </button>
+          )}
+          {nombJ === "" ? (
+            ""
+          ) : (
+            <button
+              className="boton botonSancion fontSancion jugadorSan"
+              onClick={closeJugadoresOpenCond}
+            >
+              {numJ}
+            </button>
+          )}
+          {nombJ === "" ? (
+            ""
+          ) : (
+            <button
+              className="boton botonSancion fontSancion jugadorSan"
+              onClick={closeJugadoresOpenCond}
+            >
+              {numJ}
+            </button>
+          )}
+          {nombJ === "" ? (
+            ""
+          ) : (
+            <button
+              className="boton botonSancion fontSancion jugadorSan"
+              onClick={closeJugadoresOpenCond}
+            >
+              {numJ}
+            </button>
+          )}
+          {nombJ === "" ? (
+            ""
+          ) : (
+            <button
+              className="boton botonSancion fontSancion jugadorSan"
+              onClick={closeJugadoresOpenCond}
+            >
+              {numJ}
+            </button>
+          )}
+          {nombJ === "" ? (
+            ""
+          ) : (
+            <button
+              className="boton botonSancion fontSancion jugadorSan"
+              onClick={closeJugadoresOpenCond}
+            >
+              {numJ}
+            </button>
+          )}
+          {nombJ === "" ? (
+            ""
+          ) : (
+            <button
+              className="boton botonSancion fontSancion jugadorSan"
+              onClick={closeJugadoresOpenCond}
+            >
+              {numJ}
+            </button>
+          )}
+          {nombJ === "" ? (
+            ""
+          ) : (
+            <button
+              className="boton botonSancion fontSancion jugadorSan"
+              onClick={closeJugadoresOpenCond}
+            >
+              {numJ}
+            </button>
+          )}
+          {nombJ === "" ? (
+            ""
+          ) : (
+            <button
+              className="boton botonSancion fontSancion jugadorSan"
+              onClick={closeJugadoresOpenCond}
+            >
+              {numJ}
+            </button>
+          )}
         </div>
       </Modal>
       <Modal isOpen={isModalCondOpen} closeModal={closeModalCond}>

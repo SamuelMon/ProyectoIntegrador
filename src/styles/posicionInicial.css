@@ -1,55 +1,54 @@
-.formularioPosIn fieldset{
-    max-width: 80rem;
+.formularioPosIn fieldset {
+  max-width: 80rem;
 }
-.posicionesIniciales{
-    display:grid;
-    grid-template-columns: repeat(3,1fr);
-    grid-template-rows: repeat(3,1fr);
-    gap: 5rem;
-    max-height: 35rem;
-    max-width: 63rem;
+.posicionesIniciales {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 5rem;
+  max-height: 35rem;
+  max-width: 63rem;
 }
-.posicionesIniciales .posicionInicial{
-    max-width: 20rem;
-    max-height: 12rem;
-    font-size: 7.5rem;
-    text-align: center;
+.posicionesIniciales .posicionInicial {
+  max-width: 20rem;
+  max-height: 12rem;
+  font-size: 7.5rem;
+  text-align: center;
 }
 .posicionesIniciales .campo:nth-child(1),
 .posicionesIniciales .campo:nth-child(2),
-.posicionesIniciales .campo:nth-child(3){
-    grid-row:1/2;
+.posicionesIniciales .campo:nth-child(3) {
+  grid-row: 1/2;
 }
 .posicionesIniciales .campo:nth-child(4),
 .posicionesIniciales .campo:nth-child(5),
-.posicionesIniciales .campo:nth-child(6){
-    grid-row:2/3;
+.posicionesIniciales .campo:nth-child(6) {
+  grid-row: 2/3;
 }
 .posicionesIniciales .campo:nth-child(1),
-.posicionesIniciales .campo:nth-child(4){
-    grid-column: 1/2;
+.posicionesIniciales .campo:nth-child(4) {
+  grid-column: 1/2;
 }
 .posicionesIniciales .campo:nth-child(2),
-.posicionesIniciales .campo:nth-child(5){
-    grid-column:2/3;
+.posicionesIniciales .campo:nth-child(5) {
+  grid-column: 2/3;
 }
 .posicionesIniciales .campo:nth-child(3),
-.posicionesIniciales .campo:nth-child(6){
-    grid-column:3/4;
+.posicionesIniciales .campo:nth-child(6) {
+  grid-column: 3/4;
 }
 
-.contAuxPos{
-    display: flex;
-    max-width: 57.5rem;
-    justify-content: space-between;
-    align-items: center;
+.contAuxPos {
+  display: flex;
+  max-width: 57.5rem;
+  justify-content: space-between;
+  align-items: center;
 }
-.accionIn{
-    
-    max-height: 15rem;
+.accionIn {
+  max-height: 15rem;
 }
 
-.botonPosIn{
-    max-height: 15rem;
-    max-width: 20rem;
+.botonPosIn {
+  max-height: 15rem;
+  max-width: 20rem;
 }

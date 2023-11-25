@@ -1,13 +1,11 @@
-.contenedorRegistro{
-    display: grid;
-    gap: 2rem;
-    margin: 1rem;
+.contenedorRegistro {
+  display: grid;
+  gap: 2rem;
+  margin: 1rem;
 }
 
-@media (min-width: 1000px){
-    .contenedorRegistro{
-        grid-template-columns: repeat(2,1fr);
-    }
+@media (min-width: 1000px) {
+  .contenedorRegistro {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
-
-

@@ -1,143 +1,143 @@
-.contenedorPTS{
-    display: grid;
-    grid-template-columns:repeat(3,1fr) ;
-    grid-template-rows:repeat(3,1fr) ;
-    gap: 1rem;
-    max-height: 25rem;
-    max-width: 35rem;
+.contenedorPTS {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 1rem;
+  max-height: 25rem;
+  max-width: 35rem;
 }
 
-.puntoBtn{
-    grid-row: 1/4;
-    width: 21.5rem;
-    height: 21.5rem;
-    font-size: 12rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background 0.5s;
-    user-select: none;
+.puntoBtn {
+  grid-row: 1/4;
+  width: 21.5rem;
+  height: 21.5rem;
+  font-size: 12rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.5s;
+  user-select: none;
 }
 
-.contenedorTiempos{
-    display: flex;
-    gap: 0.5rem;
-    position: relative;
+.contenedorTiempos {
+  display: flex;
+  gap: 0.5rem;
+  position: relative;
 }
 
-.contenedorTiemposizquierda{
-    flex-direction: row-reverse;
+.contenedorTiemposizquierda {
+  flex-direction: row-reverse;
 }
 
-.contenedorTiemposVista{
-    display: flex;
-    gap: 0.5rem;
-    position: absolute;
+.contenedorTiemposVista {
+  display: flex;
+  gap: 0.5rem;
+  position: absolute;
 }
 
-.contenedorTiemposderecha{
-    right: 0;
+.contenedorTiemposderecha {
+  right: 0;
 }
-.contenedorTiemposizquierda{
-    left: 0;
-}
-
-.tiemposVista{
-    width: 1rem;
-    height: 1rem;
-    background-color: #0097a7;
-    border-radius: 50%;
+.contenedorTiemposizquierda {
+  left: 0;
 }
 
-.contadorTiempo{
-    grid-row: 2/3;
-    display: flex;
-    height: 7rem;
-    justify-content: center;
-    align-items: center;
+.tiemposVista {
+  width: 1rem;
+  height: 1rem;
+  background-color: #0097a7;
+  border-radius: 50%;
 }
 
-.contadorTiempo p{
-    text-align: center;
+.contadorTiempo {
+  grid-row: 2/3;
+  display: flex;
+  height: 7rem;
+  justify-content: center;
+  align-items: center;
 }
 
-.lbtnizquierda{
-    grid-column: 2/4;
+.contadorTiempo p {
+  text-align: center;
 }
 
-.lbtnderecha{
-    grid-column: 1/3;
+.lbtnizquierda {
+  grid-column: 2/4;
 }
 
-.tiempoBtn{
-    grid-row: 1/2;
-    display: flex;
-    justify-content: center;
-    max-height: 6.5rem;
-    max-width: 4.5rem;
-    border-radius: 50%;
-    margin-left: 2rem;
-    background-color: #0097a7;
-    position: absolute;
-    left: 0;
-    transition: background 0.5s;
+.lbtnderecha {
+  grid-column: 1/3;
+}
+
+.tiempoBtn {
+  grid-row: 1/2;
+  display: flex;
+  justify-content: center;
+  max-height: 6.5rem;
+  max-width: 4.5rem;
+  border-radius: 50%;
+  margin-left: 2rem;
+  background-color: #0097a7;
+  position: absolute;
+  left: 0;
+  transition: background 0.5s;
 }
 
 .tiempoHover:hover,
 .sancionBtn:hover,
-.puntoBtn:hover{
-    background-color: #00808D;
+.puntoBtn:hover {
+  background-color: #00808d;
 }
 
-.contenedorTiempos .disabled-button{
-    background-color: gray;
-    cursor: default;
+.contenedorTiempos .disabled-button {
+  background-color: gray;
+  cursor: default;
 }
 
-.sancionBtn{
-    grid-row: 3/4;
-    display: flex;
-    justify-content: center;
-    max-height: 6.5rem;
-    max-width: 4.5rem;
-    border-radius: 50%;
-    margin-left: 2rem;
-    background-color: #0097a7;
-    transition: background 0.5s;
+.sancionBtn {
+  grid-row: 3/4;
+  display: flex;
+  justify-content: center;
+  max-height: 6.5rem;
+  max-width: 4.5rem;
+  border-radius: 50%;
+  margin-left: 2rem;
+  background-color: #0097a7;
+  transition: background 0.5s;
 }
 
-.icon{
-    min-width: 4rem;
-    min-height: 4rem;
+.icon {
+  min-width: 4rem;
+  min-height: 4rem;
 }
 
-.modal .botonSancion{
-    color: #fff;
-    min-width: 11rem;
-    min-height: 11rem;
+.modal .botonSancion {
+  color: #fff;
+  min-width: 11rem;
+  min-height: 11rem;
 }
 
-.jugadorSan{
-    background-color: #AEB6BF;
-    transition: background 0.5s;
+.jugadorSan {
+  background-color: #aeb6bf;
+  transition: background 0.5s;
 }
 
-.jugadorSan:hover{
-    background-color: red;
+.jugadorSan:hover {
+  background-color: red;
 }
 
-.amonestacion{
-    background-color: yellow;
+.amonestacion {
+  background-color: yellow;
 }
 
-.castigo{
-    background-color: red;
+.castigo {
+  background-color: red;
 }
 
-.desExp{
-    background: linear-gradient(45deg, yellow,red);
+.desExp {
+  background: linear-gradient(45deg, yellow, red);
 }
 
-.fontSancion{
-    font-size: 5rem;
+.fontSancion {
+  font-size: 5rem;
 }

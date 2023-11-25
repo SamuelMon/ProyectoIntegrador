@@ -1,11 +1,11 @@
-.contenedorAccEq{
-    display: grid;
-    grid-template-rows: 0.01fr repeat(2,1fr);
-    gap: 1rem;
-    width: 100%;
+.contenedorAccEq {
+  display: grid;
+  grid-template-rows: 0.01fr repeat(2, 1fr);
+  gap: 1rem;
+  width: 100%;
 }
 
-.contenedorAccEq h2{
-    font-size: 2rem;
-    text-align: center;
+.contenedorAccEq h2 {
+  font-size: 2rem;
+  text-align: center;
 }

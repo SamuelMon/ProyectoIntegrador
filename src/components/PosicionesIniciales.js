@@ -7,18 +7,10 @@ function PosicionesIniciales() {
   const navigate = useNavigate();
   const redirectToNextPage = () => {
     // traer info del localStorage
-    const equipoA = JSON.parse(
-      localStorage.getItem("RegistroEquipo-A")
-    );
-    const infoEq1 = JSON.parse(
-      localStorage.getItem("InfoEquipo-eq1")
-    );
-    const equipoB = JSON.parse(
-      localStorage.getItem("RegistroEquipo-B")
-    );
-    const infoEq2 = JSON.parse(
-      localStorage.getItem("InfoEquipo-eq2")
-    );
+    const equipoA = JSON.parse(localStorage.getItem("RegistroEquipo-A"));
+    const infoEq1 = JSON.parse(localStorage.getItem("InfoEquipo-eq1"));
+    const equipoB = JSON.parse(localStorage.getItem("RegistroEquipo-B"));
+    const infoEq2 = JSON.parse(localStorage.getItem("InfoEquipo-eq2"));
 
     const {
       numeros: numerosA,
@@ -30,7 +22,7 @@ function PosicionesIniciales() {
       accion: accionB,
       numCamisetaJugadores: numCamisetaJugadores2,
     } = equipoB;
-    console.log(equipoA, equipoB)
+    console.log(equipoA, equipoB);
     // Ver si está completa la info
     let minimoNumerosA =
       Object.values(numerosA).filter((numero) => numero !== "").length >= 6;
@@ -52,7 +44,7 @@ function PosicionesIniciales() {
     let numerosTotalesB = Object.values(numerosB).filter(
       (numero) => numero !== ""
     );
-    
+
     let numerosSinRepeticionA = new Set(numerosTotalesA);
     let numerosSinRepeticionB = new Set(numerosTotalesB);
     // Object.values(numerosA).includes(nuevoNumero)
@@ -90,7 +82,7 @@ function PosicionesIniciales() {
     }
 
     // Si está completa navigate("/main")
-    navigate("/main")
+    navigate("/main");
   };
 
   return (

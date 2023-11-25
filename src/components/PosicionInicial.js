@@ -38,8 +38,11 @@ function PosicionInicial(props) {
       numCamisetaJugadores: numCamisetaJugadores2,
     } = equipo2;
 
-    const nombreEquipo = ladoInicial1 === eq ? nombreEquiposJson.equipo1 :nombreEquiposJson.equipo2
-    
+    const nombreEquipo =
+      ladoInicial1 === eq
+        ? nombreEquiposJson.equipo1
+        : nombreEquiposJson.equipo2;
+
     setNombreEquipo(nombreEquipo);
   }, []);
 
@@ -65,11 +68,14 @@ function PosicionInicial(props) {
     //Aquí se puede hacer lo que se quiera con los datos
 
     // guardar información localStorage
-    
-    localStorage.setItem([`RegistroEquipo-${eq}`],JSON.stringify({
-      numeros,
-      accion
-    }))
+
+    localStorage.setItem(
+      [`RegistroEquipo-${eq}`],
+      JSON.stringify({
+        numeros,
+        accion,
+      })
+    );
     if (eq == "A") {
       alert("Posiciones iniciales del equipo A registradas exitosamente!");
     } else {
@@ -135,11 +141,7 @@ function PosicionInicial(props) {
               id={"accion" + eq}
               onChange={handleAccionChange}
             />
-            <input
-              className="boton botonPosIn"
-              type="submit"
-              value="Guardar"
-            />
+            <input className="boton botonPosIn" type="submit" value="Guardar" />
           </div>
         </fieldset>
       </form>

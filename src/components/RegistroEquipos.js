@@ -21,28 +21,9 @@ function RegitroEquipos() {
       ladoInicial: ladoInicial2,
       numCamisetaJugadores: numCamisetaJugadores2,
     } = equipo2;
-    // Ver si esta completa
 
-    //Verificacion  del minimo de jugadores requerido
-    // ["Andres","Joan","Samuel","Andres"]
-    // let jugadoresTotales = Object.values(jugadores1).filter(
-    //   (nombre) => nombre != ""
-    // );
-    // // ["Andres","Joan","Samuel"]
-    // let jugadoresSinRepeticion = new Set(jugadoresTotales)
-    // //Verificar si hay algun nombre repetido
-
-    // //Object.values(jugadores1).includes(nuevoJugador)
-    // if(jugadoresTotales.length != jugadoresSinRepeticion.size){
-    //     //Mira hay algun repetido revisar porfavor
-    //     //alert
-    //     return
-    // }
-
-
-    let minimoJugadores1 = Object.values(jugadores1).filter(
-          (nombre) => nombre != ""
-     ).length >= 6;
+    let minimoJugadores1 =
+      Object.values(jugadores1).filter((nombre) => nombre != "").length >= 6;
     let minimoJugadores2 =
       Object.values(jugadores2).filter((nombre) => nombre != "").length >= 6;
 

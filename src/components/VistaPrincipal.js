@@ -1,4 +1,4 @@
-import {React,useEffect,useState} from "react";
+import { React, useEffect, useState } from "react";
 import AccionesEquipo from "./AccionesEquipo";
 import "../styles/vistaPrincipal.css";
 import { useNavigate } from "react-router-dom";
@@ -13,29 +13,28 @@ function VistaPrincipal() {
   const [puntosEquipoA, setPuntosEquipoA] = useState(0);
   const [puntosEquipoB, setPuntosEquipoB] = useState(0);
   const navigate = useNavigate();
-  
+
   const aumentarPuntosEquipoA = () => {
     setPuntosEquipoA((prevPuntosA) => prevPuntosA + 1);
   };
-  
+
   const aumentarPuntosEquipoB = () => {
     setPuntosEquipoB((prevPuntosB) => prevPuntosB + 1);
   };
-  
+
   const verificarGanador = () => {
     if (puntosEquipoA >= 25 && puntosEquipoA - puntosEquipoB >= 2) {
-      setSetsA(setsA+1);
-      navigate('/pos');
+      setSetsA(setsA + 1);
+      navigate("/pos");
     } else if (puntosEquipoB >= 25 && puntosEquipoB - puntosEquipoA >= 2) {
-      setSetsB(setsB+1);
-      navigate('/pos');
+      setSetsB(setsB + 1);
+      navigate("/pos");
     }
   };
 
   useEffect(() => {
     verificarGanador();
-  }, [puntosEquipoA,puntosEquipoA]);
-  
+  }, [puntosEquipoA, puntosEquipoA]);
 
   useEffect(() => {
     const numerosEqA = JSON.parse(localStorage.getItem("RegistroEquipo-A"));
@@ -44,14 +43,12 @@ function VistaPrincipal() {
     setEquipoA(numerosEqA);
     setEquipoB(numerosEqB);
 
-    const nombreEqA = nombreEquiposJson.equipo1
-    const nombreEqB = nombreEquiposJson.equipo2
+    const nombreEqA = nombreEquiposJson.equipo1;
+    const nombreEqB = nombreEquiposJson.equipo2;
 
-    setNombreEquipoA(nombreEqA)
-    setNombreEquipoB(nombreEqB)
-    
+    setNombreEquipoA(nombreEqA);
+    setNombreEquipoB(nombreEqB);
   }, []);
-
 
   const pos1eqA = equipoA?.numeros["1A"];
   const pos2eqA = equipoA?.numeros["2A"];
@@ -67,12 +64,11 @@ function VistaPrincipal() {
   const pos5eqB = equipoB?.numeros["5B"];
   const pos6eqB = equipoB?.numeros["6B"];
 
-
   return (
     <div className="contenedorVistaP">
-      <div className='izquierda'>
+      <div className="izquierda">
         <AccionesEquipo
-          lado ='izquierda'
+          lado="izquierda"
           nombreEquipo={nombreEquipoA}
           pos1={pos1eqA}
           pos2={pos2eqA}
@@ -85,13 +81,11 @@ function VistaPrincipal() {
         />
       </div>
       <div className="sets">
-        <p className="contenedor sombra">
-          {`${setsA}-${setsB}`}
-        </p>
+        <p className="contenedor sombra">{`${setsA}-${setsB}`}</p>
       </div>
-      <div className='derecha'>
+      <div className="derecha">
         <AccionesEquipo
-          lado ='derecha'
+          lado="derecha"
           nombreEquipo={nombreEquipoB}
           pos1={pos1eqB}
           pos2={pos2eqB}
