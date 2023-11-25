@@ -4,7 +4,7 @@ import PTS from "./PTS";
 import "../styles/accionesEquipo.css";
 
 function AccionesEquipo(props) {
-  const { pos1, pos2, pos3, pos4, pos5, pos6, lado, nombreEquipo } = props;
+  const { pos1, pos2, pos3, pos4, pos5, pos6, lado, nombreEquipo, aumentarPuntos, puntos } = props;
   const aux = `${nombreEquipo}`;
   const nombreEquipoStr = aux.substring(0, 3);
 
@@ -12,7 +12,10 @@ function AccionesEquipo(props) {
     <div className="contenedorAccEq">
       <h2 className="uppercase">{nombreEquipoStr}</h2>
       <div className="contenedor sombra">
-        <PTS lado={lado} />
+        <PTS 
+        lado={lado}
+        aumentarPuntos={aumentarPuntos}
+        puntos={puntos} />
       </div>
       <div className="contenedor sombra">
         <PosicionesMain

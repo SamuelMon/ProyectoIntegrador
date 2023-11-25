@@ -2,7 +2,6 @@ import React from "react";
 import PosicionInicial from "./PosicionInicial";
 import { useNavigate } from "react-router-dom";
 import "../styles/posicionesIniciales.css";
-import { useNavigate } from "react-router-dom";
 
 function PosicionesIniciales() {
   const navigate = useNavigate();

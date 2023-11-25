@@ -1,20 +1,42 @@
-import React from "react";
+import {React,useEffect,useState} from "react";
 import AccionesEquipo from "./AccionesEquipo";
 import "../styles/vistaPrincipal.css";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function VistaPrincipal() {
   const [equipoA, setEquipoA] = useState(undefined);
   const [equipoB, setEquipoB] = useState(undefined);
   const [nombreEquipoA, setNombreEquipoA] = useState("");
   const [nombreEquipoB, setNombreEquipoB] = useState("");
-  const [ladoeqA, setLadoEqA] = useState("Izquierda");
-  const [ladoeqB, setLadoEqB] = useState("Derecha");
-  const [setsIzq, setSetsIzq] = useState("0");
-  const [setsDer, setSetsDer] = useState("0");
-  const [aux, setAux] = useState("0");
+  const [setsA, setSetsA] = useState(0);
+  const [setsB, setSetsB] = useState(0);
+  const [puntosEquipoA, setPuntosEquipoA] = useState(0);
+  const [puntosEquipoB, setPuntosEquipoB] = useState(0);
+  const navigate = useNavigate();
   
+  const aumentarPuntosEquipoA = () => {
+    setPuntosEquipoA((prevPuntosA) => prevPuntosA + 1);
+  };
+  
+  const aumentarPuntosEquipoB = () => {
+    setPuntosEquipoB((prevPuntosB) => prevPuntosB + 1);
+  };
+  
+  const verificarGanador = () => {
+    if (puntosEquipoA >= 25 && puntosEquipoA - puntosEquipoB >= 2) {
+      setSetsA(setsA+1);
+      navigate('/pos');
+    } else if (puntosEquipoB >= 25 && puntosEquipoB - puntosEquipoA >= 2) {
+      setSetsB(setsB+1);
+      navigate('/pos');
+    }
+  };
+
+  useEffect(() => {
+    verificarGanador();
+  }, [puntosEquipoA,puntosEquipoA]);
+  
+
   useEffect(() => {
     const numerosEqA = JSON.parse(localStorage.getItem("RegistroEquipo-A"));
     const numerosEqB = JSON.parse(localStorage.getItem("RegistroEquipo-B"));
@@ -29,22 +51,6 @@ function VistaPrincipal() {
     setNombreEquipoB(nombreEqB)
     
   }, []);
-
-  const cambiarLado= ()=>{
-    console.log(ladoeqA,ladoeqB)
-    setAux(ladoeqA);
-    setLadoEqA(ladoeqB);
-    setLadoEqB(aux);
-    console.log(ladoeqA,ladoeqB)
-
-    console.log(setsIzq,setsDer)
-    setAux(setsIzq);
-    setSetsIzq(setsDer);
-    setSetsDer(aux);
-    console.log(setsIzq,setsDer)
-   }
-   console.log(ladoeqA,ladoeqB)
-
 
 
   const pos1eqA = equipoA?.numeros["1A"];
@@ -64,9 +70,9 @@ function VistaPrincipal() {
 
   return (
     <div className="contenedorVistaP">
-      <div className={ladoeqA}>
+      <div className='izquierda'>
         <AccionesEquipo
-          lado ={ladoeqA}
+          lado ='izquierda'
           nombreEquipo={nombreEquipoA}
           pos1={pos1eqA}
           pos2={pos2eqA}
@@ -74,16 +80,18 @@ function VistaPrincipal() {
           pos4={pos4eqA}
           pos5={pos5eqA}
           pos6={pos6eqA}
+          aumentarPuntos={aumentarPuntosEquipoA}
+          puntos={puntosEquipoA}
         />
       </div>
-      <div className="sets" onClick={cambiarLado}>
+      <div className="sets">
         <p className="contenedor sombra">
-          {setsIzq}-{setsDer}
+          {`${setsA}-${setsB}`}
         </p>
       </div>
-      <div className={ladoeqB}>
+      <div className='derecha'>
         <AccionesEquipo
-          lado ={ladoeqB}
+          lado ='derecha'
           nombreEquipo={nombreEquipoB}
           pos1={pos1eqB}
           pos2={pos2eqB}
@@ -91,6 +99,8 @@ function VistaPrincipal() {
           pos4={pos4eqB}
           pos5={pos5eqB}
           pos6={pos6eqB}
+          aumentarPuntos={aumentarPuntosEquipoB}
+          puntos={puntosEquipoB}
         />
       </div>
     </div>
