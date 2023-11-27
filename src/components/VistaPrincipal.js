@@ -114,27 +114,25 @@ function VistaPrincipal() {
   const [posB, setPosB] = useState([]);
   const aumentarPuntosEquipoA = () => {
     setPuntosEquipoA((prevPuntosA) => prevPuntosA + 1);
-    rotarA();
   };
 
   const aumentarPuntosEquipoB = () => {
     setPuntosEquipoB((prevPuntosB) => prevPuntosB + 1);
-    rotarB();
   };
 
   const verificarGanador = () => {
     if (puntosEquipoA >= 25 && puntosEquipoA - puntosEquipoB >= 2) {
-      setSetsA(setsA + 1);
-      navigate("/pos");
+      setSetsA(setsA+1);
+      navigate('/pos');
     } else if (puntosEquipoB >= 25 && puntosEquipoB - puntosEquipoA >= 2) {
-      setSetsB(setsB + 1);
-      navigate("/pos");
+      setSetsB(setsB+1);
+      navigate('/pos');
     }
   };
 
   useEffect(() => {
     verificarGanador();
-  }, [puntosEquipoA, puntosEquipoA]);
+  }, [puntosEquipoA,puntosEquipoA]);
 
   useEffect(() => {
     const numerosEqA = JSON.parse(localStorage.getItem("RegistroEquipo-A"));
