@@ -3,8 +3,17 @@ import Modal from "./Modal";
 import OpcionesSustitucion from "./OpcionesSustitucion";
 import "../styles/posicionesMain.css";
 
+const POSICION_MAPPER = [
+  { row: 2, col: 3 },
+  { row: 1, col: 3 },
+  { row: 1, col: 2 },
+  { row: 1, col: 1 },
+  { row: 2, col: 1 },
+  { row: 2, col: 2 },
+];
+
 function PosicionesMain(props) {
-  const { pos1, pos2, pos3, pos4, pos5, pos6 } = props;
+  const { posiciones, lado } = props;
   const [isModalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
@@ -16,24 +25,19 @@ function PosicionesMain(props) {
   };
   return (
     <div className="contenedorPosMain">
-      <button onClick={openModal} className="boton botonPos">
-        {pos4}
-      </button>
-      <button onClick={openModal} className="boton botonPos">
-        {pos3}
-      </button>
-      <button onClick={openModal} className="boton botonPos">
-        {pos2}
-      </button>
-      <button onClick={openModal} className="boton botonPos">
-        {pos5}
-      </button>
-      <button onClick={openModal} className="boton botonPos">
-        {pos6}
-      </button>
-      <button onClick={openModal} className="boton botonPos">
-        {pos1}
-      </button>
+      {posiciones.map((posicion, index) => (
+        <button
+          onClick={openModal}
+          key={posicion + lado}
+          className="boton botonPos"
+          style={{
+            gridColumn: POSICION_MAPPER[index].col,
+            gridRow: POSICION_MAPPER[index].row,
+          }}
+        >
+          {posicion}
+        </button>
+      ))}
       <Modal isOpen={isModalOpen} closeModal={closeModal}>
         <OpcionesSustitucion closeModal={closeModal} />
       </Modal>
