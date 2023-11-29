@@ -4,6 +4,7 @@ import "../styles/vistaPrincipal.css";
 import { useNavigate } from "react-router-dom";
 
 function VistaPrincipal() {
+  const navigate = useNavigate();
   const [equipoA, setEquipoA] = useState(undefined);
   const [equipoB, setEquipoB] = useState(undefined);
   const [nombreEquipoA, setNombreEquipoA] = useState("");
@@ -12,7 +13,8 @@ function VistaPrincipal() {
   const [setsB, setSetsB] = useState(0);
   const [puntosEquipoA, setPuntosEquipoA] = useState(0);
   const [puntosEquipoB, setPuntosEquipoB] = useState(0);
-  const navigate = useNavigate();
+  const [sacaA, setSacaA] = useState(false);
+  const [sacaB, setSacaB] = useState(false);
 
   const equipo1 = JSON.parse(localStorage.getItem("InfoEquipo-eq1"));
   const equipo2 = JSON.parse(localStorage.getItem("InfoEquipo-eq2"));
@@ -106,33 +108,39 @@ function VistaPrincipal() {
     nombJ14eqB,
   ] = arrJugadores2;
 
-  console.log(arrNumJugadores1);
-  console.log(arrJugadores1);
-  console.log(numJ10eqA);
-
   const [posA, setPosA] = useState([]);
   const [posB, setPosB] = useState([]);
   const aumentarPuntosEquipoA = () => {
     setPuntosEquipoA((prevPuntosA) => prevPuntosA + 1);
+    if (sacaA === false) {
+      rotarA();
+      setSacaA(true);
+      setSacaB(false);
+    }
   };
 
   const aumentarPuntosEquipoB = () => {
     setPuntosEquipoB((prevPuntosB) => prevPuntosB + 1);
+    if (sacaB === false) {
+      rotarB();
+      setSacaB(true);
+      setSacaA(false);
+    }
   };
 
   const verificarGanador = () => {
     if (puntosEquipoA >= 25 && puntosEquipoA - puntosEquipoB >= 2) {
-      setSetsA(setsA+1);
-      navigate('/pos');
+      setSetsA(setsA + 1);
+      navigate("/pos");
     } else if (puntosEquipoB >= 25 && puntosEquipoB - puntosEquipoA >= 2) {
-      setSetsB(setsB+1);
-      navigate('/pos');
+      setSetsB(setsB + 1);
+      navigate("/pos");
     }
   };
 
   useEffect(() => {
     verificarGanador();
-  }, [puntosEquipoA,puntosEquipoA]);
+  }, [puntosEquipoA, puntosEquipoA]);
 
   useEffect(() => {
     const numerosEqA = JSON.parse(localStorage.getItem("RegistroEquipo-A"));
@@ -149,6 +157,7 @@ function VistaPrincipal() {
     const pos4eqA = numerosEqA?.numeros["4A"];
     const pos5eqA = numerosEqA?.numeros["5A"];
     const pos6eqA = numerosEqA?.numeros["6A"];
+    const accionA = numerosEqA?.accion["accionA"];
 
     const pos1eqB = numerosEqB?.numeros["1B"];
     const pos2eqB = numerosEqB?.numeros["2B"];
@@ -156,11 +165,17 @@ function VistaPrincipal() {
     const pos4eqB = numerosEqB?.numeros["4B"];
     const pos5eqB = numerosEqB?.numeros["5B"];
     const pos6eqB = numerosEqB?.numeros["6B"];
+    const accionB = numerosEqB?.accion["accionB"];
 
+    if (accionA === "Servicio") {
+      setSacaA(true);
+    } else {
+      setSacaB(true);
+    }
     setNombreEquipoA(nombreEqA);
     setNombreEquipoB(nombreEqB);
-    setPosA([pos1eqA,pos2eqA,pos3eqA,pos4eqA,pos5eqA,pos6eqA]);
-    setPosB([pos1eqB,pos2eqB,pos3eqB,pos4eqB,pos5eqB,pos6eqB]);
+    setPosA([pos1eqA, pos2eqA, pos3eqA, pos4eqA, pos5eqA, pos6eqA]);
+    setPosB([pos1eqB, pos2eqB, pos3eqB, pos4eqB, pos5eqB, pos6eqB]);
   }, []);
   const rotarA = () => {
     setPosA((posicionesActualesA) => {
@@ -216,6 +231,7 @@ function VistaPrincipal() {
           nombJ12={nombJ12eqA}
           nombJ13={nombJ13eqA}
           nombJ14={nombJ14eqA}
+          saca={sacaA}
         />
       </div>
       <div className="sets">
@@ -256,6 +272,7 @@ function VistaPrincipal() {
           nombJ12={nombJ12eqB}
           nombJ13={nombJ13eqB}
           nombJ14={nombJ14eqB}
+          saca={sacaB}
         />
       </div>
     </div>

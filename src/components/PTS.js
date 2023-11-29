@@ -35,7 +35,8 @@ function PTS(props) {
     nombJ13,
     nombJ14,
     aumentarPuntos,
-    puntos
+    puntos,
+    saca,
   } = props;
   const clasePuntoBtnAux = `${lado}`;
   const clasebase = "boton puntoBtn lbtn";
@@ -44,10 +45,7 @@ function PTS(props) {
   const clasePuntoBtn = `${clasebase}${clasePuntoBtnAux}`;
   const claseContTiemp = `${claseContTiempAux}${clasePuntoBtnAux}`;
   const claseContNumTiemp = `${claseContNumTiempAux}${clasePuntoBtnAux}`;
-  const nombJ = "a";
-  const numJ = "15";
 
-  console.log(nombJ2)
   const [startCountdown, setStartCountdown] = useState(false);
   const handleStartCountdownClick = () => {
     setStartCountdown(true);
@@ -120,7 +118,36 @@ function PTS(props) {
   return (
     <div className="contenedorPTS">
       <div className={clasePuntoBtn} onClick={aumentarPuntos}>
-        <p>{puntos}</p>
+        <div className="contenedorEnPBtn">
+          <p>{puntos}</p>
+          <div className="contenedorIconoBalon">
+            {saca ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="icon icon-tabler icon-tabler-ball-volleyball"
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="#ffffff"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                <path d="M12 12a8 8 0 0 0 8 4" />
+                <path d="M7.5 13.5a12 12 0 0 0 8.5 6.5" />
+                <path d="M12 12a8 8 0 0 0 -7.464 4.928" />
+                <path d="M12.951 7.353a12 12 0 0 0 -9.88 4.111" />
+                <path d="M12 12a8 8 0 0 0 -.536 -8.928" />
+                <path d="M15.549 15.147a12 12 0 0 0 1.38 -10.611" />
+              </svg>
+            ) : (
+              ""
+            )}
+          </div>
+        </div>
       </div>
       <div className={claseContTiemp}>
         <button
@@ -206,7 +233,7 @@ function PTS(props) {
         </div>
       </Modal>
       <Modal isOpen={isModalJugadoresOpen} closeModal={closeModalJugadores}>
-      <div className="grid grid4Column">
+        <div className="grid grid4Column">
           {nombJ1 === "" ? (
             ""
           ) : (

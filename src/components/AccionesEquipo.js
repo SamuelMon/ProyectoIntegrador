@@ -38,6 +38,7 @@ function AccionesEquipo(props) {
     nombreEquipo,
     aumentarPuntos,
     puntos,
+    saca,
   } = props;
   const aux = `${nombreEquipo}`;
   const nombreEquipoStr = aux.substring(0, 3);
@@ -78,12 +79,11 @@ function AccionesEquipo(props) {
           nombJ12={nombJ12}
           nombJ13={nombJ13}
           nombJ14={nombJ14}
+          saca={saca}
         />
       </div>
       <div className="contenedor sombra">
-        <PosicionesMain
-          posiciones={posiciones}
-        />
+        <PosicionesMain posiciones={posiciones} />
       </div>
     </div>
   );

@@ -2,13 +2,13 @@ import React from "react";
 import "../styles/modal.css";
 
 const Modal = ({ isOpen, closeModal, children }) => {
+  const funcionAux = (event) => {
+    event.stopPropagation();
+  };
   return (
     isOpen && (
-      <div className="modal-overlay">
-        <div className="modal">
-          <button className="boton close-button" onClick={closeModal}>
-            Cerrar
-          </button>
+      <div className="modal-overlay" onClick={closeModal}>
+        <div className="modal" onClick={funcionAux}>
           {children}
         </div>
       </div>

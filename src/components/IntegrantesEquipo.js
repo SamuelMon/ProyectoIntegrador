@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Jugador from "./Jugador";
-import { backendAxios } from "../utils";
 import "../styles/integrantesEquipo.css";
 import OpcionMultiple from "./OpcionMultiple";
-import { useNavigate } from "react-router-dom";
 
 function IntegrantesEquipo(props) {
-  const navigate = useNavigate();
   const { numEq } = props;
   const [nombreEquipo, setNombreEquipo] = useState("");
   const aux = `${nombreEquipo}`;
@@ -55,7 +52,6 @@ function IntegrantesEquipo(props) {
 
   const handleInputChange = (event) => {
     const { id, value } = event.target;
-    console.log({ id, value });
     setJugadores((prevJugadores) => ({
       ...prevJugadores,
       [id]: value,
@@ -64,7 +60,6 @@ function IntegrantesEquipo(props) {
 
   const handleCamisetaChange = (event) => {
     const { id, value } = event.target;
-    console.log({ id, value });
     setNumCamisetaJugadores((prevCamisas) => ({
       ...prevCamisas,
       [id]: value,
