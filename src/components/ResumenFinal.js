@@ -1,10 +1,82 @@
 import React from "react";
 import "../styles/resumenFinal.css";
+import { json } from "react-router-dom";
 
 function ResumenFinal() {
+  const infoPrimerSet = JSON.parse(localStorage.getItem("infoPrimerSet"));
+  const infoSegundoSet = JSON.parse(localStorage.getItem("infoSegundoSet"));
+  const infoTercerSet = JSON.parse(localStorage.getItem("infoTercerSet"));
+  const equiposYGanador = JSON.parse(localStorage.getItem("equipos"));
+  const setsGanadorPerdedor = JSON.parse(localStorage.getItem("setsResultado"));
+  const {
+    tiemposEquipoA: tiemposEquipoASet1,
+    tiemposEquipoB: tiemposEquipoBSet1,
+    puntosEquipoA: puntosEquipoASet1,
+    puntosEquipoB: puntosEquipoBSet1,
+    setsA: setsASet1,
+    setsB: setsBSet1,
+  } = infoPrimerSet;
+  const {
+    tiemposEquipoA: tiemposEquipoASet2,
+    tiemposEquipoB: tiemposEquipoBSet2,
+    puntosEquipoA: puntosEquipoASet2,
+    puntosEquipoB: puntosEquipoBSet2,
+    setsA: setsASet2,
+    setsB: setsBSet2,
+  } = infoSegundoSet;
+  const {
+    tiemposEquipoA: tiemposEquipoASet3,
+    tiemposEquipoB: tiemposEquipoBSet3,
+    puntosEquipoA: puntosEquipoASet3,
+    puntosEquipoB: puntosEquipoBSet3,
+    setsA: setsASet3,
+    setsB: setsBSet3,
+  } = infoTercerSet;
+
+  const {
+    equipoLadoA: nombreEquipoA,
+    equipoLadoB: nombreEquipoB,
+    equipoGanador: equipoGanador,
+  } = equiposYGanador;
+
+  const {
+    setsGanador: setsGanador,
+    setsPerdedor: setsPerdedor,
+  } = setsGanadorPerdedor;
+
+  let totalPuntosEquipoA =
+    puntosEquipoASet1 + puntosEquipoASet2 + puntosEquipoASet3;
+
+  let totalTiemposEquipoA =
+    tiemposEquipoASet1 + tiemposEquipoASet2 + tiemposEquipoASet3;
+
+  let totalSetsEquipoA = setsASet1 + setsASet2 + setsASet3;
+
+  let totalPuntosEquipoB =
+    puntosEquipoBSet1 + puntosEquipoBSet2 + puntosEquipoBSet3;
+
+  let totalTiemposEquipoB =
+    tiemposEquipoBSet1 + tiemposEquipoBSet2 + tiemposEquipoBSet3;
+
+  let totalSetsEquipoB = setsBSet1 + setsBSet2 + setsBSet3;
+
+  console.log("infoPrimerSet:", infoPrimerSet);
+  console.log("infoSegundoSet:", infoSegundoSet);
+  console.log("infoTercerSet:", infoTercerSet);
+
+  console.log(
+    totalPuntosEquipoA,
+    totalSetsEquipoA,
+    totalTiemposEquipoA,
+    tiemposEquipoASet1,
+    equipoGanador,
+    setsGanador,
+    setsPerdedor,
+  );
+
   const columnas = [
-    "Salgar", //Nombre equipos A
-    "Ciudad Bolivar", //Nombre equipos B
+    nombreEquipoA, //Nombre equipos A
+    nombreEquipoB, //Nombre equipos B
     "Tiempos",
     "Sustiuciones",
     "Sets Ganados",
@@ -14,45 +86,45 @@ function ResumenFinal() {
     "Sets ganados",
     "Sustituciones",
     "Tiempos",
-    "", //Tiempos equipo A set 1
+    tiemposEquipoASet1, //Tiempos equipo A set 1
     "", //Sustituciones equipo A set 1
-    "", //Sets ganados equipo A set 1
-    "", //Puntos equipo A set 1
+    setsASet1, //Sets ganados equipo A set 1
+    puntosEquipoASet1, //Puntos equipo A set 1
     "1",
-    "", //Puntos equipo B set 1
-    "", //Sets ganados equipo B set 1
+    puntosEquipoBSet1, //Puntos equipo B set 1
+    setsBSet1, //Sets ganados equipo B set 1
     "", //Sustituciones equipo B set 1
-    "", //Tiempos equipo B set 1
-    "", //Tiempos equipo A set 2
+    tiemposEquipoBSet1, //Tiempos equipo B set 1
+    tiemposEquipoASet2, //Tiempos equipo A set 2
     "", //Sustituciones equipo A set 2
-    "", //Sets ganados equipo A set 2
-    "", //Puntos equipo A set 2
+    setsASet2, //Sets ganados equipo A set 2
+    puntosEquipoASet2, //Puntos equipo A set 2
     "2",
-    "", //Puntos equipo B set 2
-    "", //Sets ganados equipo B set 2
+    puntosEquipoBSet2, //Puntos equipo B set 2
+    setsBSet2, //Sets ganados equipo B set 2
     "", //Sustituciones equipo B set 2
-    "", //Tiempos equipo B set 2
-    "", //Tiempos equipo A set 3
+    tiemposEquipoBSet2, //Tiempos equipo B set 2
+    tiemposEquipoASet3, //Tiempos equipo A set 3
     "", //Sustituciones equipo A set 3
-    "", //Sets ganados equipo A set 3
-    "", //Puntos equipo A set 3
+    setsASet3, //Sets ganados equipo A set 3
+    puntosEquipoASet3, //Puntos equipo A set 3
     "3",
-    "", //Puntos equipo B set 3
-    "", //Sets ganados equipo B set 3
+    puntosEquipoBSet3, //Puntos equipo B set 3
+    setsBSet3, //Sets ganados equipo B set 3
     "", //Sustituciones equipo B set 3
-    "", //Tiempos equipo B set 3
-    "", //Total tiempos equipo A
+    tiemposEquipoBSet3, //Tiempos equipo B set 3
+    totalTiemposEquipoA, //Total tiempos equipo A
     "", //Total Sustituciones equipo A
-    "", //Total sets ganados equipo A
-    "", //Total puntos equipo A
+    totalSetsEquipoA, //Total sets ganados equipo A
+    totalPuntosEquipoA, //Total puntos equipo A
     "Total",
-    "", //Total puntos equipo B
-    "", //Total sets ganados equipo
+    totalPuntosEquipoB, //Total puntos equipo B
+    totalSetsEquipoB, //Total sets ganados equipo
     "", //Total Sustituciones equipo B
-    "", //Total tiempos equipo B
+    totalTiemposEquipoB, //Total tiempos equipo B
     "Ganador:",
-    "Salgar", //Nombre equipo ganador
-    "2:0", //Total sets ganados Ganador:Perdedor
+    equipoGanador, //Nombre equipo ganador
+    setsGanador+":"+setsPerdedor, //Total sets ganados Ganador:Perdedor
   ];
   return (
     <div className="contenedor sombra resultados">

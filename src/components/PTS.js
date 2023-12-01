@@ -37,6 +37,7 @@ function PTS(props) {
     aumentarPuntos,
     puntos,
     saca,
+    sumarTiempo,
   } = props;
   const clasePuntoBtnAux = `${lado}`;
   const clasebase = "boton puntoBtn lbtn";
@@ -49,6 +50,7 @@ function PTS(props) {
   const [startCountdown, setStartCountdown] = useState(false);
   const handleStartCountdownClick = () => {
     setStartCountdown(true);
+    sumarTiempo();
 
     if (showDiv1) {
       setShowDiv1(false);

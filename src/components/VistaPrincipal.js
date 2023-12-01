@@ -13,8 +13,28 @@ function VistaPrincipal() {
   const [setsB, setSetsB] = useState(0);
   const [puntosEquipoA, setPuntosEquipoA] = useState(0);
   const [puntosEquipoB, setPuntosEquipoB] = useState(0);
+  const [tiemposEquipoA, setTiemposEquipoA] = useState(0);
+  const [tiemposEquipoB, setTiemposEquipoB] = useState(0);
   const [sacaA, setSacaA] = useState(false);
   const [sacaB, setSacaB] = useState(false);
+  const [set, setSet] = useState(1);
+  const [equiposYGanador, setEquiposYGanador] = useState({
+    equipoLadoA: "",
+    equipoLadoB: "",
+    equipoGanador: "",
+  });
+  const [setsGanadorPerdedor, setSetsGanadorPerdedor] = useState({
+    setsGanador: 0,
+    setsPerdedor: 0,
+  });
+
+  const reiniciarSet = () => {
+    setPuntosEquipoA(0);
+    setPuntosEquipoB(0);
+    setTiemposEquipoA(0);
+    setTiemposEquipoB(0);
+    // Agrega cualquier otra variable que necesites reiniciar
+  };
 
   const equipo1 = JSON.parse(localStorage.getItem("InfoEquipo-eq1"));
   const equipo2 = JSON.parse(localStorage.getItem("InfoEquipo-eq2"));
@@ -128,19 +148,87 @@ function VistaPrincipal() {
     }
   };
 
+  const sumarTiemposA = () => {
+    setTiemposEquipoA(tiemposEquipoA + 1);
+  };
+  const sumarTiemposB = () => {
+    setTiemposEquipoB(tiemposEquipoB + 1);
+  };
   const verificarGanador = () => {
+    console.log(infoSet2.tiemposEquipoASet2);
     if (puntosEquipoA >= 25 && puntosEquipoA - puntosEquipoB >= 2) {
       setSetsA(setsA + 1);
-      navigate("/pos");
+      setSet(set + 1);
+      reiniciarSet();
     } else if (puntosEquipoB >= 25 && puntosEquipoB - puntosEquipoA >= 2) {
       setSetsB(setsB + 1);
-      navigate("/pos");
+      setSet(set + 1);
+      reiniciarSet();
     }
   };
 
+  /*tiemposEquipoASet1: tiemposEquipoA,
+    tiemposEquipoBSet1: tiemposEquipoB,
+    puntosEquipoASet1: puntosEquipoA,
+    puntosEquipoBSet1: puntosEquipoB,
+    setsASet1: setsA,
+    setsBSet1: setsB,
+    */
   useEffect(() => {
+    const nombreEquiposJson = JSON.parse(localStorage.getItem("nombreEquipos"));
+    const nombreEqA = nombreEquiposJson.equipo1;
+    const nombreEqB = nombreEquiposJson.equipo2;
+    setEquiposYGanador({
+      equipoLadoA: nombreEqA,
+      equipoLadoB: nombreEqB,
+    });
     verificarGanador();
-  }, [puntosEquipoA, puntosEquipoA]);
+    if (setsA >= 2) {
+      setEquiposYGanador((prevEquipos) => ({
+        ...prevEquipos,
+        equipoGanador: nombreEqA,
+      }));
+      setSetsGanadorPerdedor({
+        setsGanador: setsA,
+        setsPerdedor: setsB,
+      });
+    } else if (setsB >= 2) {
+      setEquiposYGanador((prevEquipos) => ({
+        ...prevEquipos,
+        equipoGanador: nombreEqB,
+      }));
+      setSetsGanadorPerdedor({
+        setsGanador: setsB,
+        setsPerdedor: setsA,
+      });
+    }
+    const infoSet = {
+      tiemposEquipoA,
+      tiemposEquipoB,
+      puntosEquipoA,
+      puntosEquipoB,
+      setsA,
+      setsB,
+    };
+
+    // Guarda la información según el set actual
+    if (set === 1) {
+      localStorage.setItem("infoPrimerSet", JSON.stringify(infoSet));
+    } else if (set === 2) {
+      localStorage.setItem("infoSegundoSet", JSON.stringify(infoSet));
+    } else if (set === 3) {
+      localStorage.setItem("infoTercerSet", JSON.stringify(infoSet));
+    }
+  }, [puntosEquipoA, puntosEquipoB, setsA, setsB]);
+
+  useEffect(() => {
+    if (equiposYGanador.equipoGanador) {
+      console.log(equiposYGanador.equipoGanador);
+      localStorage.setItem("equipos", JSON.stringify(equiposYGanador));
+      localStorage.setItem("setsResultado", JSON.stringify(setsGanadorPerdedor));
+      navigate("/resumen");
+    }
+  }, [equiposYGanador]);
 
   useEffect(() => {
     const numerosEqA = JSON.parse(localStorage.getItem("RegistroEquipo-A"));
@@ -194,6 +282,31 @@ function VistaPrincipal() {
     });
   };
 
+  const [infoSet1, setInfoSet1] = useState({
+    tiemposEquipoASet1: tiemposEquipoA,
+    tiemposEquipoBSet1: tiemposEquipoB,
+    puntosEquipoASet1: puntosEquipoA,
+    puntosEquipoBSet1: puntosEquipoB,
+    setsASet1: setsA,
+    setsBSet1: setsB,
+  });
+  const [infoSet2, setInfoSet2] = useState({
+    tiemposEquipoASet2: tiemposEquipoA,
+    tiemposEquipoBSet2: tiemposEquipoB,
+    puntosEquipoASet2: puntosEquipoA,
+    puntosEquipoBSet2: puntosEquipoB,
+    setsASet2: setsA,
+    setsBSet2: setsB,
+  });
+  const [infoSet3, setInfoSet3] = useState({
+    tiemposEquipoASet3: tiemposEquipoA,
+    tiemposEquipoBSet3: tiemposEquipoB,
+    puntosEquipoASet3: puntosEquipoA,
+    puntosEquipoBSet3: puntosEquipoB,
+    setsASet3: setsA,
+    setsBSet3: setsB,
+  });
+
   return (
     <div className="contenedorVistaP">
       <div className="izquierda">
@@ -231,6 +344,7 @@ function VistaPrincipal() {
           nombJ12={nombJ12eqA}
           nombJ13={nombJ13eqA}
           nombJ14={nombJ14eqA}
+          sumarTiempo={sumarTiemposA}
           saca={sacaA}
         />
       </div>
@@ -272,6 +386,7 @@ function VistaPrincipal() {
           nombJ12={nombJ12eqB}
           nombJ13={nombJ13eqB}
           nombJ14={nombJ14eqB}
+          sumarTiempo={sumarTiemposB}
           saca={sacaB}
         />
       </div>
