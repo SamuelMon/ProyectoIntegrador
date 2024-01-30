@@ -36,6 +36,7 @@ function InfoGeneral() {
       ciudad: "",
       escenario: "",
       division: "",
+      formato: "",
       categoria: "",
       fecha: "",
       hora: "",
@@ -106,6 +107,17 @@ function InfoGeneral() {
               mostrarLabel={true}
               id="escenario"
               value={datos.escenario}
+              onChange={handleInputChange}
+            />
+            <OpcionMultiple
+              clase="formulario__input"
+              nombreCampo="Formato"
+              opcion1="2 de 3"
+              opcion2="2 de 5"
+              mostrarLabel={true}
+              id="division"
+              value={datos.formato}
+              op3Able={false}
               onChange={handleInputChange}
             />
             <OpcionMultiple

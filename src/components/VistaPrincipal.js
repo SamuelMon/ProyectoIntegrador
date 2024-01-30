@@ -225,7 +225,10 @@ function VistaPrincipal() {
     if (equiposYGanador.equipoGanador) {
       console.log(equiposYGanador.equipoGanador);
       localStorage.setItem("equipos", JSON.stringify(equiposYGanador));
-      localStorage.setItem("setsResultado", JSON.stringify(setsGanadorPerdedor));
+      localStorage.setItem(
+        "setsResultado",
+        JSON.stringify(setsGanadorPerdedor)
+      );
       navigate("/resumen");
     }
   }, [equiposYGanador]);
