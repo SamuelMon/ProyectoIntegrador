@@ -113,11 +113,12 @@ function InfoGeneral() {
               clase="formulario__input"
               nombreCampo="Formato"
               opcion1="2 de 3"
-              opcion2="2 de 5"
+              opcion2="3 de 5"
               mostrarLabel={true}
+              op1Able={true}
+              op2Able={true}
               id="division"
               value={datos.formato}
-              op3Able={false}
               onChange={handleInputChange}
             />
             <OpcionMultiple
@@ -129,6 +130,8 @@ function InfoGeneral() {
               mostrarLabel={true}
               id="division"
               value={datos.division}
+              op1Able={true}
+              op2Able={true}
               op3Able={true}
               onChange={handleInputChange}
             />
@@ -141,6 +144,8 @@ function InfoGeneral() {
               mostrarLabel={true}
               id="categoria"
               value={datos.categoria}
+              op1Able={true}
+              op2Able={true}
               op3Able={true}
               onChange={handleInputChange}
             />

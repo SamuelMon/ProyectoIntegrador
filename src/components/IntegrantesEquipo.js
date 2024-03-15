@@ -28,20 +28,20 @@ function IntegrantesEquipo(props) {
     [`nombJ14${numEq}`]: "",
   });
   const [numCamisetaJugadores, setNumCamisetaJugadores] = useState({
-    [`numJ1${numEq}`]: 1,
-    [`numJ2${numEq}`]: 2,
-    [`numJ3${numEq}`]: 3,
-    [`numJ4${numEq}`]: 4,
-    [`numJ5${numEq}`]: 5,
-    [`numJ6${numEq}`]: 6,
-    [`numJ7${numEq}`]: 7,
-    [`numJ8${numEq}`]: 8,
-    [`numJ9${numEq}`]: 9,
-    [`numJ10${numEq}`]: 10,
-    [`numJ11${numEq}`]: 11,
-    [`numJ12${numEq}`]: 12,
-    [`numJ13${numEq}`]: 13,
-    [`numJ14${numEq}`]: 14,
+    [`numJ1${numEq}`]: "",
+    [`numJ2${numEq}`]: "",
+    [`numJ3${numEq}`]: "",
+    [`numJ4${numEq}`]: "",
+    [`numJ5${numEq}`]: "",
+    [`numJ6${numEq}`]: "",
+    [`numJ7${numEq}`]: "",
+    [`numJ8${numEq}`]: "",
+    [`numJ9${numEq}`]: "",
+    [`numJ10${numEq}`]: "",
+    [`numJ11${numEq}`]: "",
+    [`numJ12${numEq}`]: "",
+    [`numJ13${numEq}`]: "",
+    [`numJ14${numEq}`]: "",
   });
   useEffect(() => {
     const nombreEquiposJson = JSON.parse(localStorage.getItem("nombreEquipos"));
@@ -96,6 +96,8 @@ function IntegrantesEquipo(props) {
           nombreCampo="Lado inicial"
           opcion1="A"
           opcion2="B"
+          op1Able={true}
+          op2Able={true}
           id={ladoInicial + numEq}
           onChange={handleInputChange}
         />

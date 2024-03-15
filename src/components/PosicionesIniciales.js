@@ -87,10 +87,10 @@ function PosicionesIniciales() {
 
   return (
     <div className="contenedorPosiciones">
-      <PosicionInicial eq="A" />
-      <PosicionInicial eq="B" />
+      <PosicionInicial eq="A" accionInicialAble={true} />
+      <PosicionInicial eq="B" accionInicialAble={true} />
 
-      <div>
+      <div className="contBtnPos">
         <button className="boton" onClick={redirectToNextPage}>
           Continuar
         </button>
