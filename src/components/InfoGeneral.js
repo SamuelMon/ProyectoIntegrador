@@ -12,6 +12,7 @@ function InfoGeneral() {
     ciudad: "",
     escenario: "",
     division: "",
+    formato: "",
     categoria: "",
     fecha: "",
     hora: "",
@@ -36,7 +37,6 @@ function InfoGeneral() {
       ciudad: "",
       escenario: "",
       division: "",
-      formato: "",
       categoria: "",
       fecha: "",
       hora: "",
@@ -51,6 +51,12 @@ function InfoGeneral() {
       })
     );
 
+    localStorage.setItem(
+      "formatoSets",
+      JSON.stringify({
+        formato: datos.formato,
+      })
+    );
     backendAxios
       .post("http://<tu_direccion_ip_publica>:5000", datos, {
         headers: {

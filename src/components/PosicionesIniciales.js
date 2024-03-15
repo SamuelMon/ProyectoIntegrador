@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import PosicionInicial from "./PosicionInicial";
 import { useNavigate } from "react-router-dom";
 import "../styles/posicionesIniciales.css";
+import { setsContext } from "../context/setsContext";
 
 function PosicionesIniciales() {
+  const { set } = useContext(setsContext);
   const navigate = useNavigate();
   const redirectToNextPage = () => {
     // traer info del localStorage
@@ -66,6 +68,10 @@ function PosicionesIniciales() {
     }
 
     // Verificar que existe una acción asignada para cada equipo
+    if (set === 2) {
+      navigate("/main");
+      return;
+    }
     if (!accionA.accionA) {
       alert("Falta asignar una acción para el equipo A");
     }
@@ -87,8 +93,8 @@ function PosicionesIniciales() {
 
   return (
     <div className="contenedorPosiciones">
-      <PosicionInicial eq="A" accionInicialAble={true} />
-      <PosicionInicial eq="B" accionInicialAble={true} />
+      <PosicionInicial eq="A" />
+      <PosicionInicial eq="B" />
 
       <div className="contBtnPos">
         <button className="boton" onClick={redirectToNextPage}>

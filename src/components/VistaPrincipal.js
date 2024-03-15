@@ -1,23 +1,23 @@
-import { React, useEffect, useState } from "react";
+import { React, useEffect, useState, useContext } from "react";
 import AccionesEquipo from "./AccionesEquipo";
 import "../styles/vistaPrincipal.css";
 import { useNavigate } from "react-router-dom";
+import { setsContext } from "../context/setsContext";
 
 function VistaPrincipal() {
   const navigate = useNavigate();
+  const { set, setSet, setsA, setSetsA, setsB, setSetsB } =
+    useContext(setsContext);
   const [equipoA, setEquipoA] = useState(undefined);
   const [equipoB, setEquipoB] = useState(undefined);
   const [nombreEquipoA, setNombreEquipoA] = useState("");
   const [nombreEquipoB, setNombreEquipoB] = useState("");
-  const [setsA, setSetsA] = useState(0);
-  const [setsB, setSetsB] = useState(0);
   const [puntosEquipoA, setPuntosEquipoA] = useState(0);
   const [puntosEquipoB, setPuntosEquipoB] = useState(0);
   const [tiemposEquipoA, setTiemposEquipoA] = useState(0);
   const [tiemposEquipoB, setTiemposEquipoB] = useState(0);
   const [sacaA, setSacaA] = useState(false);
   const [sacaB, setSacaB] = useState(false);
-  const [set, setSet] = useState(1);
   const [equiposYGanador, setEquiposYGanador] = useState({
     equipoLadoA: "",
     equipoLadoB: "",
@@ -28,13 +28,13 @@ function VistaPrincipal() {
     setsPerdedor: 0,
   });
 
-  const reiniciarSet = () => {
-    setPuntosEquipoA(0);
-    setPuntosEquipoB(0);
-    setTiemposEquipoA(0);
-    setTiemposEquipoB(0);
-    // Agrega cualquier otra variable que necesites reiniciar
-  };
+  // const reiniciarSet = () => {
+  //   setPuntosEquipoA(0);
+  //   setPuntosEquipoB(0);
+  //   setTiemposEquipoA(0);
+  //   setTiemposEquipoB(0);
+  //   // Agrega cualquier otra variable que necesites reiniciar
+  // };
 
   const equipo1 = JSON.parse(localStorage.getItem("InfoEquipo-eq1"));
   const equipo2 = JSON.parse(localStorage.getItem("InfoEquipo-eq2"));
@@ -159,11 +159,13 @@ function VistaPrincipal() {
     if (puntosEquipoA >= 25 && puntosEquipoA - puntosEquipoB >= 2) {
       setSetsA(setsA + 1);
       setSet(set + 1);
-      reiniciarSet();
+      navigate("/pos");
+      // reiniciarSet();
     } else if (puntosEquipoB >= 25 && puntosEquipoB - puntosEquipoA >= 2) {
       setSetsB(setsB + 1);
       setSet(set + 1);
-      reiniciarSet();
+      navigate("/pos");
+      // reiniciarSet();
     }
   };
 
@@ -248,7 +250,7 @@ function VistaPrincipal() {
     const pos4eqA = numerosEqA?.numeros["4A"];
     const pos5eqA = numerosEqA?.numeros["5A"];
     const pos6eqA = numerosEqA?.numeros["6A"];
-    const accionA = numerosEqA?.accion["accionA"];
+    let accionA = numerosEqA?.accion["accionA"];
 
     const pos1eqB = numerosEqB?.numeros["1B"];
     const pos2eqB = numerosEqB?.numeros["2B"];
@@ -256,7 +258,13 @@ function VistaPrincipal() {
     const pos4eqB = numerosEqB?.numeros["4B"];
     const pos5eqB = numerosEqB?.numeros["5B"];
     const pos6eqB = numerosEqB?.numeros["6B"];
-    const accionB = numerosEqB?.accion["accionB"];
+    let accionB = numerosEqB?.accion["accionB"];
+
+    if (set == 2) {
+      let aux = accionA;
+      accionA = accionB;
+      accionB = aux;
+    }
 
     if (accionA === "Servicio") {
       setSacaA(true);

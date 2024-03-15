@@ -48,7 +48,9 @@ function OpcionMultiple(props) {
         className={claseSelect}
         placeholder={placeholder}
       >
-        <option disabled>{nombreCampoProp}</option>
+        <option className="optionDisabled" disabled>
+          {nombreCampoProp}
+        </option>
         {op1Able && <option>{opcion1}</option>}
         {op2Able && <option>{opcion2}</option>}
         {op3Able && <option>{opcion3}</option>}

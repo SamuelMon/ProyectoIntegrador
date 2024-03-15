@@ -4,7 +4,9 @@ import { setsContext } from "../context/setsContext";
 import "../styles/posicionInicial.css";
 
 function PosicionInicial(props) {
-  const { eq, accionInicialAble } = props;
+  const { set } = useContext(setsContext);
+  const accionInicialAble = set === 1 || set === 3;
+  const { eq } = props;
   const [nombreEquipo, setNombreEquipo] = useState("");
   const aux = `${nombreEquipo}`;
   const nombreEquipoStr = aux.toUpperCase();
@@ -131,7 +133,6 @@ function PosicionInicial(props) {
           <div className="posicionesIniciales">
             <OpcionMultiple
               clase="formulario__input posicionInicial"
-              placeholder="4"
               id={"4" + eq}
               opcion1={eq === "A" ? numJ1eqA : numJ1eqB}
               opcion2={eq === "A" ? numJ2eqA : numJ2eqB}
@@ -185,7 +186,6 @@ function PosicionInicial(props) {
             />
             <OpcionMultiple
               clase="formulario__input posicionInicial"
-              placeholder="3"
               id={"3" + eq}
               opcion1={eq === "A" ? numJ1eqA : numJ1eqB}
               opcion2={eq === "A" ? numJ2eqA : numJ2eqB}
@@ -239,7 +239,6 @@ function PosicionInicial(props) {
             />
             <OpcionMultiple
               clase="formulario__input posicionInicial"
-              placeholder="2"
               id={"2" + eq}
               opcion1={eq === "A" ? numJ1eqA : numJ1eqB}
               opcion2={eq === "A" ? numJ2eqA : numJ2eqB}
@@ -293,7 +292,6 @@ function PosicionInicial(props) {
             />
             <OpcionMultiple
               clase="formulario__input posicionInicial"
-              placeholder="5"
               id={"5" + eq}
               opcion1={eq === "A" ? numJ1eqA : numJ1eqB}
               opcion2={eq === "A" ? numJ2eqA : numJ2eqB}
@@ -347,7 +345,6 @@ function PosicionInicial(props) {
             />
             <OpcionMultiple
               clase="formulario__input posicionInicial"
-              placeholder="6"
               id={"6" + eq}
               opcion1={eq === "A" ? numJ1eqA : numJ1eqB}
               opcion2={eq === "A" ? numJ2eqA : numJ2eqB}
@@ -401,7 +398,6 @@ function PosicionInicial(props) {
             />
             <OpcionMultiple
               clase="formulario__input posicionInicial"
-              placeholder="1"
               id={"1" + eq}
               opcion1={eq === "A" ? numJ1eqA : numJ1eqB}
               opcion2={eq === "A" ? numJ2eqA : numJ2eqB}
