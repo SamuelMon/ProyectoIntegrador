@@ -114,11 +114,6 @@
   background-color: #00808d;
 }
 
-.contenedorTiempos .disabled-button {
-  background-color: gray;
-  cursor: default;
-}
-
 .sancionBtn {
   grid-row: 3/4;
   display: flex;
@@ -166,4 +161,17 @@
 
 .fontSancion {
   font-size: 5rem;
+}
+
+.rojo {
+  background-color: #e74c3c;
+}
+
+.rojo:hover {
+  background-color: #b03a2e;
+}
+
+.contenedorTiempos .disabled-button {
+  background-color: gray;
+  cursor: default;
 }

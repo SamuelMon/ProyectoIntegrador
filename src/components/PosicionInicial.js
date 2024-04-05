@@ -38,13 +38,13 @@ function PosicionInicial(props) {
   const equipo2 = JSON.parse(localStorage.getItem("InfoEquipo-eq2"));
 
   const {
-    jugadores: jugadores1,
+    // jugadores: jugadores1,
     ladoInicial: ladoInicial1,
     numCamisetaJugadores: numJugadoresA,
   } = equipo1;
   const {
-    jugadores: jugadores2,
-    ladoInicial: ladoInicial2,
+    // jugadores: jugadores2,
+    // ladoInicial: ladoInicial2,
     numCamisetaJugadores: numJugadoresB,
   } = equipo2;
 
@@ -119,9 +119,6 @@ function PosicionInicial(props) {
       alert("Posiciones iniciales del equipo B registradas exitosamente!");
     }
   };
-
-  console.log(numJ10eqA !== "" && true);
-  console.log(numJ10eqA);
 
   return (
     <div className="contenedor sombra">

@@ -41,12 +41,12 @@ function VistaPrincipal() {
 
   const {
     jugadores: jugadores1,
-    ladoInicial: ladoInicial1,
+    // ladoInicial: ladoInicial1,
     numCamisetaJugadores: numJugadoresA,
   } = equipo1;
   const {
     jugadores: jugadores2,
-    ladoInicial: ladoInicial2,
+    // ladoInicial: ladoInicial2,
     numCamisetaJugadores: numJugadoresB,
   } = equipo2;
 
@@ -155,7 +155,6 @@ function VistaPrincipal() {
     setTiemposEquipoB(tiemposEquipoB + 1);
   };
   const verificarGanador = () => {
-    console.log(infoSet2.tiemposEquipoASet2);
     if (puntosEquipoA >= 25 && puntosEquipoA - puntosEquipoB >= 2) {
       setSetsA(setsA + 1);
       setSet(set + 1);
@@ -221,7 +220,16 @@ function VistaPrincipal() {
     } else if (set === 3) {
       localStorage.setItem("infoTercerSet", JSON.stringify(infoSet));
     }
-  }, [puntosEquipoA, puntosEquipoB, setsA, setsB]);
+  }, [
+    puntosEquipoA,
+    puntosEquipoB,
+    setsA,
+    setsB,
+    set,
+    tiemposEquipoA,
+    tiemposEquipoB,
+    verificarGanador,
+  ]);
 
   useEffect(() => {
     if (equiposYGanador.equipoGanador) {
@@ -233,7 +241,7 @@ function VistaPrincipal() {
       );
       navigate("/resumen");
     }
-  }, [equiposYGanador]);
+  }, [equiposYGanador, navigate, setsGanadorPerdedor]);
 
   useEffect(() => {
     const numerosEqA = JSON.parse(localStorage.getItem("RegistroEquipo-A"));
@@ -260,7 +268,7 @@ function VistaPrincipal() {
     const pos6eqB = numerosEqB?.numeros["6B"];
     let accionB = numerosEqB?.accion["accionB"];
 
-    if (set == 2) {
+    if (set === 2) {
       let aux = accionA;
       accionA = accionB;
       accionB = aux;
@@ -320,9 +328,9 @@ function VistaPrincipal() {
 
   return (
     <div className="contenedorVistaP">
-      <div className="izquierda">
+      <div className={set === 1 || set === 3 ? "izquierda" : "derecha"}>
         <AccionesEquipo
-          lado="izquierda"
+          lado={set === 1 || set === 3 ? "izquierda" : "derecha"}
           nombreEquipo={nombreEquipoA}
           posiciones={posA}
           aumentarPuntos={aumentarPuntosEquipoA}
@@ -360,11 +368,15 @@ function VistaPrincipal() {
         />
       </div>
       <div className="sets">
-        <p className="contenedor sombra">{`${setsA}-${setsB}`}</p>
+        <p className="contenedor sombra">
+          {set === 1 || set === 3
+            ? `${setsA} - ${setsB}`
+            : `${setsB} - ${setsA}`}
+        </p>
       </div>
-      <div className="derecha">
+      <div className={set === 1 || set === 3 ? "derecha" : "izquierda"}>
         <AccionesEquipo
-          lado="derecha"
+          lado={set === 1 || set === 3 ? "derecha" : "izquierda"}
           nombreEquipo={nombreEquipoB}
           posiciones={posB}
           aumentarPuntos={aumentarPuntosEquipoB}

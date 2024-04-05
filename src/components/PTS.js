@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Countdown from "./Countdown";
 import Modal from "./Modal";
 import "../styles/pts.css";
+import { setsContext } from "../context/setsContext";
 
 function PTS(props) {
+  const { set } = useContext(setsContext);
   const {
     lado,
     numJ1,
@@ -20,20 +22,20 @@ function PTS(props) {
     numJ12,
     numJ13,
     numJ14,
-    nombJ1,
-    nombJ2,
-    nombJ3,
-    nombJ4,
-    nombJ5,
-    nombJ6,
-    nombJ7,
-    nombJ8,
-    nombJ9,
-    nombJ10,
-    nombJ11,
-    nombJ12,
-    nombJ13,
-    nombJ14,
+    nombJ1 = "",
+    nombJ2 = "",
+    nombJ3 = "",
+    nombJ4 = "",
+    nombJ5 = "",
+    nombJ6 = "",
+    nombJ7 = "",
+    nombJ8 = "",
+    nombJ9 = "",
+    nombJ10 = "",
+    nombJ11 = "",
+    nombJ12 = "",
+    nombJ13 = "",
+    nombJ14 = "",
     aumentarPuntos,
     puntos,
     saca,
@@ -46,6 +48,8 @@ function PTS(props) {
   const clasePuntoBtn = `${clasebase}${clasePuntoBtnAux}`;
   const claseContTiemp = `${claseContTiempAux}${clasePuntoBtnAux}`;
   const claseContNumTiemp = `${claseContNumTiempAux}${clasePuntoBtnAux}`;
+  const auxIz = lado === "izquierda" && (set === 1 || set === 3) ? " rojo" : "";
+  const auxDer = lado === "derecha" && set === 2 ? " rojo" : "";
 
   const [startCountdown, setStartCountdown] = useState(false);
   const handleStartCountdownClick = () => {
@@ -78,16 +82,24 @@ function PTS(props) {
     setModalDemoraOpen(true);
   };
 
+  const [AmonestacionDemoraAble, setAmonestacionDemoraAble] = useState(true);
   const closeModalDemora = () => {
     setModalDemoraOpen(false);
+    if (AmonestacionDemoraAble) {
+      setAmonestacionDemoraAble(false);
+    }
   };
   const [isModalCondOpen, setModalCondOpen] = useState(false);
   const openModalCond = () => {
     setModalCondOpen(true);
   };
 
+  const [AmonestacionAble, setAmonestacionAble] = useState(true);
   const closeModalCond = () => {
     setModalCondOpen(false);
+    if (AmonestacionAble) {
+      setAmonestacionAble(false);
+    }
   };
 
   const [isModalJugadoresOpen, setModalJugadoresOpen] = useState(false);
@@ -119,7 +131,10 @@ function PTS(props) {
 
   return (
     <div className="contenedorPTS">
-      <div className={clasePuntoBtn} onClick={aumentarPuntos}>
+      <div
+        className={`${clasePuntoBtn}${auxIz}${auxDer}`}
+        onClick={aumentarPuntos}
+      >
         <div className="contenedorEnPBtn">
           <p>{puntos}</p>
           <div className="contenedorIconoBalon">
@@ -155,7 +170,7 @@ function PTS(props) {
         <button
           className={`boton tiempoBtn ${
             buttonDisabled ? "disabled-button" : "tiempoHover"
-          }`}
+          } ${auxIz}${auxDer}`}
           onClick={handleStartCountdownClick}
           disabled={buttonDisabled}
         >
@@ -177,8 +192,8 @@ function PTS(props) {
           </svg>
         </button>
         <div className={claseContNumTiemp}>
-          {showDiv1 && <div className="tiemposVista"></div>}
-          {showDiv2 && <div className="tiemposVista"></div>}
+          {showDiv1 && <div className={`tiemposVista ${auxIz}${auxDer}`}></div>}
+          {showDiv2 && <div className={`tiemposVista ${auxIz}${auxDer}`}></div>}
         </div>
       </div>
       <div className="contadorTiempo">
@@ -186,7 +201,10 @@ function PTS(props) {
           <Countdown isActive={true} onCountdownEnd={handleCountdownEnd} />
         )}
       </div>
-      <div className="boton sancionBtn" onClick={openModalTypeS}>
+      <div
+        className={`boton sancionBtn ${auxIz}${auxDer}`}
+        onClick={openModalTypeS}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="icon icon-tabler icon-tabler-cards"
@@ -220,12 +238,14 @@ function PTS(props) {
       </Modal>
       <Modal isOpen={isModalDemoraOpen} closeModal={closeModalDemora}>
         <div className="grid grid2Column">
-          <button
-            className="boton botonSancion fontSancion amonestacion"
-            onClick={closeModalDemora}
-          >
-            A
-          </button>
+          {AmonestacionDemoraAble && (
+            <button
+              className="boton botonSancion fontSancion amonestacion"
+              onClick={closeModalDemora}
+            >
+              A
+            </button>
+          )}
           <button
             className="boton botonSancion fontSancion castigo"
             onClick={closeModalDemora}
@@ -236,9 +256,7 @@ function PTS(props) {
       </Modal>
       <Modal isOpen={isModalJugadoresOpen} closeModal={closeModalJugadores}>
         <div className="grid grid4Column">
-          {nombJ1 === "" ? (
-            ""
-          ) : (
+          {nombJ1 !== "" && (
             <button
               className="boton botonSancion fontSancion jugadorSan"
               onClick={closeJugadoresOpenCond}
@@ -246,9 +264,7 @@ function PTS(props) {
               {numJ1}
             </button>
           )}
-          {nombJ2 === "" ? (
-            ""
-          ) : (
+          {nombJ2 !== "" && (
             <button
               className="boton botonSancion fontSancion jugadorSan"
               onClick={closeJugadoresOpenCond}
@@ -256,9 +272,7 @@ function PTS(props) {
               {numJ2}
             </button>
           )}
-          {nombJ3 === "" ? (
-            ""
-          ) : (
+          {nombJ3 !== "" && (
             <button
               className="boton botonSancion fontSancion jugadorSan"
               onClick={closeJugadoresOpenCond}
@@ -266,9 +280,7 @@ function PTS(props) {
               {numJ3}
             </button>
           )}
-          {nombJ4 === "" ? (
-            ""
-          ) : (
+          {nombJ4 !== "" && (
             <button
               className="boton botonSancion fontSancion jugadorSan"
               onClick={closeJugadoresOpenCond}
@@ -276,9 +288,7 @@ function PTS(props) {
               {numJ4}
             </button>
           )}
-          {nombJ5 === "" ? (
-            ""
-          ) : (
+          {nombJ5 !== "" && (
             <button
               className="boton botonSancion fontSancion jugadorSan"
               onClick={closeJugadoresOpenCond}
@@ -286,9 +296,7 @@ function PTS(props) {
               {numJ5}
             </button>
           )}
-          {nombJ6 === "" ? (
-            ""
-          ) : (
+          {nombJ6 !== "" && (
             <button
               className="boton botonSancion fontSancion jugadorSan"
               onClick={closeJugadoresOpenCond}
@@ -296,9 +304,7 @@ function PTS(props) {
               {numJ6}
             </button>
           )}
-          {nombJ7 === "" ? (
-            ""
-          ) : (
+          {nombJ7 !== "" && (
             <button
               className="boton botonSancion fontSancion jugadorSan"
               onClick={closeJugadoresOpenCond}
@@ -306,9 +312,7 @@ function PTS(props) {
               {numJ7}
             </button>
           )}
-          {nombJ8 === "" ? (
-            ""
-          ) : (
+          {nombJ8 !== "" && (
             <button
               className="boton botonSancion fontSancion jugadorSan"
               onClick={closeJugadoresOpenCond}
@@ -316,9 +320,7 @@ function PTS(props) {
               {numJ8}
             </button>
           )}
-          {nombJ9 === "" ? (
-            ""
-          ) : (
+          {nombJ9 !== "" && (
             <button
               className="boton botonSancion fontSancion jugadorSan"
               onClick={closeJugadoresOpenCond}
@@ -326,9 +328,7 @@ function PTS(props) {
               {numJ9}
             </button>
           )}
-          {nombJ10 === "" ? (
-            ""
-          ) : (
+          {nombJ10 !== "" && (
             <button
               className="boton botonSancion fontSancion jugadorSan"
               onClick={closeJugadoresOpenCond}
@@ -336,9 +336,7 @@ function PTS(props) {
               {numJ10}
             </button>
           )}
-          {nombJ11 === "" ? (
-            ""
-          ) : (
+          {nombJ11 !== "" && (
             <button
               className="boton botonSancion fontSancion jugadorSan"
               onClick={closeJugadoresOpenCond}
@@ -346,9 +344,7 @@ function PTS(props) {
               {numJ11}
             </button>
           )}
-          {nombJ12 === "" ? (
-            ""
-          ) : (
+          {nombJ12 !== "" && (
             <button
               className="boton botonSancion fontSancion jugadorSan"
               onClick={closeJugadoresOpenCond}
@@ -356,9 +352,7 @@ function PTS(props) {
               {numJ12}
             </button>
           )}
-          {nombJ13 === "" ? (
-            ""
-          ) : (
+          {nombJ13 !== "" && (
             <button
               className="boton botonSancion fontSancion jugadorSan"
               onClick={closeJugadoresOpenCond}
@@ -366,9 +360,7 @@ function PTS(props) {
               {numJ13}
             </button>
           )}
-          {nombJ14 === "" ? (
-            ""
-          ) : (
+          {nombJ14 !== "" && (
             <button
               className="boton botonSancion fontSancion jugadorSan"
               onClick={closeJugadoresOpenCond}
@@ -380,12 +372,14 @@ function PTS(props) {
       </Modal>
       <Modal isOpen={isModalCondOpen} closeModal={closeModalCond}>
         <div className="grid grid4Column">
-          <button
-            className="boton botonSancion fontSancion amonestacion"
-            onClick={closeModalCond}
-          >
-            A
-          </button>
+          {AmonestacionAble && (
+            <button
+              className="boton botonSancion fontSancion amonestacion"
+              onClick={closeModalCond}
+            >
+              A
+            </button>
+          )}
           <button
             className="boton botonSancion fontSancion castigo"
             onClick={closeModalCond}

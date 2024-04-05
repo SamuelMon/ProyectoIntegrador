@@ -41,12 +41,10 @@ function AccionesEquipo(props) {
     saca,
     sumarTiempo,
   } = props;
-  const aux = `${nombreEquipo}`;
-  const nombreEquipoStr = aux.substring(0, 3);
 
   return (
     <div className="contenedorAccEq">
-      <h2 className="uppercase">{nombreEquipoStr}</h2>
+      <h2 className="uppercase">{nombreEquipo}</h2>
       <div className="contenedor sombra">
         <PTS
           lado={lado}

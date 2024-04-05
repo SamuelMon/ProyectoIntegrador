@@ -7,7 +7,7 @@ function IntegrantesEquipo(props) {
   const { numEq } = props;
   const [nombreEquipo, setNombreEquipo] = useState("");
   const aux = `${nombreEquipo}`;
-  const nombreEquipoStr = aux.replace(" ", "").substring(0, 3);
+  const nombreEquipoStr = aux.replace(" ", "");
   const ladoInicial = "ladoInicial";
 
   const [jugadores, setJugadores] = useState({
@@ -85,6 +85,56 @@ function IntegrantesEquipo(props) {
     } else {
       alert("Jugadores del equipo 2 guardados exitosamente!");
     }
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Aquí se puede hacer lo que se quiera con los datos del formulario
+    let Moncayo = JSON.stringify(datos);
+    setDatos({
+      nombreCompe: "",
+      ciudad: "",
+      escenario: "",
+      division: "",
+      categoria: "",
+      fecha: "",
+      hora: "",
+      equipo1: "",
+      equipo2: "",
+    });
+    localStorage.setItem(
+      "nombreEquipos",
+      JSON.stringify({
+        equipo1: datos.equipo1,
+        equipo2: datos.equipo2,
+      })
+    );
+
+    localStorage.setItem(
+      "formatoSets",
+      JSON.stringify({
+        formato: datos.formato,
+      })
+    );
+    backendAxios
+      .post("http://<tu_direccion_ip_publica>:5000", datos, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          console.log("Equipo creado con éxito");
+          // Realiza cualquier otra acción necesaria en el frontend
+        } else {
+          // Manejar otras respuestas de error aquí
+        }
+      })
+      .catch((error) => {
+        console.error("Error al realizar la petición:", error);
+        // Manejar el error de la petición aquí
+      });
+    alert("Información guardada de manera exitosa!");
   };
 
   return (

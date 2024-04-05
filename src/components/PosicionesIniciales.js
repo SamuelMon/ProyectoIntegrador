@@ -10,19 +10,19 @@ function PosicionesIniciales() {
   const redirectToNextPage = () => {
     // traer info del localStorage
     const equipoA = JSON.parse(localStorage.getItem("RegistroEquipo-A"));
-    const infoEq1 = JSON.parse(localStorage.getItem("InfoEquipo-eq1"));
+    // const infoEq1 = JSON.parse(localStorage.getItem("InfoEquipo-eq1"));
     const equipoB = JSON.parse(localStorage.getItem("RegistroEquipo-B"));
-    const infoEq2 = JSON.parse(localStorage.getItem("InfoEquipo-eq2"));
+    // const infoEq2 = JSON.parse(localStorage.getItem("InfoEquipo-eq2"));
 
     const {
       numeros: numerosA,
       accion: accionA,
-      numCamisetaJugadores1: numCamisetaJugadores1,
+      // numCamisetaJugadores1: numCamisetaJugadores1,
     } = equipoA;
     const {
       numeros: numerosB,
       accion: accionB,
-      numCamisetaJugadores: numCamisetaJugadores2,
+      // numCamisetaJugadores: numCamisetaJugadores2,
     } = equipoB;
     console.log(equipoA, equipoB);
     // Ver si está completa la info
@@ -93,8 +93,8 @@ function PosicionesIniciales() {
 
   return (
     <div className="contenedorPosiciones">
-      <PosicionInicial eq="A" />
-      <PosicionInicial eq="B" />
+      <PosicionInicial eq={set === 1 || set === 3 ? "A" : "B"} />
+      <PosicionInicial eq={set === 1 || set === 3 ? "B" : "A"} />
 
       <div className="contBtnPos">
         <button className="boton" onClick={redirectToNextPage}>
