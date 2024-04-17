@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "../styles/countdown.css";
 
 function Countdown(props) {
   const { isActive, onCountdownEnd } = props;

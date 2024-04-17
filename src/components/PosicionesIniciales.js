@@ -95,7 +95,6 @@ function PosicionesIniciales() {
     <div className="contenedorPosiciones">
       <PosicionInicial eq={set === 1 || set === 3 ? "A" : "B"} />
       <PosicionInicial eq={set === 1 || set === 3 ? "B" : "A"} />
-
       <div className="contBtnPos">
         <button className="boton" onClick={redirectToNextPage}>
           Continuar

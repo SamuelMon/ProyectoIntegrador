@@ -7,37 +7,14 @@ function AccionesEquipo(props) {
   const {
     posiciones,
     lado,
-    numJ1,
-    numJ2,
-    numJ3,
-    numJ4,
-    numJ5,
-    numJ6,
-    numJ7,
-    numJ8,
-    numJ9,
-    numJ10,
-    numJ11,
-    numJ12,
-    numJ13,
-    numJ14,
-    nombJ1,
-    nombJ2,
-    nombJ3,
-    nombJ4,
-    nombJ5,
-    nombJ6,
-    nombJ7,
-    nombJ8,
-    nombJ9,
-    nombJ10,
-    nombJ11,
-    nombJ12,
-    nombJ13,
-    nombJ14,
+    nombres,
+    numeros,
     nombreEquipo,
-    aumentarPuntos,
-    puntos,
+    aumentarPuntosA,
+    aumentarPuntosB,
+    eq,
+    puntosEquipoA,
+    puntosEquipoB,
     saca,
     sumarTiempo,
   } = props;
@@ -48,42 +25,27 @@ function AccionesEquipo(props) {
       <div className="contenedor sombra">
         <PTS
           lado={lado}
-          aumentarPuntos={aumentarPuntos}
-          puntos={puntos}
-          numJ1={numJ1}
-          numJ2={numJ2}
-          numJ3={numJ3}
-          numJ4={numJ4}
-          numJ5={numJ5}
-          numJ6={numJ6}
-          numJ7={numJ7}
-          numJ8={numJ8}
-          numJ9={numJ9}
-          numJ10={numJ10}
-          numJ11={numJ11}
-          numJ12={numJ12}
-          numJ13={numJ13}
-          numJ14={numJ14}
-          nombJ1={nombJ1}
-          nombJ2={nombJ2}
-          nombJ3={nombJ3}
-          nombJ4={nombJ4}
-          nombJ5={nombJ5}
-          nombJ6={nombJ6}
-          nombJ7={nombJ7}
-          nombJ8={nombJ8}
-          nombJ9={nombJ9}
-          nombJ10={nombJ10}
-          nombJ11={nombJ11}
-          nombJ12={nombJ12}
-          nombJ13={nombJ13}
-          nombJ14={nombJ14}
+          aumentarPuntosA={aumentarPuntosA}
+          aumentarPuntosB={aumentarPuntosB}
+          eq={eq}
+          puntosEquipoA={puntosEquipoA}
+          puntosEquipoB={puntosEquipoB}
+          nombres={nombres}
+          numeros={numeros}
           saca={saca}
           sumarTiempo={sumarTiempo}
         />
       </div>
       <div className="contenedor sombra">
-        <PosicionesMain posiciones={posiciones} />
+        <PosicionesMain
+          posiciones={posiciones}
+          nombres={nombres}
+          numeros={numeros}
+          aumentarPuntosA={aumentarPuntosA}
+          aumentarPuntosB={aumentarPuntosB}
+          lado={lado}
+          eq={eq}
+        />
       </div>
     </div>
   );

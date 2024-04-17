@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import OpcionMultiple from "./OpcionMultiple";
 import { setsContext } from "../context/setsContext";
 import "../styles/posicionInicial.css";
+import { sancionesContext } from "../context/sancionesContext";
 
 function PosicionInicial(props) {
   const { set } = useContext(setsContext);
@@ -10,7 +11,16 @@ function PosicionInicial(props) {
   const [nombreEquipo, setNombreEquipo] = useState("");
   const aux = `${nombreEquipo}`;
   const nombreEquipoStr = aux.toUpperCase();
+  const { sancionesJA, sancionesJB } = useContext(sancionesContext);
 
+  let thisSanciones;
+
+  if (eq === "A") {
+    thisSanciones = sancionesJA;
+  } else {
+    thisSanciones = sancionesJB;
+  }
+  console.log(thisSanciones[0]);
   const [numeros, setNumeros] = useState({
     [`1${eq}`]: "",
     [`2${eq}`]: "",
@@ -37,16 +47,9 @@ function PosicionInicial(props) {
   const equipo1 = JSON.parse(localStorage.getItem("InfoEquipo-eq1"));
   const equipo2 = JSON.parse(localStorage.getItem("InfoEquipo-eq2"));
 
-  const {
-    // jugadores: jugadores1,
-    ladoInicial: ladoInicial1,
-    numCamisetaJugadores: numJugadoresA,
-  } = equipo1;
-  const {
-    // jugadores: jugadores2,
-    // ladoInicial: ladoInicial2,
-    numCamisetaJugadores: numJugadoresB,
-  } = equipo2;
+  const { ladoInicial: ladoInicial1, numCamisetaJugadores: numJugadoresA } =
+    equipo1;
+  const { numCamisetaJugadores: numJugadoresB } = equipo2;
 
   let arrNumJugadores1 = Object.values(numJugadoresA).filter(
     (numero) => numero
@@ -54,34 +57,24 @@ function PosicionInicial(props) {
   let arrNumJugadores2 = Object.values(numJugadoresB).filter(
     (numero) => numero
   );
+
+  const arrNumJugadores =
+    ladoInicial1 === eq ? arrNumJugadores1 : arrNumJugadores2;
+
   const [
-    numJ1eqA = "",
-    numJ2eqA = "",
-    numJ3eqA = "",
-    numJ4eqA = "",
-    numJ5eqA = "",
-    numJ6eqA = "",
-    numJ7eqA = "",
-    numJ8eqA = "",
-    numJ9eqA = "",
-    numJ10eqA = "",
-    numJ11eqA = "",
-    numJ12eqA = "",
-  ] = arrNumJugadores1;
-  const [
-    numJ1eqB = "",
-    numJ2eqB = "",
-    numJ3eqB = "",
-    numJ4eqB = "",
-    numJ5eqB = "",
-    numJ6eqB = "",
-    numJ7eqB = "",
-    numJ8eqB = "",
-    numJ9eqB = "",
-    numJ10eqB = "",
-    numJ11eqB = "",
-    numJ12eqB = "",
-  ] = arrNumJugadores2;
+    numJ1 = "",
+    numJ2 = "",
+    numJ3 = "",
+    numJ4 = "",
+    numJ5 = "",
+    numJ6 = "",
+    numJ7 = "",
+    numJ8 = "",
+    numJ9 = "",
+    numJ10 = "",
+    numJ11 = "",
+    numJ12 = "",
+  ] = arrNumJugadores;
 
   const handleAccionChange = (event) => {
     const { id, value } = event.target;
@@ -131,319 +124,181 @@ function PosicionInicial(props) {
             <OpcionMultiple
               clase="formulario__input posicionInicial"
               id={"4" + eq}
-              opcion1={eq === "A" ? numJ1eqA : numJ1eqB}
-              opcion2={eq === "A" ? numJ2eqA : numJ2eqB}
-              opcion3={eq === "A" ? numJ3eqA : numJ3eqB}
-              opcion4={eq === "A" ? numJ4eqA : numJ4eqB}
-              opcion5={eq === "A" ? numJ5eqA : numJ5eqB}
-              opcion6={eq === "A" ? numJ6eqA : numJ6eqB}
-              opcion7={eq === "A" ? numJ7eqA : numJ7eqB}
-              opcion8={eq === "A" ? numJ8eqA : numJ8eqB}
-              opcion9={eq === "A" ? numJ9eqA : numJ9eqB}
-              opcion10={eq === "A" ? numJ10eqA : numJ10eqB}
-              opcion11={eq === "A" ? numJ11eqA : numJ11eqB}
-              opcion12={eq === "A" ? numJ12eqA : numJ12eqB}
-              op1Able={
-                eq === "A" ? numJ1eqA !== "" && true : numJ1eqB !== "" && true
-              }
-              op2Able={
-                eq === "A" ? numJ2eqA !== "" && true : numJ2eqB !== "" && true
-              }
-              op3Able={
-                eq === "A" ? numJ3eqA !== "" && true : numJ3eqB !== "" && true
-              }
-              op4Able={
-                eq === "A" ? numJ4eqA !== "" && true : numJ4eqB !== "" && true
-              }
-              op5Able={
-                eq === "A" ? numJ5eqA !== "" && true : numJ5eqB !== "" && true
-              }
-              op6Able={
-                eq === "A" ? numJ6eqA !== "" && true : numJ6eqB !== "" && true
-              }
-              op7Able={
-                eq === "A" ? numJ7eqA !== "" && true : numJ7eqB !== "" && true
-              }
-              op8Able={
-                eq === "A" ? numJ8eqA !== "" && true : numJ8eqB !== "" && true
-              }
-              op9Able={
-                eq === "A" ? numJ9eqA !== "" && true : numJ9eqB !== "" && true
-              }
-              op10Able={
-                eq === "A" ? numJ10eqA !== "" && true : numJ1eqB !== "" && true
-              }
-              op11Able={
-                eq === "A" ? numJ11eqA !== "" && true : numJ11eqB !== "" && true
-              }
-              op12Able={
-                eq === "A" ? numJ12eqA !== "" && true : numJ12eqB !== "" && true
-              }
+              nombreCampo="IV"
+              opcion1={numJ1}
+              opcion2={numJ2}
+              opcion3={numJ3}
+              opcion4={numJ4}
+              opcion5={numJ5}
+              opcion6={numJ6}
+              opcion7={numJ7}
+              opcion8={numJ8}
+              opcion9={numJ9}
+              opcion10={numJ10}
+              opcion11={numJ11}
+              opcion12={numJ12}
+              op1Able={numJ1 !== "" && thisSanciones[0] !== 4}
+              op2Able={numJ2 !== "" && thisSanciones[1] !== 4}
+              op3Able={numJ3 !== "" && thisSanciones[2] !== 4}
+              op4Able={numJ4 !== "" && thisSanciones[3] !== 4}
+              op5Able={numJ5 !== "" && thisSanciones[4] !== 4}
+              op6Able={numJ6 !== "" && thisSanciones[5] !== 4}
+              op7Able={numJ7 !== "" && thisSanciones[6] !== 4}
+              op8Able={numJ8 !== "" && thisSanciones[7] !== 4}
+              op9Able={numJ9 !== "" && thisSanciones[8] !== 4}
+              op10Able={numJ10 !== "" && thisSanciones[9] !== 4}
+              op11Able={numJ11 !== "" && thisSanciones[10] !== 4}
+              op12Able={numJ12 !== "" && thisSanciones[11] !== 4}
               onChange={handleNumberChange}
             />
             <OpcionMultiple
               clase="formulario__input posicionInicial"
               id={"3" + eq}
-              opcion1={eq === "A" ? numJ1eqA : numJ1eqB}
-              opcion2={eq === "A" ? numJ2eqA : numJ2eqB}
-              opcion3={eq === "A" ? numJ3eqA : numJ3eqB}
-              opcion4={eq === "A" ? numJ4eqA : numJ4eqB}
-              opcion5={eq === "A" ? numJ5eqA : numJ5eqB}
-              opcion6={eq === "A" ? numJ6eqA : numJ6eqB}
-              opcion7={eq === "A" ? numJ7eqA : numJ7eqB}
-              opcion8={eq === "A" ? numJ8eqA : numJ8eqB}
-              opcion9={eq === "A" ? numJ9eqA : numJ9eqB}
-              opcion10={eq === "A" ? numJ10eqA : numJ10eqB}
-              opcion11={eq === "A" ? numJ11eqA : numJ11eqB}
-              opcion12={eq === "A" ? numJ12eqA : numJ12eqB}
-              op1Able={
-                eq === "A" ? numJ1eqA !== "" && true : numJ1eqB !== "" && true
-              }
-              op2Able={
-                eq === "A" ? numJ2eqA !== "" && true : numJ2eqB !== "" && true
-              }
-              op3Able={
-                eq === "A" ? numJ3eqA !== "" && true : numJ3eqB !== "" && true
-              }
-              op4Able={
-                eq === "A" ? numJ4eqA !== "" && true : numJ4eqB !== "" && true
-              }
-              op5Able={
-                eq === "A" ? numJ5eqA !== "" && true : numJ5eqB !== "" && true
-              }
-              op6Able={
-                eq === "A" ? numJ6eqA !== "" && true : numJ6eqB !== "" && true
-              }
-              op7Able={
-                eq === "A" ? numJ7eqA !== "" && true : numJ7eqB !== "" && true
-              }
-              op8Able={
-                eq === "A" ? numJ8eqA !== "" && true : numJ8eqB !== "" && true
-              }
-              op9Able={
-                eq === "A" ? numJ9eqA !== "" && true : numJ9eqB !== "" && true
-              }
-              op10Able={
-                eq === "A" ? numJ10eqA !== "" && true : numJ1eqB !== "" && true
-              }
-              op11Able={
-                eq === "A" ? numJ11eqA !== "" && true : numJ11eqB !== "" && true
-              }
-              op12Able={
-                eq === "A" ? numJ12eqA !== "" && true : numJ12eqB !== "" && true
-              }
+              nombreCampo="III"
+              opcion1={numJ1}
+              opcion2={numJ2}
+              opcion3={numJ3}
+              opcion4={numJ4}
+              opcion5={numJ5}
+              opcion6={numJ6}
+              opcion7={numJ7}
+              opcion8={numJ8}
+              opcion9={numJ9}
+              opcion10={numJ10}
+              opcion11={numJ11}
+              opcion12={numJ12}
+              op1Able={numJ1 !== "" && thisSanciones[0] !== 4}
+              op2Able={numJ2 !== "" && thisSanciones[1] !== 4}
+              op3Able={numJ3 !== "" && thisSanciones[2] !== 4}
+              op4Able={numJ4 !== "" && thisSanciones[3] !== 4}
+              op5Able={numJ5 !== "" && thisSanciones[4] !== 4}
+              op6Able={numJ6 !== "" && thisSanciones[5] !== 4}
+              op7Able={numJ7 !== "" && thisSanciones[6] !== 4}
+              op8Able={numJ8 !== "" && thisSanciones[7] !== 4}
+              op9Able={numJ9 !== "" && thisSanciones[8] !== 4}
+              op10Able={numJ10 !== "" && thisSanciones[9] !== 4}
+              op11Able={numJ11 !== "" && thisSanciones[10] !== 4}
+              op12Able={numJ12 !== "" && thisSanciones[11] !== 4}
               onChange={handleNumberChange}
             />
             <OpcionMultiple
               clase="formulario__input posicionInicial"
               id={"2" + eq}
-              opcion1={eq === "A" ? numJ1eqA : numJ1eqB}
-              opcion2={eq === "A" ? numJ2eqA : numJ2eqB}
-              opcion3={eq === "A" ? numJ3eqA : numJ3eqB}
-              opcion4={eq === "A" ? numJ4eqA : numJ4eqB}
-              opcion5={eq === "A" ? numJ5eqA : numJ5eqB}
-              opcion6={eq === "A" ? numJ6eqA : numJ6eqB}
-              opcion7={eq === "A" ? numJ7eqA : numJ7eqB}
-              opcion8={eq === "A" ? numJ8eqA : numJ8eqB}
-              opcion9={eq === "A" ? numJ9eqA : numJ9eqB}
-              opcion10={eq === "A" ? numJ10eqA : numJ10eqB}
-              opcion11={eq === "A" ? numJ11eqA : numJ11eqB}
-              opcion12={eq === "A" ? numJ12eqA : numJ12eqB}
-              op1Able={
-                eq === "A" ? numJ1eqA !== "" && true : numJ1eqB !== "" && true
-              }
-              op2Able={
-                eq === "A" ? numJ2eqA !== "" && true : numJ2eqB !== "" && true
-              }
-              op3Able={
-                eq === "A" ? numJ3eqA !== "" && true : numJ3eqB !== "" && true
-              }
-              op4Able={
-                eq === "A" ? numJ4eqA !== "" && true : numJ4eqB !== "" && true
-              }
-              op5Able={
-                eq === "A" ? numJ5eqA !== "" && true : numJ5eqB !== "" && true
-              }
-              op6Able={
-                eq === "A" ? numJ6eqA !== "" && true : numJ6eqB !== "" && true
-              }
-              op7Able={
-                eq === "A" ? numJ7eqA !== "" && true : numJ7eqB !== "" && true
-              }
-              op8Able={
-                eq === "A" ? numJ8eqA !== "" && true : numJ8eqB !== "" && true
-              }
-              op9Able={
-                eq === "A" ? numJ9eqA !== "" && true : numJ9eqB !== "" && true
-              }
-              op10Able={
-                eq === "A" ? numJ10eqA !== "" && true : numJ1eqB !== "" && true
-              }
-              op11Able={
-                eq === "A" ? numJ11eqA !== "" && true : numJ11eqB !== "" && true
-              }
-              op12Able={
-                eq === "A" ? numJ12eqA !== "" && true : numJ12eqB !== "" && true
-              }
+              nombreCampo="II"
+              opcion1={numJ1}
+              opcion2={numJ2}
+              opcion3={numJ3}
+              opcion4={numJ4}
+              opcion5={numJ5}
+              opcion6={numJ6}
+              opcion7={numJ7}
+              opcion8={numJ8}
+              opcion9={numJ9}
+              opcion10={numJ10}
+              opcion11={numJ11}
+              opcion12={numJ12}
+              op1Able={numJ1 !== "" && thisSanciones[0] !== 4}
+              op2Able={numJ2 !== "" && thisSanciones[1] !== 4}
+              op3Able={numJ3 !== "" && thisSanciones[2] !== 4}
+              op4Able={numJ4 !== "" && thisSanciones[3] !== 4}
+              op5Able={numJ5 !== "" && thisSanciones[4] !== 4}
+              op6Able={numJ6 !== "" && thisSanciones[5] !== 4}
+              op7Able={numJ7 !== "" && thisSanciones[6] !== 4}
+              op8Able={numJ8 !== "" && thisSanciones[7] !== 4}
+              op9Able={numJ9 !== "" && thisSanciones[8] !== 4}
+              op10Able={numJ10 !== "" && thisSanciones[9] !== 4}
+              op11Able={numJ11 !== "" && thisSanciones[10] !== 4}
+              op12Able={numJ12 !== "" && thisSanciones[11] !== 4}
               onChange={handleNumberChange}
             />
             <OpcionMultiple
               clase="formulario__input posicionInicial"
               id={"5" + eq}
-              opcion1={eq === "A" ? numJ1eqA : numJ1eqB}
-              opcion2={eq === "A" ? numJ2eqA : numJ2eqB}
-              opcion3={eq === "A" ? numJ3eqA : numJ3eqB}
-              opcion4={eq === "A" ? numJ4eqA : numJ4eqB}
-              opcion5={eq === "A" ? numJ5eqA : numJ5eqB}
-              opcion6={eq === "A" ? numJ6eqA : numJ6eqB}
-              opcion7={eq === "A" ? numJ7eqA : numJ7eqB}
-              opcion8={eq === "A" ? numJ8eqA : numJ8eqB}
-              opcion9={eq === "A" ? numJ9eqA : numJ9eqB}
-              opcion10={eq === "A" ? numJ10eqA : numJ10eqB}
-              opcion11={eq === "A" ? numJ11eqA : numJ11eqB}
-              opcion12={eq === "A" ? numJ12eqA : numJ12eqB}
-              op1Able={
-                eq === "A" ? numJ1eqA !== "" && true : numJ1eqB !== "" && true
-              }
-              op2Able={
-                eq === "A" ? numJ2eqA !== "" && true : numJ2eqB !== "" && true
-              }
-              op3Able={
-                eq === "A" ? numJ3eqA !== "" && true : numJ3eqB !== "" && true
-              }
-              op4Able={
-                eq === "A" ? numJ4eqA !== "" && true : numJ4eqB !== "" && true
-              }
-              op5Able={
-                eq === "A" ? numJ5eqA !== "" && true : numJ5eqB !== "" && true
-              }
-              op6Able={
-                eq === "A" ? numJ6eqA !== "" && true : numJ6eqB !== "" && true
-              }
-              op7Able={
-                eq === "A" ? numJ7eqA !== "" && true : numJ7eqB !== "" && true
-              }
-              op8Able={
-                eq === "A" ? numJ8eqA !== "" && true : numJ8eqB !== "" && true
-              }
-              op9Able={
-                eq === "A" ? numJ9eqA !== "" && true : numJ9eqB !== "" && true
-              }
-              op10Able={
-                eq === "A" ? numJ10eqA !== "" && true : numJ1eqB !== "" && true
-              }
-              op11Able={
-                eq === "A" ? numJ11eqA !== "" && true : numJ11eqB !== "" && true
-              }
-              op12Able={
-                eq === "A" ? numJ12eqA !== "" && true : numJ12eqB !== "" && true
-              }
+              nombreCampo="V"
+              opcion1={numJ1}
+              opcion2={numJ2}
+              opcion3={numJ3}
+              opcion4={numJ4}
+              opcion5={numJ5}
+              opcion6={numJ6}
+              opcion7={numJ7}
+              opcion8={numJ8}
+              opcion9={numJ9}
+              opcion10={numJ10}
+              opcion11={numJ11}
+              opcion12={numJ12}
+              op1Able={numJ1 !== "" && thisSanciones[0] !== 4}
+              op2Able={numJ2 !== "" && thisSanciones[1] !== 4}
+              op3Able={numJ3 !== "" && thisSanciones[2] !== 4}
+              op4Able={numJ4 !== "" && thisSanciones[3] !== 4}
+              op5Able={numJ5 !== "" && thisSanciones[4] !== 4}
+              op6Able={numJ6 !== "" && thisSanciones[5] !== 4}
+              op7Able={numJ7 !== "" && thisSanciones[6] !== 4}
+              op8Able={numJ8 !== "" && thisSanciones[7] !== 4}
+              op9Able={numJ9 !== "" && thisSanciones[8] !== 4}
+              op10Able={numJ10 !== "" && thisSanciones[9] !== 4}
+              op11Able={numJ11 !== "" && thisSanciones[10] !== 4}
+              op12Able={numJ12 !== "" && thisSanciones[11] !== 4}
               onChange={handleNumberChange}
             />
             <OpcionMultiple
               clase="formulario__input posicionInicial"
               id={"6" + eq}
-              opcion1={eq === "A" ? numJ1eqA : numJ1eqB}
-              opcion2={eq === "A" ? numJ2eqA : numJ2eqB}
-              opcion3={eq === "A" ? numJ3eqA : numJ3eqB}
-              opcion4={eq === "A" ? numJ4eqA : numJ4eqB}
-              opcion5={eq === "A" ? numJ5eqA : numJ5eqB}
-              opcion6={eq === "A" ? numJ6eqA : numJ6eqB}
-              opcion7={eq === "A" ? numJ7eqA : numJ7eqB}
-              opcion8={eq === "A" ? numJ8eqA : numJ8eqB}
-              opcion9={eq === "A" ? numJ9eqA : numJ9eqB}
-              opcion10={eq === "A" ? numJ10eqA : numJ10eqB}
-              opcion11={eq === "A" ? numJ11eqA : numJ11eqB}
-              opcion12={eq === "A" ? numJ12eqA : numJ12eqB}
-              op1Able={
-                eq === "A" ? numJ1eqA !== "" && true : numJ1eqB !== "" && true
-              }
-              op2Able={
-                eq === "A" ? numJ2eqA !== "" && true : numJ2eqB !== "" && true
-              }
-              op3Able={
-                eq === "A" ? numJ3eqA !== "" && true : numJ3eqB !== "" && true
-              }
-              op4Able={
-                eq === "A" ? numJ4eqA !== "" && true : numJ4eqB !== "" && true
-              }
-              op5Able={
-                eq === "A" ? numJ5eqA !== "" && true : numJ5eqB !== "" && true
-              }
-              op6Able={
-                eq === "A" ? numJ6eqA !== "" && true : numJ6eqB !== "" && true
-              }
-              op7Able={
-                eq === "A" ? numJ7eqA !== "" && true : numJ7eqB !== "" && true
-              }
-              op8Able={
-                eq === "A" ? numJ8eqA !== "" && true : numJ8eqB !== "" && true
-              }
-              op9Able={
-                eq === "A" ? numJ9eqA !== "" && true : numJ9eqB !== "" && true
-              }
-              op10Able={
-                eq === "A" ? numJ10eqA !== "" && true : numJ1eqB !== "" && true
-              }
-              op11Able={
-                eq === "A" ? numJ11eqA !== "" && true : numJ11eqB !== "" && true
-              }
-              op12Able={
-                eq === "A" ? numJ12eqA !== "" && true : numJ12eqB !== "" && true
-              }
+              nombreCampo="VI"
+              opcion1={numJ1}
+              opcion2={numJ2}
+              opcion3={numJ3}
+              opcion4={numJ4}
+              opcion5={numJ5}
+              opcion6={numJ6}
+              opcion7={numJ7}
+              opcion8={numJ8}
+              opcion9={numJ9}
+              opcion10={numJ10}
+              opcion11={numJ11}
+              opcion12={numJ12}
+              op1Able={numJ1 !== "" && thisSanciones[0] !== 4}
+              op2Able={numJ2 !== "" && thisSanciones[1] !== 4}
+              op3Able={numJ3 !== "" && thisSanciones[2] !== 4}
+              op4Able={numJ4 !== "" && thisSanciones[3] !== 4}
+              op5Able={numJ5 !== "" && thisSanciones[4] !== 4}
+              op6Able={numJ6 !== "" && thisSanciones[5] !== 4}
+              op7Able={numJ7 !== "" && thisSanciones[6] !== 4}
+              op8Able={numJ8 !== "" && thisSanciones[7] !== 4}
+              op9Able={numJ9 !== "" && thisSanciones[8] !== 4}
+              op10Able={numJ10 !== "" && thisSanciones[9] !== 4}
+              op11Able={numJ11 !== "" && thisSanciones[10] !== 4}
+              op12Able={numJ12 !== "" && thisSanciones[11] !== 4}
               onChange={handleNumberChange}
             />
             <OpcionMultiple
               clase="formulario__input posicionInicial"
               id={"1" + eq}
-              opcion1={eq === "A" ? numJ1eqA : numJ1eqB}
-              opcion2={eq === "A" ? numJ2eqA : numJ2eqB}
-              opcion3={eq === "A" ? numJ3eqA : numJ3eqB}
-              opcion4={eq === "A" ? numJ4eqA : numJ4eqB}
-              opcion5={eq === "A" ? numJ5eqA : numJ5eqB}
-              opcion6={eq === "A" ? numJ6eqA : numJ6eqB}
-              opcion7={eq === "A" ? numJ7eqA : numJ7eqB}
-              opcion8={eq === "A" ? numJ8eqA : numJ8eqB}
-              opcion9={eq === "A" ? numJ9eqA : numJ9eqB}
-              opcion10={eq === "A" ? numJ10eqA : numJ10eqB}
-              opcion11={eq === "A" ? numJ11eqA : numJ11eqB}
-              opcion12={eq === "A" ? numJ12eqA : numJ12eqB}
-              op1Able={
-                eq === "A" ? numJ1eqA !== "" && true : numJ1eqB !== "" && true
-              }
-              op2Able={
-                eq === "A" ? numJ2eqA !== "" && true : numJ2eqB !== "" && true
-              }
-              op3Able={
-                eq === "A" ? numJ3eqA !== "" && true : numJ3eqB !== "" && true
-              }
-              op4Able={
-                eq === "A" ? numJ4eqA !== "" && true : numJ4eqB !== "" && true
-              }
-              op5Able={
-                eq === "A" ? numJ5eqA !== "" && true : numJ5eqB !== "" && true
-              }
-              op6Able={
-                eq === "A" ? numJ6eqA !== "" && true : numJ6eqB !== "" && true
-              }
-              op7Able={
-                eq === "A" ? numJ7eqA !== "" && true : numJ7eqB !== "" && true
-              }
-              op8Able={
-                eq === "A" ? numJ8eqA !== "" && true : numJ8eqB !== "" && true
-              }
-              op9Able={
-                eq === "A" ? numJ9eqA !== "" && true : numJ9eqB !== "" && true
-              }
-              op10Able={
-                eq === "A" ? numJ10eqA !== "" && true : numJ1eqB !== "" && true
-              }
-              op11Able={
-                eq === "A" ? numJ11eqA !== "" && true : numJ11eqB !== "" && true
-              }
-              op12Able={
-                eq === "A" ? numJ12eqA !== "" && true : numJ12eqB !== "" && true
-              }
+              nombreCampo="I"
+              opcion1={numJ1}
+              opcion2={numJ2}
+              opcion3={numJ3}
+              opcion4={numJ4}
+              opcion5={numJ5}
+              opcion6={numJ6}
+              opcion7={numJ7}
+              opcion8={numJ8}
+              opcion9={numJ9}
+              opcion10={numJ10}
+              opcion11={numJ11}
+              opcion12={numJ12}
+              op1Able={numJ1 !== "" && thisSanciones[0] !== 4}
+              op2Able={numJ2 !== "" && thisSanciones[1] !== 4}
+              op3Able={numJ3 !== "" && thisSanciones[2] !== 4}
+              op4Able={numJ4 !== "" && thisSanciones[3] !== 4}
+              op5Able={numJ5 !== "" && thisSanciones[4] !== 4}
+              op6Able={numJ6 !== "" && thisSanciones[5] !== 4}
+              op7Able={numJ7 !== "" && thisSanciones[6] !== 4}
+              op8Able={numJ8 !== "" && thisSanciones[7] !== 4}
+              op9Able={numJ9 !== "" && thisSanciones[8] !== 4}
+              op10Able={numJ10 !== "" && thisSanciones[9] !== 4}
+              op11Able={numJ11 !== "" && thisSanciones[10] !== 4}
+              op12Able={numJ12 !== "" && thisSanciones[11] !== 4}
               onChange={handleNumberChange}
             />
           </div>

@@ -13,7 +13,7 @@ const POSICION_MAPPER = [
 ];
 
 function PosicionesMain(props) {
-  const { posiciones, lado } = props;
+  const { posiciones, nombres, numeros } = props;
   const [isModalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
@@ -28,7 +28,7 @@ function PosicionesMain(props) {
       {posiciones.map((posicion, index) => (
         <button
           onClick={openModal}
-          key={posicion + lado}
+          key={posicion}
           className="boton botonPos"
           style={{
             gridColumn: POSICION_MAPPER[index].col,
@@ -39,7 +39,12 @@ function PosicionesMain(props) {
         </button>
       ))}
       <Modal isOpen={isModalOpen} closeModal={closeModal}>
-        <OpcionesSustitucion closeModal={closeModal} />
+        <OpcionesSustitucion
+          closeModal={closeModal}
+          nombres={nombres}
+          numeros={numeros}
+          posiciones={posiciones}
+        />
       </Modal>
     </div>
   );

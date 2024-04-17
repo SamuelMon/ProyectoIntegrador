@@ -41,12 +41,12 @@ function VistaPrincipal() {
 
   const {
     jugadores: jugadores1,
-    // ladoInicial: ladoInicial1,
+    ladoInicial: ladoInicial1,
     numCamisetaJugadores: numJugadoresA,
   } = equipo1;
   const {
     jugadores: jugadores2,
-    // ladoInicial: ladoInicial2,
+    //ladoInicial: ladoInicial2,
     numCamisetaJugadores: numJugadoresB,
   } = equipo2;
 
@@ -62,71 +62,14 @@ function VistaPrincipal() {
     (numero) => numero
   );
 
-  const [
-    numJ1eqA,
-    numJ2eqA,
-    numJ3eqA,
-    numJ4eqA,
-    numJ5eqA,
-    numJ6eqA,
-    numJ7eqA,
-    numJ8eqA,
-    numJ9eqA,
-    numJ10eqA,
-    numJ11eqA,
-    numJ12eqA,
-    numJ13eqA,
-    numJ14eqA,
-  ] = arrNumJugadores1;
-  const [
-    nombJ1eqA,
-    nombJ2eqA,
-    nombJ3eqA,
-    nombJ4eqA,
-    nombJ5eqA,
-    nombJ6eqA,
-    nombJ7eqA,
-    nombJ8eqA,
-    nombJ9eqA,
-    nombJ10eqA,
-    nombJ11eqA,
-    nombJ12eqA,
-    nombJ13eqA,
-    nombJ14eqA,
-  ] = arrJugadores1;
-
-  const [
-    numJ1eqB,
-    numJ2eqB,
-    numJ3eqB,
-    numJ4eqB,
-    numJ5eqB,
-    numJ6eqB,
-    numJ7eqB,
-    numJ8eqB,
-    numJ9eqB,
-    numJ10eqB,
-    numJ11eqB,
-    numJ12eqB,
-    numJ13eqB,
-    numJ14eqB,
-  ] = arrNumJugadores2;
-  const [
-    nombJ1eqB,
-    nombJ2eqB,
-    nombJ3eqB,
-    nombJ4eqB,
-    nombJ5eqB,
-    nombJ6eqB,
-    nombJ7eqB,
-    nombJ8eqB,
-    nombJ9eqB,
-    nombJ10eqB,
-    nombJ11eqB,
-    nombJ12eqB,
-    nombJ13eqB,
-    nombJ14eqB,
-  ] = arrJugadores2;
+  const arrNumJugadoresEquipoA =
+    ladoInicial1 === "A" ? arrNumJugadores1 : arrNumJugadores2;
+  const arrNumJugadoresEquipoB =
+    ladoInicial1 === "A" ? arrNumJugadores2 : arrNumJugadores1;
+  const arrNombJugadoresEquipoA =
+    ladoInicial1 === "A" ? arrJugadores1 : arrNumJugadores2;
+  const arrNombJugadoresEquipoB =
+    ladoInicial1 === "A" ? arrJugadores2 : arrNumJugadores1;
 
   const [posA, setPosA] = useState([]);
   const [posB, setPosB] = useState([]);
@@ -168,22 +111,24 @@ function VistaPrincipal() {
     }
   };
 
-  /*tiemposEquipoASet1: tiemposEquipoA,
-    tiemposEquipoBSet1: tiemposEquipoB,
-    puntosEquipoASet1: puntosEquipoA,
-    puntosEquipoBSet1: puntosEquipoB,
-    setsASet1: setsA,
-    setsBSet1: setsB,
-    */
   useEffect(() => {
     const nombreEquiposJson = JSON.parse(localStorage.getItem("nombreEquipos"));
-    const nombreEqA = nombreEquiposJson.equipo1;
-    const nombreEqB = nombreEquiposJson.equipo2;
+    const nombreEqA =
+      ladoInicial1 === "A"
+        ? nombreEquiposJson.equipo1
+        : nombreEquiposJson.equipo2;
+    const nombreEqB =
+      ladoInicial1 === "A"
+        ? nombreEquiposJson.equipo2
+        : nombreEquiposJson.equipo1;
+
     setEquiposYGanador({
       equipoLadoA: nombreEqA,
       equipoLadoB: nombreEqB,
     });
+
     verificarGanador();
+
     if (setsA >= 2) {
       setEquiposYGanador((prevEquipos) => ({
         ...prevEquipos,
@@ -228,20 +173,21 @@ function VistaPrincipal() {
     set,
     tiemposEquipoA,
     tiemposEquipoB,
-    verificarGanador,
   ]);
 
+  const [hasNavigated, setHasNavigated] = useState(false);
+
   useEffect(() => {
-    if (equiposYGanador.equipoGanador) {
-      console.log(equiposYGanador.equipoGanador);
+    if (equiposYGanador.equipoGanador && !hasNavigated) {
       localStorage.setItem("equipos", JSON.stringify(equiposYGanador));
       localStorage.setItem(
         "setsResultado",
         JSON.stringify(setsGanadorPerdedor)
       );
+      setHasNavigated(true); // Evita el ciclo infinito
       navigate("/resumen");
     }
-  }, [equiposYGanador, navigate, setsGanadorPerdedor]);
+  }, [equiposYGanador, setsGanadorPerdedor, navigate, hasNavigated]);
 
   useEffect(() => {
     const numerosEqA = JSON.parse(localStorage.getItem("RegistroEquipo-A"));
@@ -250,8 +196,14 @@ function VistaPrincipal() {
     setEquipoA(numerosEqA);
     setEquipoB(numerosEqB);
 
-    const nombreEqA = nombreEquiposJson.equipo1;
-    const nombreEqB = nombreEquiposJson.equipo2;
+    const nombreEqA =
+      ladoInicial1 === "A"
+        ? nombreEquiposJson.equipo1
+        : nombreEquiposJson.equipo2;
+    const nombreEqB =
+      ladoInicial1 === "A"
+        ? nombreEquiposJson.equipo2
+        : nombreEquiposJson.equipo1;
     const pos1eqA = numerosEqA?.numeros["1A"];
     const pos2eqA = numerosEqA?.numeros["2A"];
     const pos3eqA = numerosEqA?.numeros["3A"];
@@ -333,36 +285,13 @@ function VistaPrincipal() {
           lado={set === 1 || set === 3 ? "izquierda" : "derecha"}
           nombreEquipo={nombreEquipoA}
           posiciones={posA}
-          aumentarPuntos={aumentarPuntosEquipoA}
-          puntos={puntosEquipoA}
-          numJ1={numJ1eqA}
-          numJ2={numJ2eqA}
-          numJ3={numJ3eqA}
-          numJ4={numJ4eqA}
-          numJ5={numJ5eqA}
-          numJ6={numJ6eqA}
-          numJ7={numJ7eqA}
-          numJ8={numJ8eqA}
-          numJ9={numJ9eqA}
-          numJ10={numJ10eqA}
-          numJ11={numJ11eqA}
-          numJ12={numJ12eqA}
-          numJ13={numJ13eqA}
-          numJ14={numJ14eqA}
-          nombJ1={nombJ1eqA}
-          nombJ2={nombJ2eqA}
-          nombJ3={nombJ3eqA}
-          nombJ4={nombJ4eqA}
-          nombJ5={nombJ5eqA}
-          nombJ6={nombJ6eqA}
-          nombJ7={nombJ7eqA}
-          nombJ8={nombJ8eqA}
-          nombJ9={nombJ9eqA}
-          nombJ10={nombJ10eqA}
-          nombJ11={nombJ11eqA}
-          nombJ12={nombJ12eqA}
-          nombJ13={nombJ13eqA}
-          nombJ14={nombJ14eqA}
+          aumentarPuntosA={aumentarPuntosEquipoA}
+          aumentarPuntosB={aumentarPuntosEquipoB}
+          eq="A"
+          puntosEquipoA={puntosEquipoA}
+          puntosEquipoB={puntosEquipoB}
+          nombres={arrNombJugadoresEquipoA}
+          numeros={arrNumJugadoresEquipoA}
           sumarTiempo={sumarTiemposA}
           saca={sacaA}
         />
@@ -379,36 +308,13 @@ function VistaPrincipal() {
           lado={set === 1 || set === 3 ? "derecha" : "izquierda"}
           nombreEquipo={nombreEquipoB}
           posiciones={posB}
-          aumentarPuntos={aumentarPuntosEquipoB}
-          puntos={puntosEquipoB}
-          numJ1={numJ1eqB}
-          numJ2={numJ2eqB}
-          numJ3={numJ3eqB}
-          numJ4={numJ4eqB}
-          numJ5={numJ5eqB}
-          numJ6={numJ6eqB}
-          numJ7={numJ7eqB}
-          numJ8={numJ8eqB}
-          numJ9={numJ9eqB}
-          numJ10={numJ10eqB}
-          numJ11={numJ11eqB}
-          numJ12={numJ12eqB}
-          numJ13={numJ13eqB}
-          numJ14={numJ14eqB}
-          nombJ1={nombJ1eqB}
-          nombJ2={nombJ2eqB}
-          nombJ3={nombJ3eqB}
-          nombJ4={nombJ4eqB}
-          nombJ5={nombJ5eqB}
-          nombJ6={nombJ6eqB}
-          nombJ7={nombJ7eqB}
-          nombJ8={nombJ8eqB}
-          nombJ9={nombJ9eqB}
-          nombJ10={nombJ10eqB}
-          nombJ11={nombJ11eqB}
-          nombJ12={nombJ12eqB}
-          nombJ13={nombJ13eqB}
-          nombJ14={nombJ14eqB}
+          aumentarPuntosB={aumentarPuntosEquipoB}
+          aumentarPuntosA={aumentarPuntosEquipoA}
+          eq="B"
+          puntosEquipoB={puntosEquipoB}
+          puntosEquipoA={puntosEquipoA}
+          nombres={arrNombJugadoresEquipoB}
+          numeros={arrNumJugadoresEquipoB}
           sumarTiempo={sumarTiemposB}
           saca={sacaB}
         />

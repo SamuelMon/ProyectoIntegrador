@@ -1,0 +1,11 @@
+.contadorTiempo {
+  display: flex;
+  height: 20rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.contadorTiempo p {
+  text-align: center;
+  font-size: 20rem;
+}

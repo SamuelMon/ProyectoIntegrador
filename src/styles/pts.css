@@ -74,18 +74,6 @@
   border-radius: 50%;
 }
 
-.contadorTiempo {
-  grid-row: 2/3;
-  display: flex;
-  height: 7rem;
-  justify-content: center;
-  align-items: center;
-}
-
-.contadorTiempo p {
-  text-align: center;
-}
-
 .lbtnizquierda {
   grid-column: 2/4;
 }

@@ -67,6 +67,10 @@ body {
   grid-template-columns: repeat(4, 1fr);
 }
 
+.centrar {
+  text-align: center;
+}
+
 /*Formulario*/
 .formulario {
   background-color: #aeb6bf;
