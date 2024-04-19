@@ -18,7 +18,22 @@ function SancionesContextProvider({ children }) {
     }
   };
 
-  const log = () => {};
+  const log = () => {
+    console.log(sancionesPersistA[0]);
+    console.log(sancionesPersistB[0]);
+    console.log(sancionesPersistA[1]);
+    console.log(sancionesPersistB[1]);
+    console.log(sancionesPersistA[2]);
+    console.log(sancionesPersistB[2]);
+    console.log(sancionesPersistA[3]);
+    console.log(sancionesPersistB[3]);
+    console.log(sancionesPersistA[4]);
+    console.log(sancionesPersistB[4]);
+    console.log(sancionesPersistA[5]);
+    console.log(sancionesPersistB[5]);
+    console.log(sancionesPersistA[6]);
+    console.log(sancionesPersistB[6]);
+  };
 
   return (
     <sancionesContext.Provider

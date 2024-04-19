@@ -28,6 +28,7 @@ function PTS(props) {
     sancionesPersistA,
     setSancionesPersistB,
     sancionesPersistB,
+    log,
   } = useContext(sancionesContext);
   const [jugadorSancionado, setJugadorSancionado] = useState(0);
   const clasePuntoBtnAux = `${lado}`;
@@ -201,7 +202,7 @@ function PTS(props) {
       const persistAux = [...sancionesPersistA];
       persistAux.push({
         tipoSancion: nombreSancion,
-        jugadorSancionado: jugadorSancionado,
+        jugadorSancionado: numeros[jugadorSancionado],
         equipoSancionado: "A",
         set: set,
         puntaje: `${thisPuntos}:${puntosContrincante}`,
@@ -216,7 +217,7 @@ function PTS(props) {
       const persistAux = [...sancionesPersistB];
       persistAux.push({
         tipoSancion: nombreSancion,
-        jugadorSancionado: jugadorSancionado,
+        jugadorSancionado: numeros[jugadorSancionado],
         equipoSancionado: "B",
         set: set,
         puntaje: `${thisPuntos}:${puntosContrincante}`,
@@ -237,12 +238,13 @@ function PTS(props) {
 
   const [thisSanciones, setThisSanciones] = useState([]);
   useEffect(() => {
+    log();
     if (eq === "A") {
       setThisSanciones(sancionesJA);
     } else {
       setThisSanciones(sancionesJB);
     }
-  }, [eq, sancionesJA, sancionesJB]);
+  }, [log, eq, sancionesJA, sancionesJB]);
 
   const [isModalJugadoresOpen, setModalJugadoresOpen] = useState(false);
   const openModalJugadores = () => {
