@@ -20,7 +20,6 @@ function PosicionInicial(props) {
   } else {
     thisSanciones = sancionesJB;
   }
-  console.log(thisSanciones[0]);
   const [numeros, setNumeros] = useState({
     [`1${eq}`]: "",
     [`2${eq}`]: "",
@@ -78,7 +77,6 @@ function PosicionInicial(props) {
 
   const handleAccionChange = (event) => {
     const { id, value } = event.target;
-    console.log({ id, value });
     setAccion((prevAccion) => ({
       ...prevAccion,
       [id]: value,
@@ -87,7 +85,6 @@ function PosicionInicial(props) {
 
   const handleNumberChange = (event) => {
     const { id, value } = event.target;
-    console.log({ id, value });
     setNumeros((prevNumeros) => ({
       ...prevNumeros,
       [id]: value,

@@ -16,7 +16,6 @@ function AccionesEquipo(props) {
     puntosEquipoA,
     puntosEquipoB,
     saca,
-    sumarTiempo,
   } = props;
 
   return (
@@ -33,7 +32,6 @@ function AccionesEquipo(props) {
           nombres={nombres}
           numeros={numeros}
           saca={saca}
-          sumarTiempo={sumarTiempo}
         />
       </div>
       <div className="contenedor sombra">

@@ -24,7 +24,6 @@ function PosicionesIniciales() {
       accion: accionB,
       // numCamisetaJugadores: numCamisetaJugadores2,
     } = equipoB;
-    console.log(equipoA, equipoB);
     // Ver si está completa la info
     let minimoNumerosA =
       Object.values(numerosA).filter((numero) => numero !== "").length >= 6;

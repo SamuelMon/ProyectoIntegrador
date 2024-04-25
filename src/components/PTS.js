@@ -4,8 +4,10 @@ import Modal from "./Modal";
 import "../styles/pts.css";
 import { setsContext } from "../context/setsContext";
 import { sancionesContext } from "../context/sancionesContext";
+import { IRContext } from "../context/IRContext";
 
 function PTS(props) {
+  //imports---------------------------
   const {
     lado,
     numeros,
@@ -16,7 +18,6 @@ function PTS(props) {
     puntosEquipoA,
     puntosEquipoB,
     saca,
-    sumarTiempo,
   } = props;
   const { set } = useContext(setsContext);
   const {
@@ -29,7 +30,27 @@ function PTS(props) {
     setSancionesPersistB,
     sancionesPersistB,
     log,
+    sancionesDemoraPersistA,
+    sancionesDemoraPersistB,
+    setSancionesDemoraPersistA,
+    setSancionesDemoraPersistB,
   } = useContext(sancionesContext);
+  const {
+    tiemposPersistASet1,
+    tiemposPersistBSet1,
+    setTiemposPersistASet1,
+    setTiemposPersistBSet1,
+    tiemposPersistASet2,
+    tiemposPersistBSet2,
+    setTiemposPersistASet2,
+    setTiemposPersistBSet2,
+    tiemposPersistASet3,
+    tiemposPersistBSet3,
+    setTiemposPersistASet3,
+    setTiemposPersistBSet3,
+  } = useContext(IRContext);
+
+  //variables Auxiliares ----------------------------------
   const [jugadorSancionado, setJugadorSancionado] = useState(0);
   const clasePuntoBtnAux = `${lado}`;
   const clasebase = "boton puntoBtn lbtn";
@@ -44,6 +65,7 @@ function PTS(props) {
   let thisPuntos;
   let puntosContrincante;
 
+  //Distincion de equipos ------------------------------------
   if (eq === "A") {
     thisAumentarPuntos = aumentarPuntosA;
   } else {
@@ -58,6 +80,7 @@ function PTS(props) {
     puntosContrincante = puntosEquipoA;
   }
 
+  //Creacion de constantes con Numeros y nombres
   const [
     numJ1,
     numJ2,
@@ -91,10 +114,55 @@ function PTS(props) {
     nombJ14 = "",
   ] = nombres;
 
+  //Cuenta regresiva Tiempo -------------------
   const [startCountdown, setStartCountdown] = useState(false);
+  const [showDiv1, setShowDiv1] = useState(true);
+  const [showDiv2, setShowDiv2] = useState(true);
+  const [buttonDisabled, setButtonDisabled] = useState(false);
   const handleStartCountdownClick = () => {
     setStartCountdown(true);
-    sumarTiempo();
+
+    if (eq === "A") {
+      if (set === 1) {
+        const persistAux = [...tiemposPersistASet1];
+        persistAux.push({
+          puntaje: `${thisPuntos}:${puntosContrincante}`,
+        });
+        setTiemposPersistASet1(persistAux);
+      } else if (set === 2) {
+        const persistAux = [...tiemposPersistASet2];
+        persistAux.push({
+          puntaje: `${thisPuntos}:${puntosContrincante}`,
+        });
+        setTiemposPersistASet2(persistAux);
+      } else if (set === 3) {
+        const persistAux = [...tiemposPersistASet3];
+        persistAux.push({
+          puntaje: `${thisPuntos}:${puntosContrincante}`,
+        });
+        setTiemposPersistASet3(persistAux);
+      }
+    } else {
+      if (set === 1) {
+        const persistAux = [...tiemposPersistBSet1];
+        persistAux.push({
+          puntaje: `${thisPuntos}:${puntosContrincante}`,
+        });
+        setTiemposPersistBSet1(persistAux);
+      } else if (set === 2) {
+        const persistAux = [...tiemposPersistBSet2];
+        persistAux.push({
+          puntaje: `${thisPuntos}:${puntosContrincante}`,
+        });
+        setTiemposPersistBSet2(persistAux);
+      } else if (set === 3) {
+        const persistAux = [...tiemposPersistBSet3];
+        persistAux.push({
+          puntaje: `${thisPuntos}:${puntosContrincante}`,
+        });
+        setTiemposPersistBSet3(persistAux);
+      }
+    }
 
     if (showDiv1) {
       setShowDiv1(false);
@@ -108,15 +176,18 @@ function PTS(props) {
     setStartCountdown(false);
   };
 
+  //Creacion de constantes y variablespara sanciones
+
+  //Tipo de sustitucion
   const [isModalTypeSOpen, setModalTypeSOpen] = useState(false);
   const openModalTypeS = () => {
     setModalTypeSOpen(true);
   };
-
   const closeModalTypeS = () => {
     setModalTypeSOpen(false);
   };
 
+  //Modal Demora
   const [isModalDemoraOpen, setModalDemoraOpen] = useState(false);
   const openModalDemora = () => {
     setModalDemoraOpen(true);
@@ -126,20 +197,58 @@ function PTS(props) {
   const closeModalDemora = () => {
     setModalDemoraOpen(false);
   };
-  const closeModalDemoraAyC = (valorSancion) => {
+  const closeModalDemoraAyC = () => {
     setModalDemoraOpen(false);
 
     if (AmonestacionDemoraAble) {
       setAmonestacionDemoraAble(false);
     }
-    if (valorSancion === 2) {
-      if (eq === "A") {
+    if (eq === "A") {
+      const persistAux = [...sancionesDemoraPersistA];
+      let nombreSancion = "";
+
+      if (persistAux.length > 0) {
         aumentarPuntosB();
+      }
+
+      if (persistAux.length === 0) {
+        nombreSancion = "Amonestacion por demora";
       } else {
+        nombreSancion = "Castigo por demora";
+      }
+      persistAux.push({
+        tipoSancion: nombreSancion,
+        equipoSancionado: "A",
+        set: set,
+        puntaje: `${thisPuntos}:${puntosContrincante}`,
+      });
+
+      setSancionesDemoraPersistA(persistAux);
+    } else {
+      const persistAux = [...sancionesDemoraPersistB];
+      let nombreSancion = "";
+
+      if (persistAux.length > 0) {
         aumentarPuntosA();
       }
+
+      if (persistAux.length === 0) {
+        nombreSancion = "Amonestacion por demora";
+      } else {
+        nombreSancion = "Castigo por demora";
+      }
+      persistAux.push({
+        tipoSancion: nombreSancion,
+        equipoSancionado: "B",
+        set: set,
+        puntaje: `${thisPuntos}:${puntosContrincante}`,
+      });
+
+      setSancionesDemoraPersistB(persistAux);
     }
   };
+
+  //Creacion de variables  y Logica de renderizado para botoes de sancion
   const [isModalCondOpen, setModalCondOpen] = useState(false);
   const [claseGridCond, setClasegridCond] = useState("grid4Column");
   const [amonestacionAble, setAmonestacionAble] = useState(true);
@@ -176,6 +285,8 @@ function PTS(props) {
     setExpulsionAble(true);
     setModalCondOpen(false);
   };
+
+  //Manejo de consecuencias y persistencia de sanciones
   const closeModalSancion = (valorSancion) => {
     let nombreSancion = "";
 
@@ -246,6 +357,7 @@ function PTS(props) {
     }
   }, [log, eq, sancionesJA, sancionesJB]);
 
+  //Manejo de visibilidad de ventanas modales
   const [isModalJugadoresOpen, setModalJugadoresOpen] = useState(false);
   const openModalJugadores = () => {
     setModalJugadoresOpen(true);
@@ -270,10 +382,6 @@ function PTS(props) {
     setJugadorSancionado(numeroJ);
     openModalCond(numeroJ);
   };
-
-  const [showDiv1, setShowDiv1] = useState(true);
-  const [showDiv2, setShowDiv2] = useState(true);
-  const [buttonDisabled, setButtonDisabled] = useState(false);
 
   return (
     <div className="contenedorPTS">
@@ -381,21 +489,23 @@ function PTS(props) {
         </div>
       </Modal>
       <Modal isOpen={isModalDemoraOpen} closeModal={closeModalDemora}>
-        <div className={`grid ${AmonestacionDemoraAble ? "grid2Column" : ""}`}>
+        <div className="grid">
           {AmonestacionDemoraAble && (
             <button
               className="boton botonSancion fontSancion amonestacion"
-              onClick={() => closeModalDemoraAyC(1)}
+              onClick={() => closeModalDemoraAyC()}
             >
               A
             </button>
           )}
-          <button
-            className="boton botonSancion fontSancion castigo"
-            onClick={() => closeModalDemoraAyC(2)}
-          >
-            C
-          </button>
+          {!AmonestacionDemoraAble && (
+            <button
+              className="boton botonSancion fontSancion castigo"
+              onClick={() => closeModalDemoraAyC()}
+            >
+              C
+            </button>
+          )}
         </div>
       </Modal>
       <Modal isOpen={isModalJugadoresOpen} closeModal={closeModalJugadores}>

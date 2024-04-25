@@ -28,14 +28,6 @@ function VistaPrincipal() {
     setsPerdedor: 0,
   });
 
-  // const reiniciarSet = () => {
-  //   setPuntosEquipoA(0);
-  //   setPuntosEquipoB(0);
-  //   setTiemposEquipoA(0);
-  //   setTiemposEquipoB(0);
-  //   // Agrega cualquier otra variable que necesites reiniciar
-  // };
-
   const equipo1 = JSON.parse(localStorage.getItem("InfoEquipo-eq1"));
   const equipo2 = JSON.parse(localStorage.getItem("InfoEquipo-eq2"));
 
@@ -91,23 +83,15 @@ function VistaPrincipal() {
     }
   };
 
-  const sumarTiemposA = () => {
-    setTiemposEquipoA(tiemposEquipoA + 1);
-  };
-  const sumarTiemposB = () => {
-    setTiemposEquipoB(tiemposEquipoB + 1);
-  };
   const verificarGanador = () => {
     if (puntosEquipoA >= 25 && puntosEquipoA - puntosEquipoB >= 2) {
       setSetsA(setsA + 1);
       setSet(set + 1);
       navigate("/pos");
-      // reiniciarSet();
     } else if (puntosEquipoB >= 25 && puntosEquipoB - puntosEquipoA >= 2) {
       setSetsB(setsB + 1);
       setSet(set + 1);
       navigate("/pos");
-      // reiniciarSet();
     }
   };
 
@@ -292,7 +276,6 @@ function VistaPrincipal() {
           puntosEquipoB={puntosEquipoB}
           nombres={arrNombJugadoresEquipoA}
           numeros={arrNumJugadoresEquipoA}
-          sumarTiempo={sumarTiemposA}
           saca={sacaA}
         />
       </div>
@@ -315,7 +298,6 @@ function VistaPrincipal() {
           puntosEquipoA={puntosEquipoA}
           nombres={arrNombJugadoresEquipoB}
           numeros={arrNumJugadoresEquipoB}
-          sumarTiempo={sumarTiemposB}
           saca={sacaB}
         />
       </div>
