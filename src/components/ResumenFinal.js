@@ -30,7 +30,12 @@ function ResumenFinal() {
     sustitucionesBSet3,
   } = useContext(IRContext);
 
-  const { sancionesPersistA, sancionesPersistB } = useContext(sancionesContext);
+  const {
+    sancionesPersistA,
+    sancionesPersistB,
+    sancionesDemoraPersistA,
+    sancionesDemoraPersistB,
+  } = useContext(sancionesContext);
 
   const equipo1 = JSON.parse(localStorage.getItem("InfoEquipo-eq1"));
   const { ladoInicial: ladoInicial1 } = equipo1;
