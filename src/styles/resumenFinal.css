@@ -15,3 +15,12 @@
   padding: 10px;
   text-align: center;
 }
+
+.contenedorBtnFinalizarPartido {
+  display: flex;
+  justify-content: center;
+}
+
+.contenedorBtnFinalizarPartido .boton {
+  width: 60rem;
+}

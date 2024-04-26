@@ -107,41 +107,46 @@ function ResumenFinal() {
     setsA > setsB ? `${setsA} : ${setsB}` : `${setsB} : ${setsA}`, //Total sets ganados Ganador:Perdedor
   ];
   return (
-    <div className="contenedor sombra resultados">
-      <h1>Resultados</h1>
-      {/* Primera fila con dos columnas */}
-      <div className="fila">
-        <div className="columna">{columnas[0]}</div>
-        <div className="columna">{columnas[1]}</div>
-      </div>
+    <div>
+      <div className="contenedor sombra resultados">
+        <h1>Resultados</h1>
+        {/* Primera fila con dos columnas */}
+        <div className="fila">
+          <div className="columna">{columnas[0]}</div>
+          <div className="columna">{columnas[1]}</div>
+        </div>
 
-      {/* Segunda fila con nueve columnas */}
-      <div className="fila">
-        {[...Array(9)].map((_, index) => (
-          <div key={index} className="columna">
-            {columnas[index + 2]}
-          </div>
-        ))}
-      </div>
-
-      {/* Tercera a quinta fila con nueve columnas */}
-      {[...Array(4)].map((_, filaIndex) => (
-        <div key={filaIndex} className="fila">
-          {[...Array(9)].map((_, columnaIndex) => (
-            <div key={columnaIndex} className="columna">
-              {columnas[filaIndex * 9 + columnaIndex + 11]}
+        {/* Segunda fila con nueve columnas */}
+        <div className="fila">
+          {[...Array(9)].map((_, index) => (
+            <div key={index} className="columna">
+              {columnas[index + 2]}
             </div>
           ))}
         </div>
-      ))}
 
-      {/* Última fila con tres columnas */}
-      <div className="fila">
-        {[...Array(3)].map((_, index) => (
-          <div key={index} className="columna">
-            {columnas[index + 47]}
+        {/* Tercera a quinta fila con nueve columnas */}
+        {[...Array(4)].map((_, filaIndex) => (
+          <div key={filaIndex} className="fila">
+            {[...Array(9)].map((_, columnaIndex) => (
+              <div key={columnaIndex} className="columna">
+                {columnas[filaIndex * 9 + columnaIndex + 11]}
+              </div>
+            ))}
           </div>
         ))}
+
+        {/* Última fila con tres columnas */}
+        <div className="fila">
+          {[...Array(3)].map((_, index) => (
+            <div key={index} className="columna">
+              {columnas[index + 47]}
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="contenedorBtnFinalizarPartido">
+        <button className="boton">Finalizar Partido</button>
       </div>
     </div>
   );
