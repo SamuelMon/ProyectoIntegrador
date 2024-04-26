@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import "../styles/resumenFinal.css";
 import { setsContext } from "../context/setsContext";
 import { IRContext } from "../context/IRContext";
+import { sancionesContext } from "../context/sancionesContext";
 
 function ResumenFinal() {
   const {
@@ -28,6 +29,8 @@ function ResumenFinal() {
     sustitucionesASet3,
     sustitucionesBSet3,
   } = useContext(IRContext);
+
+  const { sancionesPersistA, sancionesPersistB } = useContext(sancionesContext);
 
   const equipo1 = JSON.parse(localStorage.getItem("InfoEquipo-eq1"));
   const { ladoInicial: ladoInicial1 } = equipo1;
