@@ -176,6 +176,10 @@ function PTS(props) {
     setStartCountdown(false);
   };
 
+  const closeTiempo = () => {
+    setStartCountdown(false);
+  };
+
   //Creacion de constantes y variablespara sanciones
 
   //Tipo de sustitucion
@@ -472,7 +476,7 @@ function PTS(props) {
           <path d="M20 6c.264 .112 .52 .217 .768 .315a1 1 0 0 1 .53 1.311l-2.298 5.374" />
         </svg>
       </div>
-      <Modal isOpen={startCountdown}>
+      <Modal isOpen={startCountdown} closeModal={closeTiempo}>
         <Countdown isActive={true} onCountdownEnd={handleCountdownEnd} />
       </Modal>
       <Modal isOpen={isModalTypeSOpen} closeModal={closeModalTypeS}>

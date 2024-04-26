@@ -1,78 +1,46 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../styles/resumenFinal.css";
-import { json } from "react-router-dom";
+import { setsContext } from "../context/setsContext";
+import { IRContext } from "../context/IRContext";
 
 function ResumenFinal() {
-  const infoPrimerSet = JSON.parse(localStorage.getItem("infoPrimerSet"));
-  const infoSegundoSet = JSON.parse(localStorage.getItem("infoSegundoSet"));
-  const infoTercerSet = JSON.parse(localStorage.getItem("infoTercerSet"));
-  const equiposYGanador = JSON.parse(localStorage.getItem("equipos"));
-  const setsGanadorPerdedor = JSON.parse(localStorage.getItem("setsResultado"));
   const {
-    tiemposEquipoA: tiemposEquipoASet1,
-    tiemposEquipoB: tiemposEquipoBSet1,
-    puntosEquipoA: puntosEquipoASet1,
-    puntosEquipoB: puntosEquipoBSet1,
-    setsA: setsASet1,
-    setsB: setsBSet1,
-  } = infoPrimerSet;
+    setsA,
+    setsB,
+    puntosASet1,
+    puntosASet2,
+    puntosASet3,
+    puntosBSet1,
+    puntosBSet2,
+    puntosBSet3,
+  } = useContext(setsContext);
   const {
-    tiemposEquipoA: tiemposEquipoASet2,
-    tiemposEquipoB: tiemposEquipoBSet2,
-    puntosEquipoA: puntosEquipoASet2,
-    puntosEquipoB: puntosEquipoBSet2,
-    setsA: setsASet2,
-    setsB: setsBSet2,
-  } = infoSegundoSet;
-  const {
-    tiemposEquipoA: tiemposEquipoASet3,
-    tiemposEquipoB: tiemposEquipoBSet3,
-    puntosEquipoA: puntosEquipoASet3,
-    puntosEquipoB: puntosEquipoBSet3,
-    setsA: setsASet3,
-    setsB: setsBSet3,
-  } = infoTercerSet;
+    tiemposPersistASet1,
+    tiemposPersistBSet1,
+    tiemposPersistASet2,
+    tiemposPersistBSet2,
+    tiemposPersistASet3,
+    tiemposPersistBSet3,
+    sustitucionesASet1,
+    sustitucionesBSet1,
+    sustitucionesASet2,
+    sustitucionesBSet2,
+    sustitucionesASet3,
+    sustitucionesBSet3,
+  } = useContext(IRContext);
 
-  const {
-    equipoLadoA: nombreEquipoA,
-    equipoLadoB: nombreEquipoB,
-    equipoGanador: equipoGanador,
-  } = equiposYGanador;
+  const equipo1 = JSON.parse(localStorage.getItem("InfoEquipo-eq1"));
+  const { ladoInicial: ladoInicial1 } = equipo1;
 
-  const {
-    setsGanador: setsGanador,
-    setsPerdedor: setsPerdedor,
-  } = setsGanadorPerdedor;
-
-  let totalPuntosEquipoA =
-    puntosEquipoASet1 + puntosEquipoASet2 + puntosEquipoASet3;
-
-  let totalTiemposEquipoA =
-    tiemposEquipoASet1 + tiemposEquipoASet2 + tiemposEquipoASet3;
-
-  let totalSetsEquipoA = setsASet1 + setsASet2 + setsASet3;
-
-  let totalPuntosEquipoB =
-    puntosEquipoBSet1 + puntosEquipoBSet2 + puntosEquipoBSet3;
-
-  let totalTiemposEquipoB =
-    tiemposEquipoBSet1 + tiemposEquipoBSet2 + tiemposEquipoBSet3;
-
-  let totalSetsEquipoB = setsBSet1 + setsBSet2 + setsBSet3;
-
-  console.log("infoPrimerSet:", infoPrimerSet);
-  console.log("infoSegundoSet:", infoSegundoSet);
-  console.log("infoTercerSet:", infoTercerSet);
-
-  console.log(
-    totalPuntosEquipoA,
-    totalSetsEquipoA,
-    totalTiemposEquipoA,
-    tiemposEquipoASet1,
-    equipoGanador,
-    setsGanador,
-    setsPerdedor,
-  );
+  const nombreEquiposJson = JSON.parse(localStorage.getItem("nombreEquipos"));
+  const nombreEquipoA =
+    ladoInicial1 === "A"
+      ? nombreEquiposJson.equipo1
+      : nombreEquiposJson.equipo2;
+  const nombreEquipoB =
+    ladoInicial1 === "A"
+      ? nombreEquiposJson.equipo2
+      : nombreEquiposJson.equipo1;
 
   const columnas = [
     nombreEquipoA, //Nombre equipos A
@@ -86,45 +54,49 @@ function ResumenFinal() {
     "Sets ganados",
     "Sustituciones",
     "Tiempos",
-    tiemposEquipoASet1, //Tiempos equipo A set 1
-    "", //Sustituciones equipo A set 1
-    setsASet1, //Sets ganados equipo A set 1
-    puntosEquipoASet1, //Puntos equipo A set 1
+    tiemposPersistASet1.length,
+    sustitucionesASet1, //Sustituciones equipo A set 1
+    puntosASet1 > puntosBSet1 ? 1 : 0, //Sets ganados equipo A set 1
+    puntosASet1, //Puntos equipo A set 1
     "1",
-    puntosEquipoBSet1, //Puntos equipo B set 1
-    setsBSet1, //Sets ganados equipo B set 1
-    "", //Sustituciones equipo B set 1
-    tiemposEquipoBSet1, //Tiempos equipo B set 1
-    tiemposEquipoASet2, //Tiempos equipo A set 2
-    "", //Sustituciones equipo A set 2
-    setsASet2, //Sets ganados equipo A set 2
-    puntosEquipoASet2, //Puntos equipo A set 2
+    puntosBSet1, //Puntos equipo B set 1
+    puntosBSet1 > puntosASet1 ? 1 : 0, //Sets ganados equipo B set 1
+    sustitucionesBSet1, //Sustituciones equipo B set 1
+    tiemposPersistBSet1.length,
+    tiemposPersistASet2.length,
+    sustitucionesASet2, //Sustituciones equipo A set 2
+    puntosASet2 > puntosBSet2 ? 1 : 0, //Sets ganados equipo A set 1
+    puntosASet2, //Puntos equipo A set 2
     "2",
-    puntosEquipoBSet2, //Puntos equipo B set 2
-    setsBSet2, //Sets ganados equipo B set 2
-    "", //Sustituciones equipo B set 2
-    tiemposEquipoBSet2, //Tiempos equipo B set 2
-    tiemposEquipoASet3, //Tiempos equipo A set 3
-    "", //Sustituciones equipo A set 3
-    setsASet3, //Sets ganados equipo A set 3
-    puntosEquipoASet3, //Puntos equipo A set 3
+    puntosBSet2, //Puntos equipo B set 2
+    puntosBSet2 > puntosASet2 ? 1 : 0, //Sets ganados equipo B set 1
+    sustitucionesBSet2, //Sustituciones equipo B set 2
+    tiemposPersistBSet2.length,
+    tiemposPersistASet3.length,
+    sustitucionesASet3, //Sustituciones equipo A set 3
+    puntosASet3 > puntosBSet3 ? 1 : 0, //Sets ganados equipo A set 1
+    puntosASet3, //Puntos equipo A set 3
     "3",
-    puntosEquipoBSet3, //Puntos equipo B set 3
-    setsBSet3, //Sets ganados equipo B set 3
-    "", //Sustituciones equipo B set 3
-    tiemposEquipoBSet3, //Tiempos equipo B set 3
-    totalTiemposEquipoA, //Total tiempos equipo A
-    "", //Total Sustituciones equipo A
-    totalSetsEquipoA, //Total sets ganados equipo A
-    totalPuntosEquipoA, //Total puntos equipo A
+    puntosBSet3, //Puntos equipo B set 3
+    puntosBSet3 > puntosASet3 ? 1 : 0, //Sets ganados equipo B set 1
+    sustitucionesBSet3, //Sustituciones equipo B set 3
+    tiemposPersistBSet3.length,
+    tiemposPersistASet1.length +
+      tiemposPersistASet2.length +
+      tiemposPersistASet3.length, //Total tiempos equipo A
+    sustitucionesASet1 + sustitucionesASet2 + sustitucionesASet3, //Total Sustituciones equipo A
+    setsA, //Total sets ganados equipo A
+    puntosASet1 + puntosASet2 + puntosASet3, //Total puntos equipo A
     "Total",
-    totalPuntosEquipoB, //Total puntos equipo B
-    totalSetsEquipoB, //Total sets ganados equipo
-    "", //Total Sustituciones equipo B
-    totalTiemposEquipoB, //Total tiempos equipo B
+    puntosBSet1 + puntosBSet2 + puntosBSet3, //Total puntos equipo B
+    setsB, //Total sets ganados equipo
+    sustitucionesBSet1 + sustitucionesBSet2 + sustitucionesBSet3, //Total Sustituciones equipo B
+    tiemposPersistBSet1.length +
+      tiemposPersistBSet2.length +
+      tiemposPersistBSet3.length, //Total tiempos equipo B
     "Ganador:",
-    equipoGanador, //Nombre equipo ganador
-    setsGanador+":"+setsPerdedor, //Total sets ganados Ganador:Perdedor
+    setsA > setsB ? nombreEquipoA : nombreEquipoB, //Nombre equipo ganador
+    setsA > setsB ? `${setsA} : ${setsB}` : `${setsB} : ${setsA}`, //Total sets ganados Ganador:Perdedor
   ];
   return (
     <div className="contenedor sombra resultados">
