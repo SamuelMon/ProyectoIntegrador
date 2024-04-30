@@ -1,11 +1,15 @@
 import React, { useContext } from "react";
 import "../styles/resumenFinal.css";
 import { setsContext } from "../context/setsContext";
+import { backendAxios } from "../utils";
 import { IRContext } from "../context/IRContext";
 import { sancionesContext } from "../context/sancionesContext";
+import { useNavigate } from "react-router-dom";
 
 function ResumenFinal() {
+  const navigate = useNavigate();
   const {
+    set,
     setsA,
     setsB,
     puntosASet1,
@@ -137,6 +141,44 @@ function ResumenFinal() {
     setsA > setsB ? nombreEquipoA : nombreEquipoB, //Nombre equipo ganador
     setsA > setsB ? `${setsA} : ${setsB}` : `${setsB} : ${setsA}`, //Total sets ganados Ganador:Perdedor
   ];
+
+  const handleSubmitFinal = (event) => {
+    event.preventDefault();
+    // Aquí se puede hacer lo que se quiera con los datos del formulario
+    const Moncayork = JSON.stringify({
+      puntosASet1,
+      puntosASet2,
+      puntosASet3,
+      puntosBSet1,
+      puntosBSet2,
+      puntosBSet3
+    });
+     
+    console.log(Moncayork)
+
+    backendAxios
+      .post("http://<tu_direccion_ip_publica>:5000", Moncayork, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          console.log("Equipo creado con éxito");
+          // Realiza cualquier otra acción necesaria en el frontend
+        } else {
+          // Manejar otras respuestas de error aquí
+        }
+      })
+      .catch((error) => {
+        console.error("Error al realizar la petición:", error);
+        // Manejar el error de la petición aquí
+      });
+    alert("Información guardada de manera exitosa!");
+    navigate("/infogen");
+  };
+
+  
   return (
     <div>
       <div className="contenedor sombra resultados">
@@ -177,7 +219,7 @@ function ResumenFinal() {
         </div>
       </div>
       <div className="contenedorBtnFinalizarPartido">
-        <button className="boton">Finalizar Partido</button>
+        <button className="boton" onClick={handleSubmitFinal}>Finalizar Partido</button>
       </div>
     </div>
   );
