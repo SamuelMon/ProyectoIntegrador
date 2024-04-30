@@ -48,6 +48,10 @@ function PTS(props) {
     tiemposPersistBSet3,
     setTiemposPersistASet3,
     setTiemposPersistBSet3,
+    setTiemposPersistASet4,
+    setTiemposPersistBSet4,
+    setTiemposPersistASet5,
+    setTiemposPersistBSet5,
   } = useContext(IRContext);
 
   //variables Auxiliares ----------------------------------
@@ -141,6 +145,18 @@ function PTS(props) {
           puntaje: `${thisPuntos}:${puntosContrincante}`,
         });
         setTiemposPersistASet3(persistAux);
+      } else if (set === 4) {
+        const persistAux = [...tiemposPersistASet3];
+        persistAux.push({
+          puntaje: `${thisPuntos}:${puntosContrincante}`,
+        });
+        setTiemposPersistASet4(persistAux);
+      } else if (set === 5) {
+        const persistAux = [...tiemposPersistASet3];
+        persistAux.push({
+          puntaje: `${thisPuntos}:${puntosContrincante}`,
+        });
+        setTiemposPersistASet5(persistAux);
       }
     } else {
       if (set === 1) {
@@ -161,6 +177,18 @@ function PTS(props) {
           puntaje: `${thisPuntos}:${puntosContrincante}`,
         });
         setTiemposPersistBSet3(persistAux);
+      } else if (set === 4) {
+        const persistAux = [...tiemposPersistBSet3];
+        persistAux.push({
+          puntaje: `${thisPuntos}:${puntosContrincante}`,
+        });
+        setTiemposPersistBSet4(persistAux);
+      } else if (set === 5) {
+        const persistAux = [...tiemposPersistBSet3];
+        persistAux.push({
+          puntaje: `${thisPuntos}:${puntosContrincante}`,
+        });
+        setTiemposPersistBSet5(persistAux);
       }
     }
 

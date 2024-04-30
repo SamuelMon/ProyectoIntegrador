@@ -8,6 +8,7 @@ import ResumenFinal from "./components/ResumenFinal";
 import SetsContextProvider from "./context/setsContext";
 import SancionesContextProvider from "./context/sancionesContext";
 import IRContextProvider from "./context/IRContext";
+import MenuInicial from "./components/MenuInicial";
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
       <SancionesContextProvider>
         <IRContextProvider>
           <Routes>
-            <Route path="/" Component={InfoGeneral}></Route>
+            <Route path="/" Component={MenuInicial}></Route>
             <Route path="/infogen" Component={InfoGeneral}></Route>
             <Route path="/registroEq" Component={RegitroEquipos}></Route>
             <Route path="/pos" Component={PosicionesIniciales}></Route>

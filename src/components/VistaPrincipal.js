@@ -16,9 +16,13 @@ function VistaPrincipal() {
     setPuntosASet1,
     setPuntosASet2,
     setPuntosASet3,
+    setPuntosASet4,
+    setPuntosASet5,
     setPuntosBSet1,
     setPuntosBSet2,
     setPuntosBSet3,
+    setPuntosBSet4,
+    setPuntosBSet5,
   } = useContext(setsContext);
   const [nombreEquipoA, setNombreEquipoA] = useState("");
   const [nombreEquipoB, setNombreEquipoB] = useState("");
@@ -29,9 +33,30 @@ function VistaPrincipal() {
   const [sacaB, setSacaB] = useState(false);
   const [posA, setPosA] = useState([]);
   const [posB, setPosB] = useState([]);
-
   const equipo1 = JSON.parse(localStorage.getItem("InfoEquipo-eq1"));
   const equipo2 = JSON.parse(localStorage.getItem("InfoEquipo-eq2"));
+  const [formato, setFormato] = useState("");
+
+  useEffect(() => {
+    const formatoJson = JSON.parse(localStorage.getItem("formatoSets"));
+    setFormato(formatoJson.formato);
+  }, []);
+
+  useEffect(() => {
+    if (formato === "2 de 3") {
+      if (set > 2) {
+        setPuntosParaGanar(15);
+      } else {
+        setPuntosParaGanar(25);
+      }
+    } else if (formato === "3 de 5") {
+      if (set > 4) {
+        setPuntosParaGanar(15);
+      } else {
+        setPuntosParaGanar(25);
+      }
+    }
+  }, [set, formato]);
 
   const {
     jugadores: jugadores1,
@@ -62,14 +87,6 @@ function VistaPrincipal() {
   const arrNombJugadoresEquipoB =
     ladoInicial1 === "A" ? arrJugadores2 : arrNumJugadores1;
 
-  useEffect(() => {
-    if (set > 2) {
-      setPuntosParaGanar(15);
-    } else {
-      setPuntosParaGanar(25);
-    }
-  }, [set]);
-
   const guardarPuntos = () => {
     if (set === 1) {
       setPuntosASet1(puntosEquipoA);
@@ -77,9 +94,15 @@ function VistaPrincipal() {
     } else if (set === 2) {
       setPuntosASet2(puntosEquipoA);
       setPuntosBSet2(puntosEquipoB);
-    } else {
+    } else if (set === 3) {
       setPuntosASet3(puntosEquipoA);
       setPuntosBSet3(puntosEquipoB);
+    } else if (set === 4) {
+      setPuntosASet4(puntosEquipoA);
+      setPuntosBSet4(puntosEquipoB);
+    } else if (set === 5) {
+      setPuntosASet5(puntosEquipoA);
+      setPuntosBSet5(puntosEquipoB);
     }
   };
 
@@ -89,7 +112,8 @@ function VistaPrincipal() {
 
   const verificarFinSet = () => {
     if (puntosEquipoA >= puntosParaGanar && puntosEquipoA - puntosEquipoB > 1) {
-      if (setsA + 1 === 2) {
+      let setsParaGanar = formato === "2 de 3" ? 2 : 3;
+      if (setsA + 1 === setsParaGanar) {
         setSetsA((prevSetsA) => prevSetsA + 1);
         guardarPuntos();
         navigate("/resumen");
@@ -103,7 +127,8 @@ function VistaPrincipal() {
       puntosEquipoB >= puntosParaGanar &&
       puntosEquipoB - puntosEquipoA > 1
     ) {
-      if (setsB + 1 === 2) {
+      let setsParaGanar = formato === "2 de 3" ? 2 : 3;
+      if (setsB + 1 === setsParaGanar) {
         setSetsB((prevSetsB) => prevSetsB + 1);
         guardarPuntos();
         navigate("/resumen");
@@ -165,7 +190,7 @@ function VistaPrincipal() {
     const pos6eqB = numerosEqB?.numeros["6B"];
     let accionB = numerosEqB?.accion["accionB"];
 
-    if (set === 2) {
+    if (set === 2 || set === 4) {
       let aux = accionA;
       accionA = accionB;
       accionB = aux;
@@ -200,9 +225,13 @@ function VistaPrincipal() {
 
   return (
     <div className="contenedorVistaP">
-      <div className={set === 1 || set === 3 ? "izquierda" : "derecha"}>
+      <div
+        className={
+          set === 1 || set === 3 || set === 5 ? "izquierda" : "derecha"
+        }
+      >
         <AccionesEquipo
-          lado={set === 1 || set === 3 ? "izquierda" : "derecha"}
+          lado={set === 1 || set === 3 || set === 5 ? "izquierda" : "derecha"}
           nombreEquipo={nombreEquipoA}
           posiciones={posA}
           aumentarPuntosA={aumentarPuntosEquipoA}
@@ -217,14 +246,18 @@ function VistaPrincipal() {
       </div>
       <div className="sets">
         <p className="contenedor sombra">
-          {set === 1 || set === 3
+          {set === 1 || set === 3 || set === 5
             ? `${setsA} - ${setsB}`
             : `${setsB} - ${setsA}`}
         </p>
       </div>
-      <div className={set === 1 || set === 3 ? "derecha" : "izquierda"}>
+      <div
+        className={
+          set === 1 || set === 3 || set === 5 ? "derecha" : "izquierda"
+        }
+      >
         <AccionesEquipo
-          lado={set === 1 || set === 3 ? "derecha" : "izquierda"}
+          lado={set === 1 || set === 3 || set === 5 ? "derecha" : "izquierda"}
           nombreEquipo={nombreEquipoB}
           posiciones={posB}
           aumentarPuntosB={aumentarPuntosEquipoB}

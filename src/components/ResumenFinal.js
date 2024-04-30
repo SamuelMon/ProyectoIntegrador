@@ -11,9 +11,13 @@ function ResumenFinal() {
     puntosASet1,
     puntosASet2,
     puntosASet3,
+    puntosASet4,
+    puntosASet5,
     puntosBSet1,
     puntosBSet2,
     puntosBSet3,
+    puntosBSet4,
+    puntosBSet5,
   } = useContext(setsContext);
   const {
     tiemposPersistASet1,
@@ -22,12 +26,20 @@ function ResumenFinal() {
     tiemposPersistBSet2,
     tiemposPersistASet3,
     tiemposPersistBSet3,
+    tiemposPersistASet4,
+    tiemposPersistBSet4,
+    tiemposPersistASet5,
+    tiemposPersistBSet5,
     sustitucionesASet1,
     sustitucionesBSet1,
     sustitucionesASet2,
     sustitucionesBSet2,
     sustitucionesASet3,
     sustitucionesBSet3,
+    sustitucionesASet4,
+    sustitucionesBSet4,
+    sustitucionesASet5,
+    sustitucionesBSet5,
   } = useContext(IRContext);
 
   const {
@@ -37,6 +49,7 @@ function ResumenFinal() {
     sancionesDemoraPersistB,
   } = useContext(sancionesContext);
 
+  const formato = JSON.parse(localStorage.getItem("formatoSets")).formato;
   const equipo1 = JSON.parse(localStorage.getItem("InfoEquipo-eq1"));
   const { ladoInicial: ladoInicial1 } = equipo1;
 
@@ -62,7 +75,7 @@ function ResumenFinal() {
     "Sets ganados",
     "Sustituciones",
     "Tiempos",
-    tiemposPersistASet1.length,
+    tiemposPersistASet1.length, // tiempos equipo A set 1
     sustitucionesASet1, //Sustituciones equipo A set 1
     puntosASet1 > puntosBSet1 ? 1 : 0, //Sets ganados equipo A set 1
     puntosASet1, //Puntos equipo A set 1
@@ -70,25 +83,43 @@ function ResumenFinal() {
     puntosBSet1, //Puntos equipo B set 1
     puntosBSet1 > puntosASet1 ? 1 : 0, //Sets ganados equipo B set 1
     sustitucionesBSet1, //Sustituciones equipo B set 1
-    tiemposPersistBSet1.length,
-    tiemposPersistASet2.length,
+    tiemposPersistBSet1.length, // tiempos equipo B set 1
+    tiemposPersistASet2.length, // tiempos equipo A set 2formato==="2 de 3"?"" :
     sustitucionesASet2, //Sustituciones equipo A set 2
-    puntosASet2 > puntosBSet2 ? 1 : 0, //Sets ganados equipo A set 1
+    puntosASet2 > puntosBSet2 ? 1 : 0, //Sets ganados equipo A set 2
     puntosASet2, //Puntos equipo A set 2
     "2",
     puntosBSet2, //Puntos equipo B set 2
-    puntosBSet2 > puntosASet2 ? 1 : 0, //Sets ganados equipo B set 1
+    puntosBSet2 > puntosASet2 ? 1 : 0, //Sets ganados equipo B set 2
     sustitucionesBSet2, //Sustituciones equipo B set 2
-    tiemposPersistBSet2.length,
-    tiemposPersistASet3.length,
+    tiemposPersistBSet2.length, //tiempos equipo B set 2
+    tiemposPersistASet3.length, // tiempos equipo A set 3
     sustitucionesASet3, //Sustituciones equipo A set 3
-    puntosASet3 > puntosBSet3 ? 1 : 0, //Sets ganados equipo A set 1
+    puntosASet3 > puntosBSet3 ? 1 : 0, //Sets ganados equipo A set 3
     puntosASet3, //Puntos equipo A set 3
     "3",
     puntosBSet3, //Puntos equipo B set 3
-    puntosBSet3 > puntosASet3 ? 1 : 0, //Sets ganados equipo B set 1
+    puntosBSet3 > puntosASet3 ? 1 : 0, //Sets ganados equipo B set 3
     sustitucionesBSet3, //Sustituciones equipo B set 3
-    tiemposPersistBSet3.length,
+    tiemposPersistBSet3.length, // tiempos equipo B set 3
+    formato === "2 de 3" ? "" : tiemposPersistASet4.length, // tiempos equipo A set 4
+    formato === "2 de 3" ? "" : sustitucionesASet4, //Sustituciones equipo A set 4
+    formato === "2 de 3" ? "" : puntosASet4 > puntosBSet4 ? 1 : 0, //Sets ganados equipo A set 4
+    formato === "2 de 3" ? "" : puntosASet4, //Puntos equipo A set 4
+    "4",
+    formato === "2 de 3" ? "" : puntosBSet4, //Puntos equipo B set 4
+    formato === "2 de 3" ? "" : puntosBSet4 > puntosASet4 ? 1 : 0, //Sets ganados equipo B set 4
+    formato === "2 de 3" ? "" : sustitucionesBSet4, //Sustituciones equipo B set 4
+    formato === "2 de 3" ? "" : tiemposPersistBSet4.length, // tiempos equipo B set 4
+    formato === "2 de 3" ? "" : tiemposPersistASet5.length, // tiempos equipo A set 5
+    formato === "2 de 3" ? "" : sustitucionesASet5, //Sustituciones equipo A set 5
+    formato === "2 de 3" ? "" : puntosASet5 > puntosBSet5 ? 1 : 0, //Sets ganados equipo A set 5
+    formato === "2 de 3" ? "" : puntosASet5, //Puntos equipo A set 5
+    "5",
+    formato === "2 de 3" ? "" : puntosBSet5, //Puntos equipo B set 5
+    formato === "2 de 3" ? "" : puntosBSet5 > puntosASet5 ? 1 : 0, //Sets ganados equipo B set 5
+    formato === "2 de 3" ? "" : sustitucionesBSet5, //Sustituciones equipo B set 5
+    formato === "2 de 3" ? "" : tiemposPersistBSet5.length, // tiempos equipo B set 5
     tiemposPersistASet1.length +
       tiemposPersistASet2.length +
       tiemposPersistASet3.length, //Total tiempos equipo A
@@ -125,8 +156,8 @@ function ResumenFinal() {
           ))}
         </div>
 
-        {/* Tercera a quinta fila con nueve columnas */}
-        {[...Array(4)].map((_, filaIndex) => (
+        {/* Tercera a octava fila con nueve columnas */}
+        {[...Array(6)].map((_, filaIndex) => (
           <div key={filaIndex} className="fila">
             {[...Array(9)].map((_, columnaIndex) => (
               <div key={columnaIndex} className="columna">
@@ -140,7 +171,7 @@ function ResumenFinal() {
         <div className="fila">
           {[...Array(3)].map((_, index) => (
             <div key={index} className="columna">
-              {columnas[index + 47]}
+              {columnas[index + 65]}
             </div>
           ))}
         </div>

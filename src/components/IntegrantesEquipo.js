@@ -46,9 +46,9 @@ function IntegrantesEquipo(props) {
   useEffect(() => {
     const nombreEquiposJson = JSON.parse(localStorage.getItem("nombreEquipos"));
     setNombreEquipo(
-      numEq == "eq1" ? nombreEquiposJson.equipo1 : nombreEquiposJson.equipo2
+      numEq === "eq1" ? nombreEquiposJson.equipo1 : nombreEquiposJson.equipo2
     );
-  }, []);
+  }, [numEq]);
 
   const handleInputChange = (event) => {
     const { id, value } = event.target;
@@ -87,56 +87,6 @@ function IntegrantesEquipo(props) {
     }
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Aquí se puede hacer lo que se quiera con los datos del formulario
-    let Moncayo = JSON.stringify(datos);
-    setDatos({
-      nombreCompe: "",
-      ciudad: "",
-      escenario: "",
-      division: "",
-      categoria: "",
-      fecha: "",
-      hora: "",
-      equipo1: "",
-      equipo2: "",
-    });
-    localStorage.setItem(
-      "nombreEquipos",
-      JSON.stringify({
-        equipo1: datos.equipo1,
-        equipo2: datos.equipo2,
-      })
-    );
-
-    localStorage.setItem(
-      "formatoSets",
-      JSON.stringify({
-        formato: datos.formato,
-      })
-    );
-    backendAxios
-      .post("http://<tu_direccion_ip_publica>:5000", datos, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          console.log("Equipo creado con éxito");
-          // Realiza cualquier otra acción necesaria en el frontend
-        } else {
-          // Manejar otras respuestas de error aquí
-        }
-      })
-      .catch((error) => {
-        console.error("Error al realizar la petición:", error);
-        // Manejar el error de la petición aquí
-      });
-    alert("Información guardada de manera exitosa!");
-  };
-
   return (
     <section className="contenedor sombra contenedor__equipos">
       <form className="formulario" onSubmit={Envio}>
@@ -144,10 +94,8 @@ function IntegrantesEquipo(props) {
         <OpcionMultiple
           clase="formulario__input omIntegrantes"
           nombreCampo="Lado inicial"
-          opcion1="A"
-          opcion2="B"
-          op1Able={true}
-          op2Able={true}
+          opciones={["A", "B"]}
+          opAble={[true, true]}
           id={ladoInicial + numEq}
           onChange={handleInputChange}
         />

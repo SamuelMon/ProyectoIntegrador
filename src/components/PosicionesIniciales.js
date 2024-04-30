@@ -14,6 +14,8 @@ function PosicionesIniciales() {
     const equipoB = JSON.parse(localStorage.getItem("RegistroEquipo-B"));
     // const infoEq2 = JSON.parse(localStorage.getItem("InfoEquipo-eq2"));
 
+    const formato = JSON.parse(localStorage.getItem("formatoSets")).formato;
+
     const {
       numeros: numerosA,
       accion: accionA,
@@ -67,9 +69,16 @@ function PosicionesIniciales() {
     }
 
     // Verificar que existe una acción asignada para cada equipo
-    if (set === 2) {
-      navigate("/main");
-      return;
+    if (formato === "2 de 3") {
+      if (set === 2) {
+        navigate("/main");
+        return;
+      }
+    } else if (formato === "3 de 5") {
+      if (set !== 1 || set !== 5) {
+        navigate("/main");
+        return;
+      }
     }
     if (!accionA.accionA) {
       alert("Falta asignar una acción para el equipo A");

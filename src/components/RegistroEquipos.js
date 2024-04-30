@@ -11,21 +11,13 @@ function RegitroEquipos() {
     const equipo1 = JSON.parse(localStorage.getItem("InfoEquipo-eq1"));
     const equipo2 = JSON.parse(localStorage.getItem("InfoEquipo-eq2"));
 
-    const {
-      jugadores: jugadores1,
-      ladoInicial: ladoInicial1,
-      numCamisetaJugadores: numCamisetaJugadores1,
-    } = equipo1;
-    const {
-      jugadores: jugadores2,
-      ladoInicial: ladoInicial2,
-      numCamisetaJugadores: numCamisetaJugadores2,
-    } = equipo2;
+    const { jugadores: jugadores1, ladoInicial: ladoInicial1 } = equipo1;
+    const { jugadores: jugadores2, ladoInicial: ladoInicial2 } = equipo2;
 
     let minimoJugadores1 =
-      Object.values(jugadores1).filter((nombre) => nombre != "").length >= 6;
+      Object.values(jugadores1).filter((nombre) => nombre !== "").length >= 6;
     let minimoJugadores2 =
-      Object.values(jugadores2).filter((nombre) => nombre != "").length >= 6;
+      Object.values(jugadores2).filter((nombre) => nombre !== "").length >= 6;
 
     if (!minimoJugadores1) {
       alert("Faltan jugadores para el equipo1");

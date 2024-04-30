@@ -31,18 +31,6 @@ function InfoGeneral() {
   const handleSubmit = (event) => {
     event.preventDefault();
     // Aquí se puede hacer lo que se quiera con los datos del formulario
-    let Moncayo = JSON.stringify(datos);
-    setDatos({
-      nombreCompe: "",
-      ciudad: "",
-      escenario: "",
-      division: "",
-      categoria: "",
-      fecha: "",
-      hora: "",
-      equipo1: "",
-      equipo2: "",
-    });
     localStorage.setItem(
       "nombreEquipos",
       JSON.stringify({
@@ -57,6 +45,20 @@ function InfoGeneral() {
         formato: datos.formato,
       })
     );
+
+    setDatos({
+      nombreCompe: "",
+      ciudad: "",
+      escenario: "",
+      division: "",
+      formato: "",
+      categoria: "",
+      fecha: "",
+      hora: "",
+      equipo1: "",
+      equipo2: "",
+    });
+
     backendAxios
       .post("http://<tu_direccion_ip_publica>:5000", datos, {
         headers: {
@@ -118,41 +120,32 @@ function InfoGeneral() {
             <OpcionMultiple
               clase="formulario__input"
               nombreCampo="Formato"
-              opcion1="2 de 3"
-              opcion2="3 de 5"
+              opciones={["2 de 3", "3 de 5"]} // Pasar opciones como array
+              opAble={[true, true]}
               mostrarLabel={true}
-              op1Able={true}
-              op2Able={true}
-              id="division"
+              id="formato"
+              placeholder="Selecciona el formato"
               value={datos.formato}
               onChange={handleInputChange}
             />
             <OpcionMultiple
               clase="formulario__input"
               nombreCampo="Division"
-              opcion1="Masculina"
-              opcion2="Femenina"
-              opcion3="Mixta"
+              opciones={["Masculino", "Fememino", "Mixto"]}
+              opAble={[true, true, true]}
               mostrarLabel={true}
               id="division"
               value={datos.division}
-              op1Able={true}
-              op2Able={true}
-              op3Able={true}
               onChange={handleInputChange}
             />
             <OpcionMultiple
               clase="formulario__input"
               nombreCampo="Categoria"
-              opcion1="Mayores"
-              opcion2="Juvenil"
-              opcion3="Menores"
+              opciones={["Mayores", "Juvenil", "Menores"]}
+              opAble={[true, true, true]}
               mostrarLabel={true}
               id="categoria"
               value={datos.categoria}
-              op1Able={true}
-              op2Able={true}
-              op3Able={true}
               onChange={handleInputChange}
             />
             <Campo
