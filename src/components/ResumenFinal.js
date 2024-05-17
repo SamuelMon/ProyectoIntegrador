@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 function ResumenFinal() {
   const navigate = useNavigate();
   const {
-    set,
     setsA,
     setsB,
     puntosASet1,
@@ -151,10 +150,10 @@ function ResumenFinal() {
       puntosASet3,
       puntosBSet1,
       puntosBSet2,
-      puntosBSet3
+      puntosBSet3,
     });
-     
-    console.log(Moncayork)
+
+    console.log(Moncayork);
 
     backendAxios
       .post("http://<tu_direccion_ip_publica>:5000", Moncayork, {
@@ -175,10 +174,9 @@ function ResumenFinal() {
         // Manejar el error de la petición aquí
       });
     alert("Información guardada de manera exitosa!");
-    navigate("/infogen");
+    navigate("/");
   };
 
-  
   return (
     <div>
       <div className="contenedor sombra resultados">
@@ -219,7 +217,9 @@ function ResumenFinal() {
         </div>
       </div>
       <div className="contenedorBtnFinalizarPartido">
-        <button className="boton" onClick={handleSubmitFinal}>Finalizar Partido</button>
+        <button className="boton" onClick={handleSubmitFinal}>
+          Finalizar Partido
+        </button>
       </div>
     </div>
   );

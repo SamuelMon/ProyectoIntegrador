@@ -1,0 +1,23 @@
+.barraSuperior {
+  background-color: #0097a7;
+  display: flex;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  position: absolute;
+}
+
+.icon-tabler-circle-arrow-left {
+  position: relative;
+  left: 0;
+  top: 1.5rem;
+  cursor: pointer;
+}
+
+.tituloHistorial {
+  color: #fff;
+  font-size: 5rem;
+  position: relative;
+  left: 41%;
+}
