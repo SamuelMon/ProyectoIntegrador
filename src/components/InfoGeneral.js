@@ -59,8 +59,19 @@ function InfoGeneral() {
       equipo2: "",
     });
 
+
+    const datosBack = {
+      ciudad: datos.ciudad,
+      escenario: datos.escenario,
+      division: datos.division,
+      categoria: datos.categoria,
+      fechaYHora: `${datos.fecha} ${datos.hora}${":00"}`,
+      equipo1: datos.equipo1,
+      equipo2: datos.equipo2 
+    }
+
     backendAxios
-      .post("http://<tu_direccion_ip_publica>:5000", datos, {
+      .post("http://<tu_direccion_ip_publica>:5000", datosBack, {
         headers: {
           "Content-Type": "application/json",
         },
