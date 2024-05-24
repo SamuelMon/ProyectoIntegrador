@@ -68,7 +68,7 @@ function RegitroEquipos() {
     const crearVariablesJugadores = (nombres, equipo) => {
       let variablesJugadores = {};
       for (let i = 0; i < nombres.length; i++) {
-        variablesJugadores[`${equipo}j${i + 1}`] = nombres[i];
+        variablesJugadores[`${equipo}Nom${i + 1}`] = nombres[i];
       }
       return variablesJugadores;
     };
@@ -79,7 +79,7 @@ function RegitroEquipos() {
     const crearVariablesNumerosJugadores = (numeros, equipo) => {
       let variablesNumerosJugadores = {};
       for (let i = 0; i < numeros.length; i++) {
-        variablesNumerosJugadores[`${equipo}n${i + 1}`] = numeros[i];
+        variablesNumerosJugadores[`${equipo}Num${i + 1}`] = numeros[i];
       }
       return variablesNumerosJugadores;
     };
@@ -95,8 +95,8 @@ function RegitroEquipos() {
     );
 
     const datosJugadoresBack = {
-      cantidadJugadoresEquipo1: nombresEquipo1.length,
-      cantidadJugadoresEquipo2: nombresEquipo2.length,
+      CantJugEq1: nombresEquipo1.length,
+      CantJugEq2: nombresEquipo2.length,
       ...variablesEquipo1,
       ...variablesNumerosEquipo1,
       ...variablesEquipo2,
