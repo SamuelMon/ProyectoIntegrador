@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/historial.css";
 import { useNavigate } from "react-router-dom";
+import PartidoHistorial from "./PartidoHistorial";
 
 function Historial() {
   const navigate = useNavigate();
@@ -8,7 +9,7 @@ function Historial() {
     navigate("/");
   };
   return (
-    <div>
+    <div className="contenedorMainHistorial">
       <div className="barraSuperior sombra">
         <svg
           onClick={navegar}
@@ -30,6 +31,33 @@ function Historial() {
           <path d="M12 8l-4 4" />
         </svg>
         <h1 className="tituloHistorial">Historial</h1>
+      </div>
+      <div className="contenedorPartidosHistorial">
+        <PartidoHistorial
+          nombreEquipoA="Joan"
+          nombreEquipoB="Kevin"
+          fecha="23/05/2024"
+        />
+        <PartidoHistorial
+          nombreEquipoA="Joan"
+          nombreEquipoB="Samuel"
+          fecha="23/05/2024"
+        />
+        <PartidoHistorial
+          nombreEquipoA="Hernando"
+          nombreEquipoB="Astrid"
+          fecha="22/05/2024"
+        />
+        <PartidoHistorial
+          nombreEquipoA="Kevin"
+          nombreEquipoB="Astrid"
+          fecha="21/05/2024"
+        />
+        <PartidoHistorial
+          nombreEquipoA="Joan"
+          nombreEquipoB="Astrid"
+          fecha="24/05/2024"
+        />
       </div>
     </div>
   );

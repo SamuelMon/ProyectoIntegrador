@@ -16,16 +16,16 @@ function IRContextProvider({ children }) {
   const [tiemposPersistBSet5, setTiemposPersistBSet5] = useState([]);
 
   //Sustituciones
-  const sustitucionesASet1 = 0;
-  const sustitucionesBSet1 = 0;
-  const sustitucionesASet2 = 0;
-  const sustitucionesBSet2 = 0;
-  const sustitucionesASet3 = 0;
-  const sustitucionesBSet3 = 0;
-  const sustitucionesASet4 = 0;
-  const sustitucionesBSet4 = 0;
-  const sustitucionesASet5 = 0;
-  const sustitucionesBSet5 = 0;
+  const sustitucionesASet1 = "0";
+  const sustitucionesBSet1 = "0";
+  const sustitucionesASet2 = "0";
+  const sustitucionesBSet2 = "0";
+  const sustitucionesASet3 = "0";
+  const sustitucionesBSet3 = "0";
+  const sustitucionesASet4 = "0";
+  const sustitucionesBSet4 = "0";
+  const sustitucionesASet5 = "0";
+  const sustitucionesBSet5 = "0";
 
   return (
     <IRContext.Provider
