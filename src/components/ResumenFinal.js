@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 function ResumenFinal() {
   const navigate = useNavigate();
   const {
+    set,
     setsA,
     setsB,
     puntosASet1,
@@ -144,7 +145,8 @@ function ResumenFinal() {
   const handleSubmitFinal = (event) => {
     event.preventDefault();
     // Aquí se puede hacer lo que se quiera con los datos del formulario
-    const Moncayork = JSON.stringify({
+    const datosSetsBack = JSON.stringify({
+      CantSets: set,
       puntosASet1,
       puntosASet2,
       puntosASet3,
@@ -156,7 +158,7 @@ function ResumenFinal() {
     console.log(Moncayork);
 
     backendAxios
-      .post("http://<tu_direccion_ip_publica>:5000", Moncayork, {
+      .post("http://<tu_direccion_ip_publica>:5000", datosSetsBack, {
         headers: {
           "Content-Type": "application/json",
         },
