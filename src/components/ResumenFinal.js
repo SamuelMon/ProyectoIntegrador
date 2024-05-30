@@ -155,10 +155,10 @@ function ResumenFinal() {
       puntosBSet3,
     });
 
-    console.log(Moncayork);
+    
 
     backendAxios
-      .post("http://<tu_direccion_ip_publica>:5000", datosSetsBack, {
+      .post("http://localhost:5000/partidos/setn", datosSetsBack, {
         headers: {
           "Content-Type": "application/json",
         },

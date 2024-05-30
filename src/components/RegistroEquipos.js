@@ -108,7 +108,7 @@ function RegitroEquipos() {
     // Completar el endpoint para guardar en el back la info de jugadores
 
     backendAxios
-      .post("http://<tu_direccion_ip_publica>:5000", datosJugadoresBack, {
+      .post("http://localhost:5000/partidos/jugadoresn", datosJugadoresBack, {
         headers: {
           "Content-Type": "application/json",
         },

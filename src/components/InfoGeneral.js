@@ -71,7 +71,7 @@ function InfoGeneral() {
     }
 
     backendAxios
-      .post("http://<tu_direccion_ip_publica>:5000", datosBack, {
+      .post("http://localhost:5000/partidos/nuevo", datosBack, {
         headers: {
           "Content-Type": "application/json",
         },
