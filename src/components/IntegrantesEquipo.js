@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Jugador from "./Jugador";
+import { backendAxios } from "../utils";
 import "../styles/integrantesEquipo.css";
 import OpcionMultiple from "./OpcionMultiple";
 
@@ -85,6 +86,7 @@ function IntegrantesEquipo(props) {
     } else {
       alert("Jugadores del equipo 2 guardados exitosamente!");
     }
+    console.log();
   };
 
   return (
