@@ -7,6 +7,10 @@
   grid-row: 2/3;
 }
 
+.contenedorPartidoHistorial:hover {
+  cursor: pointer;
+}
+
 .pHistorial {
   font-size: 4rem;
   font-weight: bold;

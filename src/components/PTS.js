@@ -332,7 +332,7 @@ function PTS(props) {
       nombreSancion = "Descalificación";
     }
 
-    if (amonestacionAble) {
+    if (valorSancion === 1) {
       setAmonestacionAble(false);
       setClasegridCond("grid3Column");
     }

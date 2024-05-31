@@ -2,11 +2,70 @@ import React from "react";
 import "../styles/historial.css";
 import { useNavigate } from "react-router-dom";
 import PartidoHistorial from "./PartidoHistorial";
+import { useState } from "react";
+import Modal from "./Modal";
 
 function Historial() {
   const navigate = useNavigate();
   const navegar = () => {
     navigate("/");
+  };
+
+  useEffect(() => {
+    backendAxios
+      .get("http://localhost:5000/partidos")
+      .then((response) => {
+        if (response.status === 200) {
+          setDatosHistorial(response.datosHistorial);
+          console.log("Datos recibidos con éxito", response.datosHistorial);
+        } else {
+          console.error("Error al obtener los datos", response.status);
+        }
+      })
+      .catch((error) => {
+        console.error("Error al realizar la petición:", error);
+      });
+  }, []);
+
+  // const partidos = [
+  //   {
+  //     idpartido: 1,
+  //     fecha: "2022-04-15T07:15:00.000Z",
+  //     nomEq1: "wolves",
+  //     nomEq2: "mondui",
+  //   },
+  //   {
+  //     idpartido: 2,
+  //     fecha: "2022-04-15T07:15:00.000Z",
+  //     nomEq1: "Joan",
+  //     nomEq2: "Kevin",
+  //   },
+  //   {
+  //     idpartido: 3,
+  //     fecha: "2022-04-15T07:15:00.000Z",
+  //     nomEq1: "Hernando",
+  //     nomEq2: "Astrid",
+  //   },
+  //   {
+  //     idpartido: 4,
+  //     fecha: "2022-04-15T07:15:00.000Z",
+  //     nomEq1: "Sistemas",
+  //     nomEq2: "Electrica",
+  //   },
+  //   {
+  //     idpartido: 5,
+  //     fecha: "2022-04-15T07:15:00.000Z",
+  //     nomEq1: "UdeA",
+  //     nomEq2: "Poli",
+  //   },
+  // ];
+
+  const [isModalPartidoOpen, setModalPartidoOpen] = useState(false);
+  const openModalPartido = () => {
+    setModalPartidoOpen(true);
+  };
+  const closeModalPartido = () => {
+    setModalPartidoOpen(false);
   };
   return (
     <div className="contenedorMainHistorial">
@@ -33,32 +92,19 @@ function Historial() {
         <h1 className="tituloHistorial">Historial</h1>
       </div>
       <div className="contenedorPartidosHistorial">
-        <PartidoHistorial
-          nombreEquipoA="Joan"
-          nombreEquipoB="Kevin"
-          fecha="23/05/2024"
-        />
-        <PartidoHistorial
-          nombreEquipoA="Joan"
-          nombreEquipoB="Samuel"
-          fecha="23/05/2024"
-        />
-        <PartidoHistorial
-          nombreEquipoA="Hernando"
-          nombreEquipoB="Astrid"
-          fecha="22/05/2024"
-        />
-        <PartidoHistorial
-          nombreEquipoA="Kevin"
-          nombreEquipoB="Astrid"
-          fecha="21/05/2024"
-        />
-        <PartidoHistorial
-          nombreEquipoA="Joan"
-          nombreEquipoB="Astrid"
-          fecha="24/05/2024"
-        />
+        {datosHistorial.map((partido) => (
+          <PartidoHistorial
+            idpartido={partido.idpartido}
+            nombreEquipoA={partido.nomEq1.toUpperCase()}
+            nombreEquipoB={partido.nomEq2.toUpperCase()}
+            fecha={partido.fecha.substring(0, 10)}
+            openModal={openModalPartido}
+          />
+        ))}
       </div>
+      <Modal isOpen={isModalPartidoOpen} closeModal={closeModalPartido}>
+        <div>Hola</div>
+      </Modal>
     </div>
   );
 }
