@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/historial.css";
+import { backendAxios } from "../utils";
 import { useNavigate } from "react-router-dom";
 import PartidoHistorial from "./PartidoHistorial";
 import { useState } from "react";
@@ -7,7 +8,9 @@ import Modal from "./Modal";
 
 function Historial() {
   const navigate = useNavigate();
+  const [data, setData] = useState(null);
   const navegar = () => {
+    console.log(data);
     navigate("/");
   };
 
