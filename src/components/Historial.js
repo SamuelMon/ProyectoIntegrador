@@ -8,7 +8,7 @@ import Modal from "./Modal";
 
 function Historial() {
   const navigate = useNavigate();
-  const [data, setData] = useState(null);
+  const [datosHistorial, setDatosHistorial] = useState(null);
   const navegar = () => {
     console.log(data);
     navigate("/");
