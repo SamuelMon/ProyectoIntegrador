@@ -1,13 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/historial.css";
+import { backendAxios } from "../utils";
 import { useNavigate } from "react-router-dom";
 import PartidoHistorial from "./PartidoHistorial";
 
 function Historial() {
   const navigate = useNavigate();
+  const [data, setData] = useState(null);
   const navegar = () => {
+    console.log(data);
     navigate("/");
   };
+
+  useEffect(() => {
+    backendAxios.get('http://localhost:5000/partidos')
+      .then((response) => {
+        if (response.status === 200) {
+          setData(response.data);
+          console.log("Datos recibidos con éxito", response.data);
+        } else {
+          console.error("Error al obtener los datos", response.status);
+        }
+      })
+      .catch((error) => {
+        console.error("Error al realizar la petición:", error);
+      });
+  }, []);
+  
+  
+  /*const handleNavigation = () => {
+    alert("Navegando a otra página!");
+    navigate("/otraRuta");
+  };*/
+
+  console.log(data);
+
   return (
     <div className="contenedorMainHistorial">
       <div className="barraSuperior sombra">
