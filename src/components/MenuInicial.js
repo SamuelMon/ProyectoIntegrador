@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/menuInicial.css";
+import Modal from "./Modal";
 
 function MenuInicial() {
   const navigate = useNavigate();
@@ -11,6 +12,13 @@ function MenuInicial() {
     } else if (num === 2) {
       navigate("/historial");
     }
+  };
+  const [isModalInfoOpen, setModalInfoOpen] = useState(false);
+  const openModalInfo = () => {
+    setModalInfoOpen(true);
+  };
+  const closeModalInfo = () => {
+    setModalInfoOpen(false);
   };
 
   return (
@@ -34,6 +42,7 @@ function MenuInicial() {
           strokeLinecap="round"
           strokeLinejoin="round"
           className="icon icon-tabler icons-tabler-outline icon-tabler-ball-volleyball"
+          onClick={openModalInfo}
         >
           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
           <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
@@ -44,6 +53,23 @@ function MenuInicial() {
           <path d="M12 12a8 8 0 0 0 -.536 -8.928" />
           <path d="M15.549 15.147a12 12 0 0 0 1.38 -10.611" />
         </svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-tabler icon-tabler-ripple"
+          width="100"
+          height="100"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="#000"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M3 7c3 -2 6 -2 9 0s6 2 9 0" />
+          <path d="M3 17c3 -2 6 -2 9 0s6 2 9 0" />
+          <path d="M3 12c3 -2 6 -2 9 0s6 2 9 0" />
+        </svg>
       </h1>
       <button
         className="boton sombra btnMenuInicial btnHistorialPartido"
@@ -51,6 +77,14 @@ function MenuInicial() {
       >
         Historial de Partidos
       </button>
+      <Modal isOpen={isModalInfoOpen} closeModal={closeModalInfo}>
+        <h2>Planilla digital de voleibol</h2>
+        <h2>Desarrollado por</h2>
+        <p>Kevin Fernando Carmona Angel</p>
+        <p>Joan Manuel Muñoz Monroy</p>
+        <p>Samuel David Montoya Cano</p>
+        <footer>Copyright 2024©</footer>
+      </Modal>
     </div>
   );
 }

@@ -25,3 +25,17 @@
   margin-bottom: 80rem;
   font-size: 10rem;
 }
+
+.icon-tabler-ball-volleyball {
+  cursor: pointer;
+}
+
+h2,
+p,
+footer {
+  text-align: center;
+}
+
+footer {
+  font-weight: bold;
+}

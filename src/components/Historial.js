@@ -3,14 +3,13 @@ import "../styles/historial.css";
 import { backendAxios } from "../utils";
 import { useNavigate } from "react-router-dom";
 import PartidoHistorial from "./PartidoHistorial";
-import { useState } from "react";
 import Modal from "./Modal";
 
 function Historial() {
   const navigate = useNavigate();
-  const [datosHistorial, setDatosHistorial] = useState(null);
+  const [datosHistorial, setDatosHistorial] = useState([]);
   const navegar = () => {
-    console.log(data);
+    console.log(datosHistorial);
     navigate("/");
   };
 
@@ -30,38 +29,38 @@ function Historial() {
       });
   }, []);
 
-  // const partidos = [
-  //   {
-  //     idpartido: 1,
-  //     fecha: "2022-04-15T07:15:00.000Z",
-  //     nomEq1: "wolves",
-  //     nomEq2: "mondui",
-  //   },
-  //   {
-  //     idpartido: 2,
-  //     fecha: "2022-04-15T07:15:00.000Z",
-  //     nomEq1: "Joan",
-  //     nomEq2: "Kevin",
-  //   },
-  //   {
-  //     idpartido: 3,
-  //     fecha: "2022-04-15T07:15:00.000Z",
-  //     nomEq1: "Hernando",
-  //     nomEq2: "Astrid",
-  //   },
-  //   {
-  //     idpartido: 4,
-  //     fecha: "2022-04-15T07:15:00.000Z",
-  //     nomEq1: "Sistemas",
-  //     nomEq2: "Electrica",
-  //   },
-  //   {
-  //     idpartido: 5,
-  //     fecha: "2022-04-15T07:15:00.000Z",
-  //     nomEq1: "UdeA",
-  //     nomEq2: "Poli",
-  //   },
-  // ];
+  const partidos = [
+    {
+      idpartido: 1,
+      fecha: "2022-04-15T07:15:00.000Z",
+      nomEq1: "wolves",
+      nomEq2: "mondui",
+    },
+    {
+      idpartido: 2,
+      fecha: "2022-04-15T07:15:00.000Z",
+      nomEq1: "Joan",
+      nomEq2: "Kevin",
+    },
+    {
+      idpartido: 3,
+      fecha: "2022-04-15T07:15:00.000Z",
+      nomEq1: "Hernando",
+      nomEq2: "Astrid",
+    },
+    {
+      idpartido: 4,
+      fecha: "2022-04-15T07:15:00.000Z",
+      nomEq1: "Sistemas",
+      nomEq2: "Electrica",
+    },
+    {
+      idpartido: 5,
+      fecha: "2022-04-15T07:15:00.000Z",
+      nomEq1: "UdeA",
+      nomEq2: "Poli",
+    },
+  ];
 
   const [isModalPartidoOpen, setModalPartidoOpen] = useState(false);
   const openModalPartido = () => {
@@ -95,7 +94,7 @@ function Historial() {
         <h1 className="tituloHistorial">Historial</h1>
       </div>
       <div className="contenedorPartidosHistorial">
-        {datosHistorial.map((partido) => (
+        {partidos.map((partido) => (
           <PartidoHistorial
             idpartido={partido.idpartido}
             nombreEquipoA={partido.nomEq1.toUpperCase()}
