@@ -53,23 +53,6 @@ function MenuInicial() {
           <path d="M12 12a8 8 0 0 0 -.536 -8.928" />
           <path d="M15.549 15.147a12 12 0 0 0 1.38 -10.611" />
         </svg>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="icon icon-tabler icon-tabler-ripple"
-          width="100"
-          height="100"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="#000"
-          fill="none"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M3 7c3 -2 6 -2 9 0s6 2 9 0" />
-          <path d="M3 17c3 -2 6 -2 9 0s6 2 9 0" />
-          <path d="M3 12c3 -2 6 -2 9 0s6 2 9 0" />
-        </svg>
       </h1>
       <button
         className="boton sombra btnMenuInicial btnHistorialPartido"

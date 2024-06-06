@@ -2,9 +2,20 @@ import React from "react";
 import "../styles/partidohistorial.css";
 
 function PartidoHistorial(props) {
-  const { nombreEquipoA, nombreEquipoB, fecha, idPartido, openModal } = props;
+  const {
+    nombreEquipoA,
+    nombreEquipoB,
+    fecha,
+    idPartido,
+    openModal,
+    pedirInfo,
+  } = props;
+  const onClick = () => {
+    openModal();
+    pedirInfo();
+  };
   return (
-    <div className=" sombra contenedorPartidoHistorial" onClick={openModal}>
+    <div className=" sombra contenedorPartidoHistorial" onClick={onClick}>
       <p className="pHistorial">{`${nombreEquipoA} VS ${nombreEquipoB}`}</p>
       <p className="pHistorial">{`${fecha}`}</p>
     </div>
