@@ -36,7 +36,15 @@ function Historial() {
       .get(`http://localhost:5000/partidos/${id}`)
       .then((response) => {
         if (response.status === 200) {
-          setPartidoSeleccionado(response.data);  // Asumiendo que response.data contiene la información del partido
+          const datosPartido = response.data;
+
+          // Llenar con valores nulos los sets no jugados
+          for (let i = 1; i <= 5; i++) {
+            if (!datosPartido[`puntosEqASet${i}`]) datosPartido[`puntosEqASet${i}`] = null;
+            if (!datosPartido[`puntosEqBSet${i}`]) datosPartido[`puntosEqBSet${i}`] = null;
+          }
+
+          setPartidoSeleccionado(datosPartido);  
           openModalPartido();
         } else {
           console.error("Error al obtener los datos del partido", response.status);
@@ -53,7 +61,7 @@ function Historial() {
 
   const closeModalPartido = () => {
     setModalPartidoOpen(false);
-    setPartidoSeleccionado(null);  // Limpiar la selección del partido cuando se cierre el modal
+    setPartidoSeleccionado(null);  
   };
 
   return (
@@ -102,12 +110,16 @@ function Historial() {
             <p>{`División: ${partidoSeleccionado.division}`}</p>
             <p>{`Categoría: ${partidoSeleccionado.categoria}`}</p>
             <p>{`Fecha: ${partidoSeleccionado.fecha}`}</p>
-            <p>{`Puntos Equipo A Set 1: ${partidoSeleccionado.puntosEqASet1}`}</p>
-            <p>{`Puntos Equipo B Set 1: ${partidoSeleccionado.puntosEqBSet1}`}</p>
-            <p>{`Puntos Equipo A Set 2: ${partidoSeleccionado.puntosEqASet2}`}</p>
-            <p>{`Puntos Equipo B Set 2: ${partidoSeleccionado.puntosEqBSet2}`}</p>
-            <p>{`Puntos Equipo A Set 3: ${partidoSeleccionado.puntosEqASet3}`}</p>
-            <p>{`Puntos Equipo B Set 3: ${partidoSeleccionado.puntosEqBSet3}`}</p>
+            {Array.from({ length: 5 }, (_, i) => i + 1).map((setNum) => (
+              <div key={setNum}>
+                {partidoSeleccionado[`puntosEqASet${setNum}`] !== null && (
+                  <p>{`Puntos Equipo A Set ${setNum}: ${partidoSeleccionado[`puntosEqASet${setNum}`]}`}</p>
+                )}
+                {partidoSeleccionado[`puntosEqBSet${setNum}`] !== null && (
+                  <p>{`Puntos Equipo B Set ${setNum}: ${partidoSeleccionado[`puntosEqBSet${setNum}`]}`}</p>
+                )}
+              </div>
+            ))}
             <p>{`Sets Equipo A: ${partidoSeleccionado.setsEqA}`}</p>
             <p>{`Sets Equipo B: ${partidoSeleccionado.setsEqB}`}</p>
           </div>
