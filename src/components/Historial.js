@@ -7,7 +7,7 @@ import Modal from "./Modal";
 
 function Historial() {
   const navigate = useNavigate();
-  const [datosHistorial, setDatosHistorial] = useState([]);
+  const [datos, setDatos] = useState([]);
   const [partidoSeleccionado, setPartidoSeleccionado] = useState(null);
   const [isModalPartidoOpen, setModalPartidoOpen] = useState(false);
 
@@ -20,7 +20,7 @@ function Historial() {
       .get("http://localhost:5000/partidos")
       .then((response) => {
         if (response.status === 200) {
-          setDatosHistorial(response.data);  // Asegúrate que la respuesta tiene la estructura correcta
+          setDatos(response.data);
           console.log("Datos recibidos con éxito", response.data);
         } else {
           console.error("Error al obtener los datos", response.status);
@@ -33,7 +33,16 @@ function Historial() {
 
   const pedirInfo = (id) => {
     backendAxios
-      .get(`http://localhost:5000/partidos/${id}`)
+      .request({
+        url: 'http://localhost:5000/partido',
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data: {
+          id: id
+        }
+      })
       .then((response) => {
         if (response.status === 200) {
           const datosPartido = response.data;
@@ -44,7 +53,7 @@ function Historial() {
             if (!datosPartido[`puntosEqBSet${i}`]) datosPartido[`puntosEqBSet${i}`] = null;
           }
 
-          setPartidoSeleccionado(datosPartido);  
+          setPartidoSeleccionado(datosPartido);
           openModalPartido();
         } else {
           console.error("Error al obtener los datos del partido", response.status);
@@ -61,7 +70,7 @@ function Historial() {
 
   const closeModalPartido = () => {
     setModalPartidoOpen(false);
-    setPartidoSeleccionado(null);  
+    setPartidoSeleccionado(null);
   };
 
   return (
@@ -89,13 +98,13 @@ function Historial() {
         <h1 className="tituloHistorial">Historial</h1>
       </div>
       <div className="contenedorPartidosHistorial">
-        {datosHistorial.map((partido) => (
+        {datos.map((partido) => (
           <PartidoHistorial
             key={partido.idpartido}
             idpartido={partido.idpartido}
-            nombreEquipoA={partido.nomEq1.toUpperCase()}
-            nombreEquipoB={partido.nomEq2.toUpperCase()}
-            fecha={partido.fecha.substring(0, 10)}
+            nombreEquipoA={partido.nomEq1 ? partido.nomEq1.toUpperCase() : ""}
+            nombreEquipoB={partido.nomEq2 ? partido.nomEq2.toUpperCase() : ""}
+            fecha={partido.fecha ? partido.fecha.substring(0, 10) : ""}
             openModal={openModalPartido}
             pedirInfo={pedirInfo}
           />
@@ -105,11 +114,11 @@ function Historial() {
         {partidoSeleccionado ? (
           <div>
             <h2>Información del Partido</h2>
-            <p>{`Ciudad: ${partidoSeleccionado.ciudad}`}</p>
-            <p>{`Escenario: ${partidoSeleccionado.escenario}`}</p>
-            <p>{`División: ${partidoSeleccionado.division}`}</p>
-            <p>{`Categoría: ${partidoSeleccionado.categoria}`}</p>
-            <p>{`Fecha: ${partidoSeleccionado.fecha}`}</p>
+            <p>{`Ciudad: ${partidoSeleccionado.ciudad || ''}`}</p>
+            <p>{`Escenario: ${partidoSeleccionado.escenario || ''}`}</p>
+            <p>{`División: ${partidoSeleccionado.division || ''}`}</p>
+            <p>{`Categoría: ${partidoSeleccionado.categoria || ''}`}</p>
+            <p>{`Fecha: ${partidoSeleccionado.fecha || ''}`}</p>
             {Array.from({ length: 5 }, (_, i) => i + 1).map((setNum) => (
               <div key={setNum}>
                 {partidoSeleccionado[`puntosEqASet${setNum}`] !== null && (
@@ -120,8 +129,8 @@ function Historial() {
                 )}
               </div>
             ))}
-            <p>{`Sets Equipo A: ${partidoSeleccionado.setsEqA}`}</p>
-            <p>{`Sets Equipo B: ${partidoSeleccionado.setsEqB}`}</p>
+            <p>{`Sets Equipo A: ${partidoSeleccionado.setsEqA || ''}`}</p>
+            <p>{`Sets Equipo B: ${partidoSeleccionado.setsEqB || ''}`}</p>
           </div>
         ) : (
           <p>Cargando información del partido...</p>
