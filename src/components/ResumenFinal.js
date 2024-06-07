@@ -71,7 +71,7 @@ function ResumenFinal() {
     nombreEquipoA, //Nombre equipos A
     nombreEquipoB, //Nombre equipos B
     "Tiempos",
-    "Sustiuciones",
+    "Sustituciones",
     "Sets Ganados",
     "Puntos",
     "Set",

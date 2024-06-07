@@ -10,9 +10,9 @@ function PartidoHistorial(props) {
     openModal,
     pedirInfo,
   } = props;
-  const onClick = () => {
+  const onClick = () => { 
     openModal();
-    pedirInfo();
+    pedirInfo(idPartido);
   };
   return (
     <div className=" sombra contenedorPartidoHistorial" onClick={onClick}>

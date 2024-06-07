@@ -8,18 +8,20 @@ import Modal from "./Modal";
 function Historial() {
   const navigate = useNavigate();
   const [datosHistorial, setDatosHistorial] = useState([]);
+  const [partidoSeleccionado, setPartidoSeleccionado] = useState(null);
+  const [isModalPartidoOpen, setModalPartidoOpen] = useState(false);
+
   const navegar = () => {
-    console.log(datosHistorial);
     navigate("/");
   };
 
   useEffect(() => {
-    backendAxios
+    backendAxios  
       .get("http://localhost:5000/partidos")
       .then((response) => {
         if (response.status === 200) {
-          setDatosHistorial(response.datosHistorial);
-          console.log("Datos recibidos con éxito", response.datosHistorial);
+          setDatosHistorial(response.data);  // Asegúrate que la respuesta tiene la estructura correcta
+          console.log("Datos recibidos con éxito", response.data);
         } else {
           console.error("Error al obtener los datos", response.status);
         }
@@ -29,46 +31,31 @@ function Historial() {
       });
   }, []);
 
-  const partidos = [
-    {
-      idpartido: 1,
-      fecha: "2022-04-15T07:15:00.000Z",
-      nomEq1: "wolves",
-      nomEq2: "mondui",
-    },
-    {
-      idpartido: 2,
-      fecha: "2022-04-15T07:15:00.000Z",
-      nomEq1: "Joan",
-      nomEq2: "Kevin",
-    },
-    {
-      idpartido: 3,
-      fecha: "2022-04-15T07:15:00.000Z",
-      nomEq1: "Hernando",
-      nomEq2: "Astrid",
-    },
-    {
-      idpartido: 4,
-      fecha: "2022-04-15T07:15:00.000Z",
-      nomEq1: "Sistemas",
-      nomEq2: "Electrica",
-    },
-    {
-      idpartido: 5,
-      fecha: "2022-04-15T07:15:00.000Z",
-      nomEq1: "UdeA",
-      nomEq2: "Poli",
-    },
-  ];
+  const pedirInfo = (id) => {
+    backendAxios
+      .get(`http://localhost:5000/partidos/${id}`)
+      .then((response) => {
+        if (response.status === 200) {
+          setPartidoSeleccionado(response.data);  // Asumiendo que response.data contiene la información del partido
+          openModalPartido();
+        } else {
+          console.error("Error al obtener los datos del partido", response.status);
+        }
+      })
+      .catch((error) => {
+        console.error("Error al realizar la petición:", error);
+      });
+  };
 
-  const [isModalPartidoOpen, setModalPartidoOpen] = useState(false);
   const openModalPartido = () => {
     setModalPartidoOpen(true);
   };
+
   const closeModalPartido = () => {
     setModalPartidoOpen(false);
+    setPartidoSeleccionado(null);  // Limpiar la selección del partido cuando se cierre el modal
   };
+
   return (
     <div className="contenedorMainHistorial">
       <div className="barraSuperior sombra">
@@ -94,18 +81,39 @@ function Historial() {
         <h1 className="tituloHistorial">Historial</h1>
       </div>
       <div className="contenedorPartidosHistorial">
-        {partidos.map((partido) => (
+        {datosHistorial.map((partido) => (
           <PartidoHistorial
+            key={partido.idpartido}
             idpartido={partido.idpartido}
             nombreEquipoA={partido.nomEq1.toUpperCase()}
             nombreEquipoB={partido.nomEq2.toUpperCase()}
             fecha={partido.fecha.substring(0, 10)}
             openModal={openModalPartido}
+            pedirInfo={pedirInfo}
           />
         ))}
       </div>
       <Modal isOpen={isModalPartidoOpen} closeModal={closeModalPartido}>
-        <div>Hola</div>
+        {partidoSeleccionado ? (
+          <div>
+            <h2>Información del Partido</h2>
+            <p>{`Ciudad: ${partidoSeleccionado.ciudad}`}</p>
+            <p>{`Escenario: ${partidoSeleccionado.escenario}`}</p>
+            <p>{`División: ${partidoSeleccionado.division}`}</p>
+            <p>{`Categoría: ${partidoSeleccionado.categoria}`}</p>
+            <p>{`Fecha: ${partidoSeleccionado.fecha}`}</p>
+            <p>{`Puntos Equipo A Set 1: ${partidoSeleccionado.puntosEqASet1}`}</p>
+            <p>{`Puntos Equipo B Set 1: ${partidoSeleccionado.puntosEqBSet1}`}</p>
+            <p>{`Puntos Equipo A Set 2: ${partidoSeleccionado.puntosEqASet2}`}</p>
+            <p>{`Puntos Equipo B Set 2: ${partidoSeleccionado.puntosEqBSet2}`}</p>
+            <p>{`Puntos Equipo A Set 3: ${partidoSeleccionado.puntosEqASet3}`}</p>
+            <p>{`Puntos Equipo B Set 3: ${partidoSeleccionado.puntosEqBSet3}`}</p>
+            <p>{`Sets Equipo A: ${partidoSeleccionado.setsEqA}`}</p>
+            <p>{`Sets Equipo B: ${partidoSeleccionado.setsEqB}`}</p>
+          </div>
+        ) : (
+          <p>Cargando información del partido...</p>
+        )}
       </Modal>
     </div>
   );
