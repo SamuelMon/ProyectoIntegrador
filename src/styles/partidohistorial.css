@@ -1,0 +1,18 @@
+.contenedorPartidoHistorial {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  height: 10rem;
+  grid-row: 2/3;
+}
+
+.contenedorPartidoHistorial:hover {
+  cursor: pointer;
+}
+
+.pHistorial {
+  font-size: 4rem;
+  font-weight: bold;
+  margin: 0;
+}

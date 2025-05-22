@@ -1,66 +1,106 @@
-html{
-    font-size: 62.5%;/*1*/
-    box-sizing: border-box;
+html {
+  font-size: 62.5%; /*1*/
+  box-sizing: border-box;
 }
-*, *:before, *:after {/*soluciona con el box-sizing*/
-    box-sizing: inherit;
-  }
+*,
+*:before,
+*:after {
+  /*soluciona con el box-sizing*/
+  box-sizing: inherit;
+}
 
-body{
-    font-size: 16px; /*2. Con 1 y 2 tenemos que 1rem= 10px*/
-    background-color: #F8F9F9;
+body {
+  font-size: 16px; /*2. Con 1 y 2 tenemos que 1rem= 10px*/
+  background-color: #f8f9f9;
 }
 
 /*Globales*/
-.boton{
-    background-color: #0097a7;
-    color: #fff;
-    padding: 1rem 3rem;
-    margin-top: 1rem;
-    font-size: 2rem;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-weight: bold;
-    border-radius: .5rem;
-    width: 100%;
-    text-align: center;
-    border: none;
+.boton {
+  background-color: #0097a7;
+  color: #fff;
+  padding: 1rem 3rem;
+  margin-top: 1rem;
+  font-size: 2rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  width: 100%;
+  text-align: center;
+  border: none;
 }
-@media (min-width: 768px){
-    .boton{
-        width: auto;
-    }
+@media (min-width: 768px) {
+  .boton {
+    width: auto;
+  }
 }
-
-.contenedor{
-    max-width: 120rem;
-    margin: 0 auto;
-    background-color: #fff;
+.boton:hover {
+  cursor: pointer;
 }
 
-.sombra{/*https://www.cssmatic.com/*/
-    box-shadow: 0px 5px 15px 0px rgba(0,0,0,0.54);
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 2rem;
+.contenedor {
+  max-width: 120rem;
+  margin: 0 auto;
+  background-color: #fff;
+}
+
+.sombra {
+  /*https://www.cssmatic.com/*/
+  box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.54);
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 2rem;
+}
+
+.grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.grid2Column {
+  grid-template-columns: repeat(2, 1fr);
+}
+.grid3Column {
+  grid-template-columns: repeat(3, 1fr);
+}
+.grid4Column {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.centrar {
+  text-align: center;
 }
 
 /*Formulario*/
-.formulario{
-    background-color: #AEB6BF;
-    width: min(100rem, 90%);/*utilia el valor mas pequeño*/
-    margin: 0 auto;/*centrar horizontalmente cuando sea display block y el padre no tenga display flex*/
-    padding: 2rem;
-    border-radius: 1rem;
+.formulario {
+  background-color: #aeb6bf;
+  width: min(120rem, 90%); /*utilia el valor mas pequeño*/
+  margin: 0 auto; /*centrar horizontalmente cuando sea display block y el padre no tenga display flex*/
+  padding: 2rem;
+  border-radius: 1rem;
 }
-.formulario fieldset{
-    border: none;
+.formulario fieldset {
+  border: none;
 }
-.formulario__titulo{
-    text-align: center;
-    font-size: 1.8rem;
-    text-transform: uppercase;
-    font-weight: bold;
-    margin-bottom: 2rem;
-    color: #fff;
+.formulario__titulo {
+  text-align: center;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #fff;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
 }

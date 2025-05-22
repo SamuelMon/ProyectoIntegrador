@@ -1,0 +1,16 @@
+.contenedorSustitucion {
+  display: grid;
+  gap: 2rem;
+}
+
+.botonSust {
+  background-color: #aeb6bf;
+  color: #fff;
+  min-width: 11rem;
+  min-height: 11rem;
+  transition: background 0.5s;
+}
+
+.botonSust:hover {
+  background-color: #969ea6;
+}

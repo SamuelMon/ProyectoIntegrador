@@ -1,0 +1,36 @@
+.contenedorMainHistorial {
+  display: grid;
+  height: 100vh;
+  width: 100vw;
+}
+.contenedorPartidosHistorial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15rem;
+  width: 100%;
+  gap: 1rem;
+}
+.barraSuperior {
+  background-color: #e74c3c;
+  display: flex;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  position: absolute;
+}
+
+.icon-tabler-circle-arrow-left {
+  position: relative;
+  left: 0;
+  top: 1.5rem;
+  cursor: pointer;
+}
+
+.tituloHistorial {
+  color: #fff;
+  font-size: 5rem;
+  position: relative;
+  left: 41%;
+}

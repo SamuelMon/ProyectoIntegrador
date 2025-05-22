@@ -1,0 +1,41 @@
+.contenedorMenuInicial {
+  background-image: linear-gradient(to top, #aeb6bf, #fff);
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.btnMenuInicial {
+  height: 50%;
+  width: 30%;
+  font-size: 5rem;
+}
+
+.btnNuevoPartido {
+  background-color: #0097a7;
+}
+
+.btnHistorialPartido {
+  background-color: #e74c3c;
+}
+
+.tituloPrincipal {
+  margin-bottom: 80rem;
+  font-size: 10rem;
+}
+
+.icon-tabler-ball-volleyball {
+  cursor: pointer;
+}
+
+h2,
+p,
+footer {
+  text-align: center;
+}
+
+footer {
+  font-weight: bold;
+}
